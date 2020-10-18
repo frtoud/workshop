@@ -449,22 +449,3 @@ case AT_TAUNT:
 //==============================================================
 default: break;
 }
-
-//DEFINES
-//==============================================================================
-#define trueground
-/// trueground()
-return !free &&
-       (noone != instance_place( x, y+1, asset_get("solid_32_obj")) ||
-        noone != instance_place( x, y+1, asset_get("obj_stage_article_solid")) ||
-        noone != instance_place( x, y+1, asset_get("obj_stage_article_platform")) ||
-        noone != instance_place( x, y+1, asset_get("jumpthrough_32_obj")) );
-        
-//==============================================================================
-#define trueground_point
-/// trueground_point()
-return !free &&
-       (noone != instance_position( x, y+1, asset_get("solid_32_obj")) ||
-        noone != instance_position( x, y+1, asset_get("obj_stage_article_solid")) ||
-        noone != instance_position( x, y+1, asset_get("obj_stage_article_platform")) ||
-        noone != instance_position( x, y+1, asset_get("jumpthrough_32_obj")) );

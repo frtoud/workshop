@@ -181,8 +181,8 @@ user_event(0);
 #define trueground
 /// trueground()
 return !free && 
-       (noone != instance_place( x, y+1, asset_get("solid_32_obj")) ||
-        noone != instance_place( x, y+1, asset_get("obj_stage_article_solid")) ||
-        noone != instance_place( x, y+1, asset_get("obj_stage_article_platform")) ||
-        noone != instance_place( x, y+1, asset_get("jumpthrough_32_obj")) );
+   (noone != collision_rectangle( bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, asset_get("solid_32_obj"), false, true) ||
+    noone != collision_rectangle( bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, asset_get("obj_stage_article_solid"), false, true) ||
+    noone != collision_rectangle( bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, asset_get("obj_stage_article_platform"), false, true) ||
+    noone != collision_rectangle( bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, asset_get("jumpthrough_32_obj"), false, true) );
         
