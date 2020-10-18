@@ -169,6 +169,19 @@ switch (state)
             }break;
             case AT_USTRONG:
             {
+                if (window == 1 && strong_charge > 0)
+                {
+                    if (get_gameplay_time() % 4 == 0)
+                    {
+                        var radius = 10;
+                    	
+                    	var kx = x - (radius / 2) + anim_rand_x * radius;
+                    	var ky = y - 6 - (radius / 2) + anim_rand_y * radius;
+                        
+                        var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
+                        k.depth = depth - 1;
+                    }
+                }
                 if (!hitstop && window == 2 && window_timer == 
                 (get_hitbox_value(AT_USTRONG, 1, HG_WINDOW_CREATION_FRAME)) )
                 { 
@@ -201,6 +214,18 @@ switch (state)
                         var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
                         k.depth = depth - 1;
                     }
+                }
+            }break;
+            case AT_FSPECIAL:
+            {
+                if ((window == 2 || window == 3) && get_gameplay_time() % 2 == 0)
+                {
+                    var radius = get_hitbox_value(AT_FSPECIAL, 2, HG_WIDTH);
+                	
+                	var kx = x - (spr_dir * 8) - (radius / 2) + anim_rand_x * radius;
+                	var ky = y - 16 - (radius / 2) + anim_rand_y * radius;
+                    
+                    var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
                 }
             }break;
             case AT_USPECIAL:
