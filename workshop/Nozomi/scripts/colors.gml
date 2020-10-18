@@ -49,9 +49,9 @@ set_color_profile_slot_range(5,  8,  5, 10);
 set_color_profile_slot(0, 6, 162, 211, 211); //VFX
 set_color_profile_slot_range(6,  8, 60, 25);
 
-set_num_palettes(9);
+set_num_palettes(10);
 
-//Tomboyish Girl in Love
+//Beloved Tomboyish Girl
 set_color_profile_slot(1, 0, 135, 200, 255); //Hair
 set_color_profile_slot(1, 1, 255, 188, 167); //Skin
 set_color_profile_slot(1, 2, 220,  80,  80); //Bow
@@ -118,12 +118,20 @@ set_color_profile_slot(7, 4, 167, 186,  74); //Skirt
 set_color_profile_slot(7, 5,  35,  67,  49); //Leggings
 set_color_profile_slot(7, 6, 211, 226, 154); //VFX
 
+//Stone Halation
+set_color_profile_slot(8, 0,  12,  95, 220); //Hair
+set_color_profile_slot(8, 1, 255, 255, 255); //Skin
+set_color_profile_slot(8, 2, 240, 160,  30); //Bow
+set_color_profile_slot(8, 3, 120,  15,   0); //Shirt
+set_color_profile_slot(8, 4, 255, 140, 100); //Skirt
+set_color_profile_slot(8, 5, 255, 140, 100); //Leggings
+set_color_profile_slot(8, 6, 240, 160,  30); //VFX
+
 //Madeline
-//set_color_profile_slot(8, 0, 230, 100, 115); //Hair
-set_color_profile_slot(8, 0, 245, 120,  92); //Hair
-set_color_profile_slot(8, 1, 255, 188, 167); //Skin
-set_color_profile_slot(8, 2,  80,  50,  75); //Bow
-set_color_profile_slot(8, 3,  90, 115, 210); //Shirt
-set_color_profile_slot(8, 4,  85, 105, 210); //Skirt
-set_color_profile_slot(8, 5, 147,  64,  50); //Leggings
-set_color_profile_slot(8, 6, 198, 211, 241); //VFX
+set_color_profile_slot(9, 0, 245, 120,  92); //Hair
+set_color_profile_slot(9, 1, 255, 188, 167); //Skin
+set_color_profile_slot(9, 2,  80,  50,  75); //Bow
+set_color_profile_slot(9, 3,  90, 115, 210); //Shirt
+set_color_profile_slot(9, 4,  85, 105, 210); //Skirt
+set_color_profile_slot(9, 5, 147,  64,  50); //Leggings
+set_color_profile_slot(9, 6, 198, 211, 241); //VFX

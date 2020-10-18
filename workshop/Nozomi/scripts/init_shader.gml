@@ -1,7 +1,8 @@
 //shader shenanigans
 
-//EarlyAccess
-if (get_player_color(player) == 7)
+//EarlyAccess + Bootleg
+if ( (get_player_color(player) == 7)
+  || (get_player_color(player) == 8) )
 {
     set_character_color_shading( 0, 0.0 ); 
     set_character_color_shading( 1, 0.0 );
@@ -13,12 +14,12 @@ if (get_player_color(player) == 7)
 }
 
 //Madeline Hair color effect
-if (get_player_color(player) == 8 
-    && "at_uspecial_was_hovering" in self)
+if ( (get_player_color(player) == 9)
+  && ("at_uspecial_was_hovering" in self) )
 {
-    var hair_color = [get_color_profile_slot_r(8, 0),
-                      get_color_profile_slot_g(8, 0), 
-                      get_color_profile_slot_b(8, 0)];
+    var hair_color = [get_color_profile_slot_r(9, 0),
+                      get_color_profile_slot_g(9, 0), 
+                      get_color_profile_slot_b(9, 0)];
     if (at_uspecial_was_hovering)
     {
         //Fade to blue
