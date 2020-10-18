@@ -138,14 +138,12 @@ case AT_NAIR:
         //Adjust NAIR's data values to make the "hover" variants
         if (at_uspecial_hovering && !at_uspecial_exhausted)
         {
-            set_num_hitboxes(AT_NAIR, 7);
             set_hitbox_value(AT_NAIR, 1, HG_HITBOX_Y, -46);
             set_hitbox_value(AT_NAIR, 2, HG_HITBOX_Y, -46);
             set_hitbox_value(AT_NAIR, 3, HG_HITBOX_Y, -46);
         }
         else
         {
-            reset_num_hitboxes(AT_NAIR);
             reset_hitbox_value(AT_NAIR, 1, HG_HITBOX_Y);
             reset_hitbox_value(AT_NAIR, 2, HG_HITBOX_Y);
             reset_hitbox_value(AT_NAIR, 3, HG_HITBOX_Y);
@@ -157,10 +155,13 @@ case AT_NAIR:
     
     //Slightly slows fall
     if (window == 2 && attack_down)
-    { vsp *= (vsp > 2) ? 0.8 : 1; }
-    //Dampens fast fall
-    else if (window == 2 || window == 3)
-    { vsp *= (vsp > 9) ? 0.8 : 1; }
+    { 
+    	vsp *= (vsp > 2) ? 0.8 : 1; 
+    }
+    else if (window == 4 && has_hit)
+    {
+    	iasa_script();
+    }
 } break;
 //==============================================================
 case AT_DAIR: 
