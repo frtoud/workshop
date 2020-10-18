@@ -76,9 +76,18 @@ with (oPlayer)
 					}
 					else if (free)
 					{
+						//detect wallbounces
+						can_wall_tech = false;
+						if (hsp * noz_freeze_hsp < 0) &&
+						   ( place_meeting(x + 1, y, asset_get("par_block")) 
+						  || place_meeting(x - 1, y, asset_get("par_block")) )
+						{
+						  	noz_freeze_hsp = -noz_freeze_hsp;
+						}
+						
 						vsp = noz_freeze_vsp;
 						noz_freeze_vsp += other.noz_freeze_grav;
-						hsp = (hsp * noz_freeze_hsp > 0) ? noz_freeze_hsp : -noz_freeze_hsp;
+						hsp = noz_freeze_hsp;
 						noz_freeze_anim_rotate += other.noz_freeze_anim_speed;
 					}
 					else
