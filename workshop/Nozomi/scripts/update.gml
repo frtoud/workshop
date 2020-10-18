@@ -77,12 +77,12 @@ if (at_uspecial_hovering)
 			//Hovermode movement logic!
 			var target_hsp = 0;
 			var target_vsp = 0;
-			var hover_cost_mult = 1.2;
+			var hover_cost_mult = 1.1;
 			if (!joy_pad_idle)
 			{
 	            target_hsp = lengthdir_x(noz_uspecial_hover_hspeed, joy_dir);
 	            target_vsp = lengthdir_y(noz_uspecial_hover_vspeed, joy_dir);
-	            hover_cost_mult -= lengthdir_y(0.5, joy_dir);
+	            hover_cost_mult -= lengthdir_y(0.8, joy_dir);
 			}
 			
 			//dampen vertical control depending on meter level

@@ -160,10 +160,10 @@ noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
 noz_fspecial_cooldown = noz_fspecial_airtime;
 
-noz_uspecial_hover_max = 600;
-noz_uspecial_short_cost = 75; // 1/8
-noz_uspecial_long_cost = 150; // 1/4
-noz_uspecial_hover_recharge = 5;
+noz_uspecial_hover_max = 480;
+noz_uspecial_short_cost = 60; // 1/8
+noz_uspecial_long_cost = 120; // 1/4
+noz_uspecial_hover_recharge = 3;
 noz_uspecial_hover_vspeed = 2 + air_max_speed;
 noz_uspecial_hover_exhaustion_base = 30;
 noz_uspecial_hover_hspeed = 1.5 + air_max_speed;
