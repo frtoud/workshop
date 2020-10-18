@@ -171,6 +171,7 @@ case AT_DAIR:
     //see update.gml for the extra hitbox when landing.
     at_dair_need_landing_lag_hitbox = (window == 2 || window == 3);
     can_wall_jump = (window > 2);
+    can_move = (window > 3);
     
     //Can jump-cancel if the strong hitbox hit something
     if (has_hit && (window == 2))

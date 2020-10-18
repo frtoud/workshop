@@ -73,7 +73,7 @@ set_hitbox_value(AT_DAIR, 2, HG_BASE_KNOCKBACK, 5);
 set_hitbox_value(AT_DAIR, 2, HG_KNOCKBACK_SCALING, 0.4);
 set_hitbox_value(AT_DAIR, 2, HG_BASE_HITPAUSE, 8);
 set_hitbox_value(AT_DAIR, 2, HG_HITPAUSE_SCALING, 0.25);
-set_hitbox_value(AT_DAIR, 2, HG_HIT_LOCKOUT, 12);
+set_hitbox_value(AT_DAIR, 2, HG_HIT_LOCKOUT, 6);
 set_hitbox_value(AT_DAIR, 2, HG_HIT_SFX, asset_get("sfx_blow_medium2"));
 set_hitbox_value(AT_DAIR, 2, HG_HITBOX_GROUP, 1);
 
