@@ -76,7 +76,7 @@ sprite_change_offset("dspecial_air", 32, 56);
 sprite_change_offset("dspecial_shine", 35, 36);
  
 sprite_change_offset("taunt", 40, 68);
- sprite_change_offset("plat", 64, 94); //TODO: add platform art
+sprite_change_offset("plat", 37, 14);
 
 set_victory_theme(sound_get("victory"));
 set_victory_bg(sprite_get("victory"));
