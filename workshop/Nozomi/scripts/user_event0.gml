@@ -147,6 +147,20 @@ with (oPlayer)
 					                   0 : floor(noz_sleep_timer * 0.9);
 				}
 				
+				if ((noz_sleep_timer % 30) == 0)
+				{
+				    var kx = x + other.anim_rand_x * char_height - (char_height / 2);
+				    var ky = y - (char_height * 0.75);
+					
+					//Back to Nozomi's perspective
+					with (other) 
+					{ 
+						var k = spawn_hit_fx(kx, ky, vfx_sleep); 
+						k.depth = depth - 1;
+					}
+					sound_play(asset_get("sfx_cub_yawn"), false, noone, 1, 0.8);
+				}
+				
 				if ( (noz_sleepimmune_timer <= 0)
 			        && ((state_cat == SC_HITSTUN) 
 				    || noz_handler_id.state_cat == SC_HITSTUN

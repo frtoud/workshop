@@ -110,7 +110,7 @@ anim_rand_y = 0;
 vfx_snow_twinkle = hit_fx_create(sprite_get("vfx_snow_twinkle"), 9);
 vfx_ice_small = hit_fx_create(sprite_get("vfx_ice_small"), 12);
 vfx_ice_big = hit_fx_create(sprite_get("vfx_ice_big"), 20);
-vfx_ice_dstrong = hit_fx_create(sprite_get("vfx_ice_dstrong"), 42);
+vfx_sleep = hit_fx_create(sprite_get("vfx_sleep"), 25);
 
 vfx_frozen_sprite = sprite_get("vfx_frozen");
 
