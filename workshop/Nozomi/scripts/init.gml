@@ -141,9 +141,9 @@ noz_snowstack_timer_max = 60 * 5;
 noz_snowimmune_timer_max = 60 * 2;
 
 noz_freeze_grav = 0.1;
-noz_freeze_base_stun = 40;
+noz_freeze_base_stun = 45;
 noz_freeze_base_vsp = 5;
-noz_freeze_mult_vsp = 0.015;
+noz_freeze_mult_vsp = 0.010;
 noz_freeze_anim_speed = 6; //degrees per frame
 
 noz_pratfall_max_vsp = 5.5;
@@ -153,8 +153,8 @@ noz_dspecial_damage_max = 40;
 noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_breaking_mult = 2;
 
-noz_nspecial_sleep_max = 120;
-noz_nspecial_sleepimmune_max = 30;
+noz_nspecial_sleep_max = 90;
+noz_nspecial_sleepimmune_max = 45;
 
 noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
