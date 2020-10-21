@@ -80,10 +80,16 @@ with (oPlayer)
 						//detect wallbounces
 						can_wall_tech = false;
 						if (hsp * noz_freeze_hsp < 0) &&
-						   ( place_meeting(x + 1, y, asset_get("par_block")) 
-						  || place_meeting(x - 1, y, asset_get("par_block")) )
+						   ( place_meeting(x + 5, y, asset_get("par_block")) 
+						  || place_meeting(x - 5, y, asset_get("par_block")) )
 						{
 						  	noz_freeze_hsp = -noz_freeze_hsp;
+						}
+						//detect ceilings
+						else if (noz_freeze_vsp < 0 &&
+							place_meeting(x, y - 5, asset_get("par_block")) )
+						{
+						  	noz_freeze_vsp = 0;
 						}
 						
 						vsp = noz_freeze_vsp;
@@ -94,8 +100,11 @@ with (oPlayer)
 					else
 					{
 						//bounce
-						noz_freeze_vsp *= -0.65;
-						noz_freeze_vsp -= 1;
+						if (noz_freeze_vsp > -1)
+						{
+						   noz_freeze_vsp = abs(noz_freeze_vsp) * -0.75;
+						   noz_freeze_vsp -= 1;
+						}
 						vsp = noz_freeze_vsp;
 						hsp = noz_freeze_hsp;
 					}
