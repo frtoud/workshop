@@ -40,6 +40,7 @@ if (my_hitboxID.orig_player == player) //ONLY CHECK WITH YOUR OWN HITBOXES!!
           && hit_player_obj.noz_sleepimmune_timer == 0)
     {
         hit_player_obj.noz_sleep_timer = noz_nspecial_sleep_max;
+		hit_player_obj.noz_sleep_anim_timer = 0;
         hit_player_obj.noz_handler_id = self;
     }
 }

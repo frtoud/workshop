@@ -13,11 +13,12 @@ with (oPlayer)
 		if (state == PS_RESPAWN || (invincible && state == PS_PARRY))
 		{
 			noz_freeze_timer = 0;
+			noz_freeze_anim_rotate = 0;
 			noz_snowstack_timer = 0;
 			noz_snowimmune_timer = 0;
-			noz_freeze_anim_rotate = 0;
 			noz_sleep_timer = 0;
 			noz_sleepimmune_timer = 0;
+			noz_sleep_anim_timer = 0;
 			noz_handler_id = noone;
 		}
 		//===========================================================
@@ -136,8 +137,23 @@ with (oPlayer)
 					state = PS_PRATLAND;
 					//avoid sfx/vfx
 					state_timer = 1;
+					if ((noz_sleep_anim_timer % 45) == 10)
+					{
+					    var kx = x + other.anim_rand_x * char_height - (char_height / 2);
+					    var ky = y - (char_height * 0.75);
+						
+						//Back to Nozomi's perspective
+						with (other) 
+						{ 
+							var k = spawn_hit_fx(kx, ky, vfx_sleep); 
+							k.spr_dir = 1;
+							k.depth = depth - 1;
+						}
+						sound_play(asset_get("sfx_cub_yawn"), false, noone, 1, 0.8);
+					}
 				}
 				noz_sleep_timer--;
+				noz_sleep_anim_timer++;
 				
 				if (hitpause) 
 				{
@@ -147,19 +163,6 @@ with (oPlayer)
 					                   0 : floor(noz_sleep_timer * 0.9);
 				}
 				
-				if ((noz_sleep_timer % 30) == 0)
-				{
-				    var kx = x + other.anim_rand_x * char_height - (char_height / 2);
-				    var ky = y - (char_height * 0.75);
-					
-					//Back to Nozomi's perspective
-					with (other) 
-					{ 
-						var k = spawn_hit_fx(kx, ky, vfx_sleep); 
-						k.depth = depth - 1;
-					}
-					sound_play(asset_get("sfx_cub_yawn"), false, noone, 1, 0.8);
-				}
 				
 				if ( (noz_sleepimmune_timer <= 0)
 			        && ((state_cat == SC_HITSTUN) 
@@ -174,6 +177,7 @@ with (oPlayer)
 			else if (noz_sleepimmune_timer > 0)
 			{
 				noz_sleepimmune_timer--;
+				noz_sleep_anim_timer = 0;
 			}
 		}
     }
