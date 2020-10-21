@@ -400,11 +400,13 @@ case AT_USPECIAL:
         case 4:
         {
             can_move = false;
+            sound_stop(asset_get("sfx_ori_stomp_spin"));
+            vsp = min(vsp, 0);
         }break;
         case 5:
         {
             can_move = false;
-            sound_stop(asset_get("sfx_ori_stomp_spin"));
+            vsp = min(vsp, 0);
             
             //initiate HoverMode!
             //See update.gml for the rest of this logic
