@@ -7,6 +7,10 @@ if (attack == AT_DSPECIAL && (window == 2 || window == 4 || window == 5)
     var vfxframe = (get_gameplay_time() / 3 ) % 4;
     draw_sprite(sprite_get("dspecial_shine"), vfxframe, x, y-24);
 }
+if (anim_dspecial_shockwave_frame > 0)
+{ 
+    draw_sprite(sprite_get("vfx_shine"), anim_dspecial_shockwave_frame - 1, x, y-24); 
+}
 
 //force-show the parry frame
 else if (state == PS_PARRY && image_index == dodge_startup_frames)

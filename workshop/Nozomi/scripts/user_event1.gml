@@ -90,6 +90,7 @@ else
             window = 4;
             window_timer = 0;
             perfect_dodging = true;
+            anim_dspecial_shockwave_frame = 4;
         }
         else
         {

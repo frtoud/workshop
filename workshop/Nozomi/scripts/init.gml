@@ -103,6 +103,7 @@ bubble_y = 4;
 //=================================================
 //Custom vfx & sprites
 
+anim_dspecial_shockwave_frame = 0;
 anim_do_draw_twinkle = false;
 anim_rand_x = 0;
 anim_rand_y = 0;

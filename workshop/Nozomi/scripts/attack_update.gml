@@ -201,15 +201,20 @@ case AT_FAIR:
     }
 } break;
 //==============================================================
-case AT_DSPECIAL: 
+case AT_DSPECIAL:
 {
+    if (anim_dspecial_shockwave_frame > 0) 
+    { anim_dspecial_shockwave_frame--; }
     switch (window)
     {
         case 1:
         {
-            reset_num_hitboxes(AT_DSPECIAL);
-            at_dspecial_done = false;
-            at_dspecial_damage_block = floor(at_dspecial_damage_block);
+        	if (window_timer == 1)
+        	{
+	            at_dspecial_done = false;
+	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
+	            anim_dspecial_shockwave_frame = 4;
+        	}
             
             //Dampen momentum
             hsp *= 0.8;
@@ -228,8 +233,6 @@ case AT_DSPECIAL:
             if (special_down && !was_parried && 
             (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH)))
             {
-                //Loop, but without the hitbox
-                set_num_hitboxes(AT_DSPECIAL, 0);
                 at_dspecial_done = true;
                 window_timer = 0; 
             }
