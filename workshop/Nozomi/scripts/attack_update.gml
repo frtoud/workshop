@@ -203,8 +203,6 @@ case AT_FAIR:
 //==============================================================
 case AT_DSPECIAL:
 {
-    if (anim_dspecial_shockwave_frame > 0) 
-    { anim_dspecial_shockwave_frame--; }
     switch (window)
     {
         case 1:
@@ -212,8 +210,9 @@ case AT_DSPECIAL:
         	if (window_timer == 1)
         	{
 	            at_dspecial_done = false;
+	            at_dspecial_has_parried = false;
 	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
-	            anim_dspecial_shockwave_frame = 4;
+	            anim_dspecial_shockwave_frame = 6;
         	}
             
             //Dampen momentum
@@ -230,23 +229,26 @@ case AT_DSPECIAL:
             if (!was_parried)
             { user_event(1); }
         
-            if (special_down && !was_parried && 
-            (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH)))
-            {
-                at_dspecial_done = true;
-                window_timer = 0; 
-            }
-            else if (!special_down && at_dspecial_done)
+            if (!special_down && 
+            (at_dspecial_done || (at_dspecial_has_parried || has_hit_player)) )
             {
                 window = 3;
                 window_timer = 0; 
             }
-            
-            
+            else if (special_down && !was_parried && 
+            (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH)) )
+            {
+                at_dspecial_done = true;
+                window_timer = 0; 
+            }
         } break;
         case 3:
         {
+        	//Prevents excessive jump-cancel multishines
+        	move_cooldown[AT_DSPECIAL] = 12;
             can_jump = !was_parried;
+            can_attack = !was_parried && 
+                         (at_dspecial_has_parried || has_hit_player);
         } break;
         case 4:
         {

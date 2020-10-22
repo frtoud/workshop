@@ -182,6 +182,7 @@ at_nair_hover_need_grid_adjust = false;
 at_dair_need_landing_lag_hitbox = false;
 
 at_dspecial_done = false;
+at_dspecial_has_parried = false;
 at_dspecial_damage_block = noz_dspecial_damage_max;
 
 at_nspecial_flagforimmune = false;

@@ -9,7 +9,8 @@ if (attack == AT_DSPECIAL && (window == 2 || window == 4 || window == 5)
 }
 if (anim_dspecial_shockwave_frame > 0)
 { 
-    draw_sprite(sprite_get("vfx_shine"), anim_dspecial_shockwave_frame - 1, x, y-24); 
+    draw_sprite(sprite_get("vfx_shine"), 
+         min(anim_dspecial_shockwave_frame, 4) - 1, x, y-24); 
 }
 
 //force-show the parry frame

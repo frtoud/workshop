@@ -257,3 +257,5 @@ switch (state)
     break;
 };
 
+if (anim_dspecial_shockwave_frame > 0) 
+    { anim_dspecial_shockwave_frame -= 1; }

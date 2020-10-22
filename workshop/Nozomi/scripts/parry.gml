@@ -9,6 +9,8 @@ if ((attack == AT_DSPECIAL) && (state == PS_ATTACK_AIR || state == PS_ATTACK_GRO
     else
     {
         at_dspecial_damage_block -= enemy_hitboxID.damage;
+        //This should be zero, but it ends up parrying the same attack multiple times.
+        can_be_hit[hit_player_obj.player] = 20;
     }
     //This parry state is reached when force-reflecting something.
     //You do not become invincible afterwards.
@@ -16,6 +18,4 @@ if ((attack == AT_DSPECIAL) && (state == PS_ATTACK_AIR || state == PS_ATTACK_GRO
     perfect_dodged = false;
     perfect_dodging = false;
     
-    //This should be zero, but it ends up parrying the same attack multiple times.
-    can_be_hit[hit_player_obj.player] = 20;
 }
