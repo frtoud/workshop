@@ -29,26 +29,6 @@ if (state == PS_PRATFALL && vsp > noz_pratfall_max_vsp)
 	vsp = noz_pratfall_max_vsp;
 }
 
-//Respawn resets
-//==============================================================================
-//TODO: Move to death.gml?
-if (state == PS_RESPAWN)
-{
-	at_dspecial_damage_block = noz_dspecial_damage_max;
-	
-	at_uspecial_hover_meter = noz_uspecial_hover_max;
-	at_uspecial_was_hovering = false;
-	at_uspecial_hovering = false;
-	at_uspecial_exhausted = false;
-	
-    move_cooldown[AT_DSPECIAL] = 0;
-    move_cooldown[AT_NSPECIAL] = 0;
-    move_cooldown[AT_FSPECIAL] = 0;
-    move_cooldown[AT_USPECIAL] = 0;
-    at_uspecial_cooldown_override = false;
-    at_fspecial_cooldown_override = false;
-}
-
 //USPECIAL hover logic
 //==============================================================================
 if (at_uspecial_hovering)

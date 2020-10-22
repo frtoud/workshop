@@ -1,4 +1,4 @@
-//got_hit - called when you're hit by a hitbox
+//got_parried
 
 if (attack == AT_USPECIAL)
 {

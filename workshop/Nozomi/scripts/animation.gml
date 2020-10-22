@@ -48,12 +48,11 @@ if (at_uspecial_hovering)
     }
     
     anim_hover_hair_frame += anim_hover_hair_rates[hair_animspeed_index];
-    var temp_frame = anim_hover_hair_frame;
-    anim_hover_hair_frame %= 4;
     
-    //Sound effect tied to animation
-    if (temp_frame != anim_hover_hair_frame)
+    if (anim_hover_hair_frame >= 4)
     {
+        anim_hover_hair_frame %= 4;
+        //Sound effect tied to animation
         sound_play(asset_get("sfx_birdflap"), false, noone, 1, 
         0.75 + anim_hover_hair_rates[hair_animspeed_index]);
     }
