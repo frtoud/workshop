@@ -141,7 +141,11 @@ with (oPlayer)
 			// Sleep effect
 			if (noz_sleep_timer > 0)
 			{
-				if (state_cat == SC_GROUND_NEUTRAL || state == PS_PRATLAND)
+				if ( state_cat == SC_GROUND_NEUTRAL || 
+				    (state_cat == SC_GROUND_NEUTRAL && !(state == PS_PARRY ||
+				     state == PS_ROLL_BACKWARD || state == PS_ROLL_FORWARD || 
+				     state == PS_TECH_BACKWARD || state == PS_TECH_FORWARD || 
+				     state == PS_ATTACK_GROUND || state == PS_TECH_GROUND) ))
 				{
 					state = PS_PRATLAND;
 					//avoid sfx/vfx

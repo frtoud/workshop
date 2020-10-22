@@ -81,6 +81,7 @@ else
             item.destroyed = true;
             item.was_parried = true;
             at_dspecial_damage_block -= item.damage;
+	        anim_dspecial_shockwave_frame = 6;
             at_dspecial_has_parried = true;
         }
         else if ((item.type == 2 ) && (moving || found_moving_article))
