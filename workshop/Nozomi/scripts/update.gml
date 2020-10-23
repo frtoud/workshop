@@ -17,7 +17,7 @@ if (state == PS_LANDING_LAG)
     //Extra landing hitbox for DAIR when landing (if needed)
     if (attack == AT_DAIR && at_dair_need_landing_lag_hitbox)
     { 
-    	create_hitbox(AT_DAIR, 3, 0, 0); 
+    	create_hitbox(AT_DAIR, 4, 0, 0); 
     	at_dair_need_landing_lag_hitbox = false;
     }
 }
