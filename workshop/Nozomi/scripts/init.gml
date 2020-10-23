@@ -150,7 +150,9 @@ noz_freeze_anim_speed = 6; //degrees per frame
 noz_pratfall_max_vsp = 5.5;
 
 noz_dtilt_proj_cooldown_max = 24;
+
 noz_dspecial_damage_max = 40;
+noz_dspecial_damage_min = 10;
 noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_breaking_mult = 2;
 

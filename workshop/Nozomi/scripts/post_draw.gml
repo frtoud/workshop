@@ -5,7 +5,9 @@ if (attack == AT_DSPECIAL && (window == 2 || window == 4 || window == 5)
    && (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) )
 {
     var vfxframe = (get_gameplay_time() / 3 ) % 4;
+    draw_set_alpha(0.5 * ease_quadOut(1, 2, floor(at_dspecial_damage_block), noz_dspecial_damage_max));
     draw_sprite(sprite_get("dspecial_shine"), vfxframe, x, y-24);
+    draw_set_alpha(1);
 }
 if (anim_dspecial_shockwave_frame > 0)
 { 
@@ -13,7 +15,7 @@ if (anim_dspecial_shockwave_frame > 0)
          min(anim_dspecial_shockwave_frame, 4) - 1, x, y-24); 
 }
 
-//force-show the parry frame
+//force-show the parry frame instead of being greyed out
 else if (state == PS_PARRY && image_index == dodge_startup_frames)
 {
     draw_sprite_ext(sprite_index, image_index, x, y, spr_dir, 1, 0, c_white, 1);

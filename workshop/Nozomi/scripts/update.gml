@@ -135,7 +135,6 @@ if ( (at_dspecial_damage_block <= noz_dspecial_damage_max) &&
 	//recharges the damage buffer for DSPECIAL
 	at_dspecial_damage_block += noz_dspecial_recharge_rate;
 }
-//TODO at_dspecial_fizzle? when not enough charge; only shines weakly
 
 
 //Cooldown overrides

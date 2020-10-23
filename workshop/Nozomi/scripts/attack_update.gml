@@ -211,8 +211,19 @@ case AT_DSPECIAL:
         	{
 	            at_dspecial_done = false;
 	            at_dspecial_has_parried = false;
-	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
 	            anim_dspecial_shockwave_frame = 6;
+	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
+	            
+	            if (at_dspecial_damage_block < noz_dspecial_damage_min)
+	            {
+                    set_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX, asset_get("sfx_absa_singlezap2"));
+                    set_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO, 3);
+	            }
+	            else
+	            {
+                    reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX);
+                    reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO);
+	            }
         	}
             
             //Dampen momentum
@@ -245,7 +256,7 @@ case AT_DSPECIAL:
         case 3:
         {
         	//Prevents excessive jump-cancel multishines
-        	move_cooldown[AT_DSPECIAL] = 12;
+        	move_cooldown[AT_DSPECIAL] = 8;
             can_jump = !was_parried;
             can_attack = !was_parried && 
                          (at_dspecial_has_parried || has_hit_player);
