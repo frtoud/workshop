@@ -214,6 +214,17 @@ switch (state)
                     }
                 }
             }break;
+            case AT_NSPECIAL:
+            {
+                if (window_timer == 0) && (window == 2 || window == 4)
+                {
+                    var which_fx = spr_dir * (window == 2 ? 1 : -1);
+                    var k = spawn_hit_fx(x, y-24, (which_fx < 0 ? vfx_rnotes 
+                                                                : vfx_lnotes) );
+                    k.spr_dir = 1;
+                    k.depth = depth - 1;
+                }
+            }break;
             case AT_FSPECIAL:
             {
                 if ((window == 2 || window == 3) && get_gameplay_time() % 2 == 0)

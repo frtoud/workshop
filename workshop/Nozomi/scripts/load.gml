@@ -62,6 +62,8 @@ sprite_change_offset("vfx_ice_dstrong", 56, 30);
 sprite_change_collision_mask( "vfx_ice_dstrong", false, 2, 0, 0, 112, 30, 1 );
 sprite_change_offset("vfx_frozen", 52, 56);
 sprite_change_offset("vfx_nspecial", 52, 52);
+sprite_change_offset("vfx_nspecial_notes_left", 52, 52);
+sprite_change_offset("vfx_nspecial_notes_right", 52, 52);
 sprite_change_offset("vfx_sleep", 24, 38);
 sprite_change_offset("vfx_shine", 45, 46);
  
