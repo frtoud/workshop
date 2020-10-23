@@ -123,7 +123,6 @@ switch (state)
     case PS_ATTACK_AIR:
     {
         //Moved this logic in parallel to not clog up attack_update
-        //...is it worth it?
         switch (attack)
         {
             case AT_FSTRONG:
@@ -229,8 +228,14 @@ switch (state)
             }break;
             case AT_USPECIAL:
             {
-                if (window == 1 && free) 
-                { image_index = 1; }
+                if (window == 1) 
+                {
+                    if (free) { image_index = 1; }
+                    if (window_timer % 8 >= 4)
+                    {
+                        strong_flashing = true;
+                    }
+                }
                 else if (image_index == 15
                 && get_window_value(AT_USPECIAL, 5, AG_WINDOW_TYPE) == 7) 
                 { image_index = 22; } //Exhausted frame; going to pratfall
