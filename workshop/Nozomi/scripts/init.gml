@@ -133,7 +133,7 @@ article1_spawn_spr = sprite_get("article1_spawn");
 article1_col_spr = sprite_get("article1_col");
 
 anim_hairblink_timer = 0;
-anim_hairblink_max = 16;
+anim_hairblink_max = anim_hud_timers_max;
 
 //=================================================
 //Balancing variables
