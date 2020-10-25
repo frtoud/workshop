@@ -177,7 +177,7 @@ noz_uspecial_hover_vstrength = 0.80;
 noz_uspecial_hover_hstrength = 1.5 * air_accel;
 
 //=================================================
-//Custom variables initialized here
+// Move variables/flags initialized here
 
 at_jab_infinite = false;
 at_jab_inf_count = 3;
@@ -200,3 +200,14 @@ at_uspecial_hover_meter = noz_uspecial_hover_max;
 
 at_fspecial_cooldown_override = false;
 at_uspecial_cooldown_override = false;
+
+//=================================================
+// Compatibility Zone
+
+
+//Pokémon Stadium
+pkmn_stadium_front_img = sprite_get("cmp_stadium_front");
+pkmn_stadium_back_img = sprite_get("cmp_stadium_back");
+pkmn_stadium_name_override = "Nozomi";
+
+
