@@ -212,3 +212,5 @@ pkmn_stadium_name_override = "Nozomi";
 //Mt. Dedede Stadium
 arena_title = "Idol Figment";
 
+//Hikaru
+Hikaru_Title = "Idol Figment";
