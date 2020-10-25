@@ -66,7 +66,10 @@ with (oPlayer)
 					if (noz_freeze_timer == -1)
 					{
 						noz_snowimmune_timer = other.noz_snowimmune_timer_max;
-						noz_freeze_hsp = hsp;
+						//Prevents frozen players from being catapulted offstage
+						//can happen if they get hit again mid-freeze; during hitpause
+						noz_freeze_hsp = clamp(hsp, -other.noz_freeze_max_hsp, 
+						                             other.noz_freeze_max_hsp);
 						noz_freeze_vsp = -(other.noz_freeze_base_vsp
 						 + get_player_damage(player) * other.noz_freeze_mult_vsp);
 						

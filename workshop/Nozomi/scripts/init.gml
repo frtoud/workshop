@@ -147,6 +147,7 @@ noz_freeze_grav = 0.1;
 noz_freeze_base_stun = 45;
 noz_freeze_base_vsp = 5;
 noz_freeze_mult_vsp = 0.010;
+noz_freeze_max_hsp = 5;
 noz_freeze_anim_speed = 6; //degrees per frame
 
 noz_pratfall_max_vsp = 5.5;
