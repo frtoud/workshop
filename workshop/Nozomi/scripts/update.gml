@@ -155,6 +155,18 @@ if (at_fspecial_cooldown_override)
 //==============================================================================
 user_event(0);
 
+//Compat specific
+//==============================================================================
+if (walle_taunt_playing)
+{
+	walle_taunt_buffer = 60 * 12;
+}
+if (walle_taunt_buffer > 0)
+{
+	walle_taunt_buffer--;
+	suppress_stage_music(0.1, 0.2);
+}
+
 //DEFINES
 //==============================================================================
 #define trueground

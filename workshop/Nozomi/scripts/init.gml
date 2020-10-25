@@ -214,3 +214,12 @@ arena_title = "Idol Figment";
 
 //Hikaru
 Hikaru_Title = "Idol Figment";
+
+//Wall-E
+walle_taunt_sound = sound_get("cmp_walle");
+walle_taunt_type = 2;
+walle_taunt_playing = false;
+walle_taunt_buffer = 0;
+
+
+
