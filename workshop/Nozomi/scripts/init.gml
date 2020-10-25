@@ -212,6 +212,9 @@ pkmn_stadium_name_override = "Nozomi";
 //Mt. Dedede Stadium
 arena_title = "Idol Figment";
 
+//Trial Grounds
+guiltySprite = sprite_get("cmp_trial_grounds");
+
 //Hikaru
 Hikaru_Title = "Idol Figment";
 
