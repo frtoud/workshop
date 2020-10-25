@@ -49,7 +49,7 @@ set_color_profile_slot_range(5,  8,  5, 10);
 set_color_profile_slot(0, 6, 162, 211, 211); //VFX
 set_color_profile_slot_range(6,  8, 60, 25);
 
-set_num_palettes(10);
+set_num_palettes(11);
 
 //Beloved Tomboyish Girl
 set_color_profile_slot(1, 0, 135, 200, 255); //Hair
@@ -127,7 +127,7 @@ set_color_profile_slot(8, 4, 255, 140, 100); //Skirt
 set_color_profile_slot(8, 5, 255, 140, 100); //Leggings
 set_color_profile_slot(8, 6, 240, 160,  30); //VFX
 
-//Madeline
+//Reach for the Summit
 set_color_profile_slot(9, 0, 245, 120,  92); //Hair
 set_color_profile_slot(9, 1, 255, 188, 167); //Skin
 set_color_profile_slot(9, 2,  80,  50,  75); //Bow
@@ -135,3 +135,12 @@ set_color_profile_slot(9, 3,  90, 115, 210); //Shirt
 set_color_profile_slot(9, 4,  85, 105, 210); //Skirt
 set_color_profile_slot(9, 5, 147,  64,  50); //Leggings
 set_color_profile_slot(9, 6, 198, 211, 241); //VFX
+
+//Motteke! Sailor Fuku
+set_color_profile_slot( 10, 0, 181, 156, 202 ); //Hair
+set_color_profile_slot( 10, 1, 243, 183, 168 ); //Skin
+set_color_profile_slot( 10, 2, 244, 135, 152 ); //Bow
+set_color_profile_slot( 10, 3, 229, 231, 231 ); //Shirt
+set_color_profile_slot( 10, 4, 234,  77, 103 ); //Skirt
+set_color_profile_slot( 10, 5, 113,  91, 109 ); //Leggings
+set_color_profile_slot( 10, 6, 189, 153, 216 ); //VFX
