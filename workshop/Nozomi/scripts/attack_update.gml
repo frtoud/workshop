@@ -286,7 +286,7 @@ case AT_NSPECIAL:
 //==============================================================
 case AT_FSPECIAL: 
 {
-    can_jump = (window > 2);
+    can_jump = (window > 2 && !was_parried);
     off_edge = (window < 4);
     at_fspecial_cooldown_override = true;
     
@@ -335,8 +335,14 @@ case AT_FSPECIAL:
         {
             instance_create(x + 8 - (x % 16), y, "obj_article1");
         }
+        
+        if (window == 3 && was_parried)
+        {
+        	window = 4;
+        	window_timer = 0;
+        }
     }
-    else //window 4
+    else if (!was_parried) //window 4
     {
     	if (hsp == 0 && window_timer == 5 && !joy_pad_idle
     	    && (spr_dir * lengthdir_x(1, joy_dir)) > 0)
