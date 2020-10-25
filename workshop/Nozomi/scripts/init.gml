@@ -204,10 +204,11 @@ at_uspecial_cooldown_override = false;
 //=================================================
 // Compatibility Zone
 
-
 //Pokémon Stadium
 pkmn_stadium_front_img = sprite_get("cmp_stadium_front");
 pkmn_stadium_back_img = sprite_get("cmp_stadium_back");
 pkmn_stadium_name_override = "Nozomi";
 
+//Mt. Dedede Stadium
+arena_title = "Idol Figment";
 
