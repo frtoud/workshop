@@ -84,3 +84,6 @@ sprite_change_offset("plat", 37, 14);
 
 set_victory_theme(sound_get("victory"));
 set_victory_bg(sprite_get("victory"));
+
+//Compatibility
+sprite_change_offset("cmp_miiverse", 60, 30);

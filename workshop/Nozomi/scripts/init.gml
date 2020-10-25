@@ -221,5 +221,7 @@ walle_taunt_type = 2;
 walle_taunt_playing = false;
 walle_taunt_buffer = 0;
 
+//Miiverse
+miiverse_post = sprite_get("cmp_miiverse");
 
 
