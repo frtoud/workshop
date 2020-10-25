@@ -1,8 +1,5 @@
-if attack == AT_NSPECIAL {
-	player_id.attack_cooldown[AT_NSPECIAL] = 90
-}
 
- // Lingering projectile hitboxes spawn flickering snow effects
+// Lingering projectile hitboxes spawn flickering snow effects
 if ( player_id.anim_do_draw_twinkle &&
 	 ( (attack == AT_BAIR && hbox_num == 2)
     || (attack == AT_FAIR && hbox_num == 2)
@@ -17,4 +14,12 @@ if ( player_id.anim_do_draw_twinkle &&
     
     var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_twinkle);
 	k.depth = depth - 1;
+}
+
+//Air friction needs to apply vertically (in case of bashing)
+if ( (attack == AT_BAIR && hbox_num == 2)
+  || (attack == AT_FAIR && hbox_num == 2) )
+{
+  	vsp =  (vsp < 0) ? min( 0.001, vsp + air_friction)
+  	                 : max(-0.001, vsp - air_friction);
 }

@@ -10,8 +10,6 @@ else
     // Reflector's logic:
     // if it's a projectile hitbox:
     //  - that moves / was moving but stopped:
-    //     - is unbashable or has parrystun -> become vulnerable
-    //     - does not reflect -> destroy it (counts as reflected for dmg counter)
     //     - is no longer moving -> destroy it (should it count?)
     //     - else -> force a parry to reflect it
     //  - that doesn't move:
@@ -44,14 +42,7 @@ else
         item = instance_place(x, y, pHitBox); 
     }
     
-    //if (item != noone) print_debug("? "+string(item.type));
-    //if (item != noone) print_debug("u "+string(item.unbashable));
-    //if (item != noone) print_debug("r "+string(item.does_not_reflect));
-    //if (item != noone) print_debug("p "+string(item.projectile_parry_stun));
-    //if (item != noone) print_debug("t "+string(item.transcendent));
-    //print_debug("fma:"+string(found_moving_article));
-    
-    //var team_attack = get_match_setting(SET_TIMER);
+    //var team_attack = get_match_setting(???);
     
     if ((item != noone)
     //detects only if it could have damaged you
@@ -59,7 +50,7 @@ else
     && (can_be_hit[item.player] == 0) && (item.can_hit[player])
     && (get_player_team(item.player) != get_player_team(player)) )
     {
-        var moving = (item.hsp != 0 || item.vsp != 0);
+        var moving = (abs(item.hsp) > 0.01 || abs(item.vsp) > 0.01);
         var was_moving = item.length > 1 
                        &&(get_hitbox_value(item.attack, item.hbox_num, HG_PROJECTILE_HSPEED) != 0
                        || get_hitbox_value(item.attack, item.hbox_num, HG_PROJECTILE_VSPEED) != 0);
