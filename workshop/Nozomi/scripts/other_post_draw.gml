@@ -1,5 +1,5 @@
 // Other_post_draw
-if (other_player_id != noz_handler_id) exit;
+if ("other_player_id" in self && other_player_id != noz_handler_id) exit;
 
 if (noz_freeze_timer > 0)
 {
