@@ -3,7 +3,7 @@
 var color_alt = get_player_color(player);
 
 //EarlyAccess + Bootleg
-if ( (color_alt == 7) || (color_alt == 8) )
+if ( (color_alt == 7) || (color_alt == 14) )
 {
     set_character_color_shading( 0, 0.0 ); 
     set_character_color_shading( 1, 0.0 );
@@ -20,7 +20,7 @@ if (("at_uspecial_was_hovering" in self) )
     var hair_color = [get_color_profile_slot_r(color_alt, 0),
                       get_color_profile_slot_g(color_alt, 0), 
                       get_color_profile_slot_b(color_alt, 0)];
-    if (at_uspecial_was_hovering && (color_alt == 9))
+    if (at_uspecial_was_hovering && (color_alt == 12))
     {
         //Fade to blue (only for Madeline)
         hair_color[0] = ease_linear(hair_color[0], 60, 
@@ -31,7 +31,7 @@ if (("at_uspecial_was_hovering" in self) )
            anim_hairblink_timer, anim_hairblink_max); //B
     }
     else if (anim_hud_fadeout > 0)
-    || (!at_uspecial_was_hovering && (color_alt == 9))
+    || (!at_uspecial_was_hovering && (color_alt == 12))
     {
         //White flash 
         var flash_value = max(anim_hairblink_timer, anim_hud_fadeout);
