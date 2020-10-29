@@ -15,12 +15,12 @@ if ( (color_alt == 7) || (color_alt == 14) )
 }
 
 //Hair color effects
-if (("at_uspecial_was_hovering" in self) )
+if (("at_uspecial_was_hovering" in self) && (color_alt == 12) )
 {
     var hair_color = [get_color_profile_slot_r(color_alt, 0),
                       get_color_profile_slot_g(color_alt, 0), 
                       get_color_profile_slot_b(color_alt, 0)];
-    if (at_uspecial_was_hovering && (color_alt == 12))
+    if (at_uspecial_was_hovering)
     {
         //Fade to blue (only for Madeline)
         hair_color[0] = ease_linear(hair_color[0], 60, 
@@ -30,11 +30,10 @@ if (("at_uspecial_was_hovering" in self) )
         hair_color[2] = ease_linear(hair_color[2], 255, 
            anim_hairblink_timer, anim_hairblink_max); //B
     }
-    else if (anim_hud_fadeout > 0)
-    || (!at_uspecial_was_hovering && (color_alt == 12))
+    else
     {
         //White flash 
-        var flash_value = max(anim_hairblink_timer, anim_hud_fadeout);
+        var flash_value = anim_hairblink_timer;
         hair_color[0] = ease_linear(hair_color[0], 250, 
            flash_value, anim_hairblink_max); //R
         hair_color[1] = ease_linear(hair_color[1], 255, 

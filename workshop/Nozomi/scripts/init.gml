@@ -126,6 +126,7 @@ vfx_hair_exhausted_spr = sprite_get("vfx_hair_exhausted");
 anim_hud_rollin = 0;
 anim_hud_fadeout = 0;
 anim_hud_timers_max = 16;
+hovermeter_spr = sprite_get("hovermeter");
 hud_hovermeter_spr = sprite_get("hud_hovermeter");
 
 pratland_spr = sprite_get("pratland");

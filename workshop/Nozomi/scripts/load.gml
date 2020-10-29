@@ -46,6 +46,7 @@ sprite_change_offset("uair_hover", 38, 76);
 sprite_change_offset("idle_hover", 20, 50);
 sprite_change_offset("vfx_hair_hover", 36, 30);
 sprite_change_offset("vfx_hair_exhausted", 36, 24);
+sprite_change_offset("hovermeter", 15, 0);
 
 sprite_change_offset("article1", 8, 2);
 sprite_change_offset("article1_spawn", 18, -4);

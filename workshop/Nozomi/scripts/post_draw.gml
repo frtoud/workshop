@@ -20,4 +20,30 @@ else if (state == PS_PARRY && image_index == dodge_startup_frames)
 {
     draw_sprite_ext(sprite_index, image_index, x, y, spr_dir, 1, 0, c_white, 1);
 }
+
+//Hovermode on indicator
+var meter_x = x;
+var meter_y = y-74;
+
+if (anim_hud_fadeout > 0)
+{
+    draw_sprite_ext(hovermeter_spr, 2, meter_x, meter_y, 1, 1, 0, c_white, 
+        ease_sineIn(0, 1, anim_hud_fadeout, anim_hud_timers_max));
+}
+if (anim_hud_rollin > 0)
+{
+    var meter_height = 6;
+    var meter_width = ease_linear(0, 15, anim_hud_rollin, anim_hud_timers_max);
+    
+    draw_sprite_part(hovermeter_spr, 1, 0, 0, 
+        2*meter_width, meter_height, meter_x-meter_width, meter_y);
+    
+    var meter_fill = ease_sineInOut(0, floor(2*meter_width - 4),
+                       floor(at_uspecial_hover_meter), noz_uspecial_hover_max);
+    var meter_right = min(2*meter_width -2, meter_fill);
+    
+    draw_sprite_part(hovermeter_spr, 0, 0, 0, 
+        meter_right+2, 6, meter_x-meter_width, meter_y);
+}
+
 shader_end();
