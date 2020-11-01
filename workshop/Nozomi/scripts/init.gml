@@ -208,6 +208,21 @@ at_fspecial_cooldown_override = false;
 at_uspecial_cooldown_override = false;
 
 //=================================================
+// Copy of other_init
+// Ensures Nozomi can apply debuffs to herself
+// Looking at you, Kirby >:]
+noz_handler_id = noone;
+noz_snowstack_timer = 0;
+noz_snowimmune_timer = 0;
+noz_sleep_timer = 0;
+noz_sleep_anim_timer = 0;
+noz_sleepimmune_timer = 0;
+noz_freeze_timer = 0;
+noz_freeze_vsp = 0;
+noz_freeze_hsp = 0;
+noz_freeze_anim_rotate = 0;
+
+//=================================================
 // Compatibility Zone
 
 //Pokémon Stadium

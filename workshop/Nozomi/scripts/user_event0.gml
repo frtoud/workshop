@@ -6,7 +6,7 @@ with (oPlayer)
 	// if multiple Nozomis are in a match, this code is only executed by the
 	// latest Nozomi to have applied an effect to you.
 	// Avoids counters from getting decremented multiple times per frame
-	if (self != other && noz_handler_id == other) 
+	if (noz_handler_id == other) 
 	{	   
 		//===========================================================
 		// Resets on death/parry

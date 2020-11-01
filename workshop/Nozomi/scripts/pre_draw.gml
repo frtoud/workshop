@@ -1,5 +1,21 @@
 //PreDraw
+
+//Setting Outline color
+if (noz_handler_id == self)
+{
+    if (noz_snowstack_timer > 0) 
+    { 
+        outline_color = [0,80,120]; 
+    }
+    else 
+    { 
+        outline_color = [0, 0, 0]; 
+    }
+}
 init_shader();
+//Reset in case anything happens & init_shader() can revert to black
+//Also prevents the HUD icon from changing
+outline_color = [0, 0, 0];
 
 shader_start();
 
