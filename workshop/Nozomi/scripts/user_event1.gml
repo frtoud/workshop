@@ -48,17 +48,6 @@ with (pHitBox)
 	  && place_meeting(x, y, other.hurtboxID))
 	{
 		
-        found_moving_article = found_moving_article
-                            // Manual reflection cannot work for those cases.
-                            // Must force a parry to let other code handle that
-                            || (xprevious != x || yprevious != y)
-                            || find_moving_parent(pHitBox)
-                            || find_moving_parent(obj_article1)
-                            || find_moving_parent(obj_article2)
-                            || find_moving_parent(obj_article3)
-                            || find_moving_parent(obj_article_solid)
-                            || find_moving_parent(obj_article_platform);
-		
         var moving = (abs(hsp) > 0.01 || abs(vsp) > 0.01);
         var was_moving = false;
         with (other)
@@ -68,6 +57,17 @@ with (pHitBox)
             || get_hitbox_value(other.attack, other.hbox_num, HG_PROJECTILE_VSPEED) != 0);
 	    }
 	    
+        found_moving_article = found_moving_article
+                            // Manual reflection cannot work for those cases.
+                            // Must force a parry to let other code handle that
+                            || (!moving && (xprevious != x || yprevious != y))
+                            || find_moving_parent(pHitBox)
+                            || find_moving_parent(obj_article1)
+                            || find_moving_parent(obj_article2)
+                            || find_moving_parent(obj_article3)
+                            || find_moving_parent(obj_article_solid)
+                            || find_moving_parent(obj_article_platform);
+		
 		var manual_parry = does_not_reflect || projectile_parry_stun
 		       //Elliana does not use the does_not_reflect flag
 		       || (player_id.url == CH_ELLIANA && attack == AT_NSPECIAL);
