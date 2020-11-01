@@ -49,6 +49,9 @@ with (pHitBox)
 	{
 		
         found_moving_article = found_moving_article
+                            // Manual reflection cannot work for those cases.
+                            // Must force a parry to let other code handle that
+                            || (xprevious != x || yprevious != y)
                             || find_moving_parent(pHitBox)
                             || find_moving_parent(obj_article1)
                             || find_moving_parent(obj_article2)
@@ -56,8 +59,7 @@ with (pHitBox)
                             || find_moving_parent(obj_article_solid)
                             || find_moving_parent(obj_article_platform);
 		
-        var moving = (abs(hsp) > 0.01 || abs(vsp) > 0.01)
-                  || (xprevious != x || yprevious != y);
+        var moving = (abs(hsp) > 0.01 || abs(vsp) > 0.01);
         var was_moving = false;
         with (other)
         {
@@ -123,6 +125,12 @@ with (pHitBox)
             { hitbox_timer--; }
             if (length < 2) 
             { length++; }
+	        
+	        if (does_not_reflect)
+	        {
+        	    hitbox_timer = 0;
+	        	can_hit_self = true;
+	        }
 	        
         	projectile_parry_stun = false;
         	need_parry = true;
