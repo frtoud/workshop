@@ -166,23 +166,28 @@ case AT_NAIR:
 //==============================================================
 case AT_DAIR: 
 {
-    //Cancels hover!
-    at_uspecial_hovering = false;
+	if (window == 1)
+	{
+	    //Cancels hover!
+	    at_uspecial_hovering = false;
+	    at_dair_early_cancel = false;
+	}
     
     //see update.gml for the extra hitbox when landing.
     at_dair_need_landing_lag_hitbox = (window == 2 || window == 3);
     can_wall_jump = (window > 2);
     can_move = (window > 3);
     
-    //Can jump-cancel if the strong hitbox hit something
-    if (has_hit && (window == 2))
-    {
-        can_jump = true;
-    }
     //Can cancel early if any hitbox hit
-    else if (has_hit && (window == 4))
+    if (has_hit && (window == 4))
     { 
         iasa_script();
+    }
+    //Can jump-cancel if the strong hitbox hit something
+    else if ( (has_hit && window == 2) || at_dair_early_cancel)
+    {
+        at_dair_early_cancel = true;
+        can_jump = true;
     }
     
     if (window <= 2 && !has_hit)

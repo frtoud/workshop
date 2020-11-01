@@ -189,6 +189,7 @@ at_jab_inf_count = 3;
 at_jab_finisher = false;
 at_dtilt_proj_cooldown = 0;
 at_nair_hover_need_grid_adjust = false;
+at_dair_early_cancel = false;
 at_dair_need_landing_lag_hitbox = false;
 
 at_dspecial_done = false;
