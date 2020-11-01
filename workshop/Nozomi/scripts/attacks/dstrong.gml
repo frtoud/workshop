@@ -70,7 +70,7 @@ set_hitbox_value(AT_DSTRONG, 2, HG_BASE_HITPAUSE, 7);
 set_hitbox_value(AT_DSTRONG, 2, HG_HITPAUSE_SCALING, .9);
 set_hitbox_value(AT_DSTRONG, 2, HG_VISUAL_EFFECT, 199);
 set_hitbox_value(AT_DSTRONG, 2, HG_VISUAL_EFFECT_X_OFFSET, 10);
-set_hitbox_value(AT_DSTRONG, 2, HG_HIT_SFX, asset_get("sfx_icehit_shatter"));
+set_hitbox_value(AT_DSTRONG, 2, HG_HIT_SFX, asset_get("sfx_icehit_heavy1"));
 set_hitbox_value(AT_DSTRONG, 2, HG_HITBOX_GROUP, 1);
 
 set_hitbox_value(AT_DSTRONG, 3, HG_PARENT_HITBOX, 0);
