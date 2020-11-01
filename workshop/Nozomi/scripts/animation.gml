@@ -274,3 +274,5 @@ switch (state)
 
 if (anim_dspecial_shockwave_frame > 0) 
     { anim_dspecial_shockwave_frame -= 1; }
+if (anim_fakeparry_timer > 0) 
+    { anim_fakeparry_timer -= 1; }

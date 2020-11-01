@@ -138,6 +138,10 @@ article1_col_spr = sprite_get("article1_col");
 anim_hairblink_timer = 0;
 anim_hairblink_max = anim_hud_timers_max;
 
+anim_fakeparry_timer = 0;
+//anim_fakeparry_fg = asset_get("new_dodge_spr");
+anim_fakeparry_bg = asset_get("fx_parry_new");
+
 //=================================================
 //Balancing variables
 
@@ -158,7 +162,7 @@ noz_dtilt_proj_cooldown_max = 24;
 noz_dspecial_damage_max = 40;
 noz_dspecial_damage_min = 10;
 noz_dspecial_recharge_rate = 0.05;
-noz_dspecial_breaking_mult = 2;
+noz_dspecial_dmg_mult = 1.5;
 
 noz_nspecial_sleep_max = 90;
 noz_nspecial_sleepimmune_max = 45;

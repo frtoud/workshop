@@ -224,6 +224,10 @@ case AT_DSPECIAL:
                     reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX);
                     reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO);
 	            }
+	            
+                //Reflector script
+	            if (!was_parried)
+	            { user_event(1); }
         	}
             
             //Dampen momentum

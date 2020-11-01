@@ -32,3 +32,10 @@ if (attack == AT_NSPECIAL && (window > 1) &&
 }
 
 shader_end();
+
+//Simulate parry VFX
+if (anim_fakeparry_timer > 0)
+{
+    draw_sprite_ext(anim_fakeparry_bg, clamp(floor((20 - anim_fakeparry_timer)/4), 0, 5),
+                    x, y-28, 2, 2, 0, c_white, 0.5);
+}
