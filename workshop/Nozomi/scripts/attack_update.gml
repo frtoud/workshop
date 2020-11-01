@@ -291,6 +291,10 @@ case AT_NSPECIAL:
     can_move = false;
     at_nspecial_flagforimmune = (window == 5);
     suppress_stage_music(0.5, 0.01);
+    
+    //Dampen fallspeeds
+    vsp *= (vsp > 3) ? 0.25 : 1;
+    
 } break;
 //==============================================================
 case AT_FSPECIAL: 
