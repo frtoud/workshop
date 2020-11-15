@@ -289,11 +289,27 @@ case AT_DSPECIAL:
 case AT_NSPECIAL: 
 {
     can_move = false;
-    at_nspecial_flagforimmune = (window == 5);
     suppress_stage_music(0.5, 0.01);
-    
     //Dampen fallspeeds
     vsp *= (vsp > 3) ? 0.25 : 1;
+    
+    if (window == 2 || window == 4)
+    {
+    	//use a collision test because hitboxes somehow break RockWall's pillars
+    	with (oPlayer)
+    	{
+    	    if (self != other && (!free) &&
+    	        noz_sleepimmune_timer == 0 && 
+    	    	self == collision_circle(other.x, other.y-25, 50, self, true, false))
+    	    {
+		        noz_sleep_timer = other.noz_nspecial_sleep_max;
+				noz_sleep_anim_timer = 0;
+		        noz_handler_id = other;
+    	    }
+    	}
+    }
+    
+    at_nspecial_flagforimmune = (window == 5 && window_timer < 3);
     
 } break;
 //==============================================================

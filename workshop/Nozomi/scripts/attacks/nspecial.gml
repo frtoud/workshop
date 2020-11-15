@@ -39,29 +39,4 @@ set_window_value(AT_NSPECIAL, 5, AG_WINDOW_LENGTH, 32);
 set_window_value(AT_NSPECIAL, 5, AG_WINDOW_ANIM_FRAMES, 3);
 set_window_value(AT_NSPECIAL, 5, AG_WINDOW_ANIM_FRAME_START, 7);
 
-set_num_hitboxes(AT_NSPECIAL, 2);
-
-set_hitbox_value(AT_NSPECIAL, 1, HG_HITBOX_TYPE, 1);
-set_hitbox_value(AT_NSPECIAL, 1, HG_WINDOW, 2);
-set_hitbox_value(AT_NSPECIAL, 1, HG_LIFETIME, 16);
-set_hitbox_value(AT_NSPECIAL, 1, HG_HITBOX_X, 0);
-set_hitbox_value(AT_NSPECIAL, 1, HG_HITBOX_Y, -25);
-set_hitbox_value(AT_NSPECIAL, 1, HG_WIDTH, 90);
-set_hitbox_value(AT_NSPECIAL, 1, HG_HEIGHT, 90);
-set_hitbox_value(AT_NSPECIAL, 1, HG_PRIORITY, 3);
-set_hitbox_value(AT_NSPECIAL, 1, HG_DAMAGE, 0);
-set_hitbox_value(AT_NSPECIAL, 1, HG_ANGLE, 90);
-set_hitbox_value(AT_NSPECIAL, 1, HG_GROUNDEDNESS, 1);
-set_hitbox_value(AT_NSPECIAL, 1, HG_IGNORES_PROJECTILES, 1);
-set_hitbox_value(AT_NSPECIAL, 1, HG_VISUAL_EFFECT, 1);
-set_hitbox_value(AT_NSPECIAL, 1, HG_VISUAL_EFFECT_Y_OFFSET, -16);
-set_hitbox_value(AT_NSPECIAL, 1, HG_HITSTUN_MULTIPLIER, -1);
-set_hitbox_value(AT_NSPECIAL, 1, HG_HITBOX_GROUP, -1);
-
-set_hitbox_value(AT_NSPECIAL, 2, HG_PARENT_HITBOX, 1);
-set_hitbox_value(AT_NSPECIAL, 2, HG_HITBOX_TYPE, 1);
-set_hitbox_value(AT_NSPECIAL, 2, HG_WINDOW, 4);
-set_hitbox_value(AT_NSPECIAL, 2, HG_LIFETIME, 16);
-set_hitbox_value(AT_NSPECIAL, 2, HG_HITBOX_X, 0);
-set_hitbox_value(AT_NSPECIAL, 2, HG_HITBOX_Y, -25);
-set_hitbox_value(AT_NSPECIAL, 2, HG_HITBOX_GROUP, -1);
+set_num_hitboxes(AT_NSPECIAL, 0);
