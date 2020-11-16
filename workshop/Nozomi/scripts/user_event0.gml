@@ -179,14 +179,8 @@ with (oPlayer)
 					                   0 : floor(noz_sleep_timer * 0.9);
 				}
 				
-				
-				if ( (noz_sleepimmune_timer <= 0)
-			        && ((state_cat == SC_HITSTUN) 
-				    || noz_handler_id.state_cat == SC_HITSTUN
-				    || noz_handler_id.at_nspecial_flagforimmune))
-				{
-				    noz_sleepimmune_timer = noz_handler_id.noz_nspecial_sleepimmune_max;
-				}
+				if (noz_sleep_timer < 0)
+				{ noz_sleep_timer = 0; }
 			}
 			//===========================================================
 			// Grace period

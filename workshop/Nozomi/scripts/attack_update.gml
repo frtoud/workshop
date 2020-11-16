@@ -295,22 +295,24 @@ case AT_NSPECIAL:
     
     if (window == 2 || window == 4)
     {
-    	//use a collision test because hitboxes somehow break RockWall's pillars
+    	// use a collision test because singing somehow hurts RockWall's pillars
     	with (oPlayer)
     	{
-    	    if (self != other && (!free) &&
-    	        noz_sleepimmune_timer == 0 && 
-    	    	self == collision_circle(other.x, other.y-25, 50, self, true, false))
+    	    if (self != other && (!free) && noz_sleepimmune_timer == 0 && 
+    	    	hurtboxID == collision_circle(other.x, other.y-25, 50, hurtboxID, true, false))
     	    {
-		        noz_sleep_timer = other.noz_nspecial_sleep_max;
-				noz_sleep_anim_timer = 0;
 		        noz_handler_id = other;
+				noz_sleep_anim_timer = 0;
+				noz_sleepimmune_timer = other.noz_nspecial_sleepimmune_max;
+				
+				// base + early hit bonus + (damage * mult) & capped
+		        noz_sleep_timer = floor( min( (other.noz_nspecial_sleep_base 
+		           + (other.window == 2 ? other.noz_nspecial_sleep_early : 0)
+		           + get_player_damage(player) * other.noz_nspecial_sleep_mult)
+		           , other.noz_nspecial_sleep_max) );
     	    }
     	}
     }
-    
-    at_nspecial_flagforimmune = (window == 5 && window_timer < 3);
-    
 } break;
 //==============================================================
 case AT_FSPECIAL: 

@@ -164,8 +164,11 @@ noz_dspecial_damage_min = 10;
 noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_dmg_mult = 1.5;
 
-noz_nspecial_sleep_max = 90;
-noz_nspecial_sleepimmune_max = 45;
+noz_nspecial_sleep_base = 160;
+noz_nspecial_sleep_early = 40;
+noz_nspecial_sleep_mult = 0.4;
+noz_nspecial_sleep_max = 320;
+noz_nspecial_sleepimmune_max = 90;
 
 noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
@@ -195,8 +198,6 @@ at_dair_need_landing_lag_hitbox = false;
 at_dspecial_done = false;
 at_dspecial_has_parried = false;
 at_dspecial_damage_block = noz_dspecial_damage_max;
-
-at_nspecial_flagforimmune = false;
 
 at_uspecial_long = false;
 at_uspecial_hovering = false;
