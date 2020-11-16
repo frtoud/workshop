@@ -164,15 +164,17 @@ noz_dspecial_damage_min = 10;
 noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_dmg_mult = 1.5;
 
-noz_nspecial_sleep_base = 160;
-noz_nspecial_sleep_early = 40;
-noz_nspecial_sleep_mult = 0.4;
-noz_nspecial_sleep_max = 320;
+noz_nspecial_mashing_bonus = 1.5;
+noz_nspecial_sleep_base = floor(80 * noz_nspecial_mashing_bonus);
+noz_nspecial_sleep_early = floor(30 * noz_nspecial_mashing_bonus);
+noz_nspecial_sleep_mult = 0.2 * noz_nspecial_mashing_bonus;
+noz_nspecial_sleep_max = floor(200 * noz_nspecial_mashing_bonus);
 noz_nspecial_sleepimmune_max = 90;
+noz_nspecial_interruption_time = 16; //how long before sleeping if a move is in progress
 
 noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
-noz_fspecial_cooldown = noz_fspecial_airtime;
+noz_fspecial_cooldown = 150;
 
 noz_uspecial_hover_max = 480;
 noz_uspecial_short_cost = 60; // 1/8
@@ -218,6 +220,7 @@ noz_snowimmune_timer = 0;
 noz_sleep_timer = 0;
 noz_sleep_anim_timer = 0;
 noz_sleepimmune_timer = 0;
+noz_sleep_interrupt_timer = 0;
 noz_freeze_timer = 0;
 noz_freeze_vsp = 0;
 noz_freeze_hsp = 0;

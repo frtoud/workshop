@@ -19,6 +19,7 @@ with (oPlayer)
 			noz_sleep_timer = 0;
 			noz_sleepimmune_timer = 0;
 			noz_sleep_anim_timer = 0;
+			noz_sleep_interrupt_timer = 0;
 			noz_handler_id = noone;
 		}
 		//===========================================================
@@ -144,13 +145,13 @@ with (oPlayer)
 			// Sleep effect
 			if (noz_sleep_timer > 0)
 			{
-				if ( state_cat == SC_GROUND_NEUTRAL || 
-				    (state_cat == SC_GROUND_COMMITTED && !(state == PS_PARRY ||
-				     state == PS_ROLL_BACKWARD || state == PS_ROLL_FORWARD || 
-				     state == PS_TECH_BACKWARD || state == PS_TECH_FORWARD || 
-				     state == PS_ATTACK_GROUND || state == PS_TECH_GROUND) ))
+				var mashing = false;
+				
+				if ( state_cat == SC_GROUND_NEUTRAL || state == PS_PRATLAND)
+				|| ( state_cat == SC_AIR_NEUTRAL || state == PS_PRATFALL)
+				|| (noz_sleep_interrupt_timer >= other.noz_nspecial_interruption_time)
 				{
-					state = PS_PRATLAND;
+					state = (free ? PS_PRATFALL : PS_PRATLAND);
 					//avoid sfx/vfx
 					state_timer = 1;
 					if ((noz_sleep_anim_timer % 45) == 10)
@@ -168,18 +169,18 @@ with (oPlayer)
 						sound_play(asset_get("sfx_cub_yawn"), false, noone, 1, 0.8);
 					}
 				}
+				else
+				{
+					//delayed interruption for a move in progress
+					noz_sleep_interrupt_timer++;
+					mashing = true;
+				}
+				
+				//todo: include mashing
 				noz_sleep_timer--;
 				noz_sleep_anim_timer++;
 				
-				if (hitpause) 
-				{
-					//if you get hit: stop being asleep
-					//if you hit something: sleep time is reduced
-					noz_sleep_timer = (state_cat == SC_HITSTUN) ?
-					                   0 : floor(noz_sleep_timer * 0.9);
-				}
-				
-				if (noz_sleep_timer < 0)
+				if (noz_sleep_timer < 0 || state_cat == SC_HITSTUN)
 				{ noz_sleep_timer = 0; }
 			}
 			//===========================================================
@@ -188,6 +189,7 @@ with (oPlayer)
 			{
 				noz_sleepimmune_timer--;
 				noz_sleep_anim_timer = 0;
+				noz_sleep_interrupt_timer = 0;
 			}
 		}
     }

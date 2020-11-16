@@ -5,6 +5,7 @@ noz_snowimmune_timer = 0;
 noz_sleep_timer = 0;
 noz_sleep_anim_timer = 0;
 noz_sleepimmune_timer = 0;
+noz_sleep_interrupt_timer = 0;
 noz_freeze_timer = 0;
 noz_freeze_vsp = 0;
 noz_freeze_hsp = 0;
