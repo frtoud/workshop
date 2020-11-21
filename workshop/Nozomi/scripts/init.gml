@@ -109,9 +109,11 @@ anim_rand_x = 0;
 anim_rand_y = 0;
 
 vfx_snow_twinkle = hit_fx_create(sprite_get("vfx_snow_twinkle"), 9);
+vfx_snow_falling = hit_fx_create(sprite_get("vfx_snow_twinkle_falling"), 9);
 vfx_ice_small = hit_fx_create(sprite_get("vfx_ice_small"), 12);
 vfx_ice_big = hit_fx_create(sprite_get("vfx_ice_big"), 20);
 vfx_sleep = hit_fx_create(sprite_get("vfx_sleep"), 25);
+vfx_sleep_mashing = hit_fx_create(asset_get("hfx_part_smoke"), 8);
 vfx_lnotes = hit_fx_create(sprite_get("vfx_nspecial_notes_left"), 24);
 vfx_rnotes = hit_fx_create(sprite_get("vfx_nspecial_notes_right"), 24);
 
