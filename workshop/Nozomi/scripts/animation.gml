@@ -129,17 +129,12 @@ switch (state)
             {
                 if (window == 1 && strong_charge > 0)
                 {
-                    image_index = 1 + (strong_charge / 6) % 4
+                    image_index = 1 + (strong_charge / 6) % 4;
                     
                     if (get_gameplay_time() % 4 == 0)
                     {
-                        var radius = 10;
-                    	
-                    	var kx = x - (20 * spr_dir) - (radius / 2) + anim_rand_x * radius;
-                    	var ky = y - 20 - (radius / 2) + anim_rand_y * radius;
-                        
-                        var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
-                        k.depth = depth - 1;
+                        spawn_twinkle(vfx_snow_twinkle, x - (20 * spr_dir),
+                                      y - 20, 10, true);
                     }
                 }
                 else if (window == 2 && 
@@ -156,29 +151,17 @@ switch (state)
                 else if ((get_gameplay_time() % 2 == 0) && ( window == 3 || (window == 2 && 
                 window_timer > get_hitbox_value(AT_FSTRONG, 2, HG_WINDOW_CREATION_FRAME)) ))
                 {
-                    var radius = get_hitbox_value(AT_FSTRONG, 2, HG_WIDTH);
-                	
-                	var kx = x + (32 * spr_dir) - (radius / 2) + anim_rand_x * radius;
-                	var ky = y - 20 - (radius / 2) + anim_rand_y * radius;
-                    
-                    var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
+                    spawn_twinkle(vfx_snow_twinkle, x + (32 * spr_dir), y - 20, 
+                                  get_hitbox_value(AT_FSTRONG, 2, HG_WIDTH), false);
                 }
                 
             }break;
             case AT_USTRONG:
             {
-                if (window == 1 && strong_charge > 0)
+                if (window == 1 && strong_charge > 0
+                     && (get_gameplay_time() % 4 == 0) )
                 {
-                    if (get_gameplay_time() % 4 == 0)
-                    {
-                        var radius = 10;
-                    	
-                    	var kx = x - (radius / 2) + anim_rand_x * radius;
-                    	var ky = y - 6 - (radius / 2) + anim_rand_y * radius;
-                        
-                        var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
-                        k.depth = depth - 1;
-                    }
+                    spawn_twinkle(vfx_snow_twinkle, x, y - 6, 10, true);
                 }
                 if (!hitstop && window == 2 && window_timer == 
                 (get_hitbox_value(AT_USTRONG, 1, HG_WINDOW_CREATION_FRAME)) )
@@ -189,29 +172,18 @@ switch (state)
                  && window == 2 && window_timer > 
                 get_hitbox_value(AT_USTRONG, 1, HG_WINDOW_CREATION_FRAME))
                 {
-                    var radius = get_hitbox_value(AT_USTRONG, 2, HG_WIDTH);
-                	
-                	var kx = x - (radius / 2) + anim_rand_x * radius;
-                	var ky = y + get_hitbox_value(AT_USTRONG, 2, HG_HITBOX_Y)
-                	           - (radius / 2) + anim_rand_y * radius;
-                    
-                    var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
+                    spawn_twinkle(vfx_snow_twinkle, x,
+                                  y + get_hitbox_value(AT_USTRONG, 2, HG_HITBOX_Y), 
+                                  get_hitbox_value(AT_USTRONG, 2, HG_WIDTH), false);
                 }
             }break;
             case AT_DSTRONG:
             {
-                if (window == 1 && strong_charge > 0)
+                if (window == 1 && strong_charge > 0
+                    && (get_gameplay_time() % 4 == 0) )
                 {
-                    if (get_gameplay_time() % 4 == 0)
-                    {
-                        var radius = 10;
-                    	
-                    	var kx = x - (20 * spr_dir) - (radius / 2) + anim_rand_x * radius;
-                    	var ky = y - 48 - (radius / 2) + anim_rand_y * radius;
-                        
-                        var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
-                        k.depth = depth - 1;
-                    }
+                    spawn_twinkle(vfx_snow_twinkle, x - (spr_dir * 20),
+                                                    y - 48, 10, true);
                 }
             }break;
             case AT_NSPECIAL:
@@ -229,12 +201,8 @@ switch (state)
             {
                 if ((window == 2 || window == 3) && get_gameplay_time() % 2 == 0)
                 {
-                    var radius = get_hitbox_value(AT_FSPECIAL, 2, HG_WIDTH);
-                	
-                	var kx = x - (spr_dir * 8) - (radius / 2) + anim_rand_x * radius;
-                	var ky = y - 16 - (radius / 2) + anim_rand_y * radius;
-                    
-                    var k = spawn_hit_fx(kx, ky, vfx_snow_twinkle);
+                    spawn_twinkle(vfx_snow_twinkle, x - (spr_dir * 8), y - 16,
+                                  get_hitbox_value(AT_FSPECIAL, 2, HG_WIDTH), false);
                 }
             }break;
             case AT_USPECIAL:
@@ -276,3 +244,16 @@ if (anim_dspecial_shockwave_frame > 0)
     { anim_dspecial_shockwave_frame -= 1; }
 if (anim_fakeparry_timer > 0) 
     { anim_fakeparry_timer -= 1; }
+    
+    
+#define spawn_twinkle(vfx, pos_x, pos_y, radius, front)
+{
+    var kx = pos_x - (radius / 2) + anim_rand_x * radius;
+    var ky = pos_y - (radius / 2) + anim_rand_y * radius;
+    
+    var k = spawn_hit_fx(kx, ky, vfx);
+    if (front)
+    {
+        k.depth = depth - 1;
+    }
+}
