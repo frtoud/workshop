@@ -158,7 +158,7 @@ case AT_NAIR:
     { 
     	vsp *= (vsp > 2) ? 0.8 : 1; 
     }
-    else if (window == 4 && has_hit)
+    else if (window == 4 && (has_hit || !free))
     {
     	iasa_script();
     }
