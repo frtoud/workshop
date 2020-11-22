@@ -113,7 +113,6 @@ vfx_snow_falling = hit_fx_create(sprite_get("vfx_snow_twinkle_falling"), 9);
 vfx_ice_small = hit_fx_create(sprite_get("vfx_ice_small"), 12);
 vfx_ice_big = hit_fx_create(sprite_get("vfx_ice_big"), 20);
 vfx_sleep = hit_fx_create(sprite_get("vfx_sleep"), 25);
-vfx_sleep_mashing = hit_fx_create(asset_get("hfx_part_smoke"), 8);
 vfx_lnotes = hit_fx_create(sprite_get("vfx_nspecial_notes_left"), 24);
 vfx_rnotes = hit_fx_create(sprite_get("vfx_nspecial_notes_right"), 24);
 
@@ -223,6 +222,8 @@ noz_sleep_timer = 0;
 noz_sleep_anim_timer = 0;
 noz_sleepimmune_timer = 0;
 noz_sleep_interrupt_timer = 0;
+noz_sleep_last_joy_dir = -1;
+noz_sleep_mashanim_timer = 0;
 noz_freeze_timer = 0;
 noz_freeze_vsp = 0;
 noz_freeze_hsp = 0;

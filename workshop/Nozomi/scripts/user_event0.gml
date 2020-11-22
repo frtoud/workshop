@@ -168,6 +168,57 @@ with (oPlayer)
 						}
 						sound_play(asset_get("sfx_cub_yawn"), false, noone, 1, 0.8);
 					}
+					
+					if ("temp_level" in self)
+					{
+						//AIs can mash too
+						// level of AI * 10% = ratio of perfect input mashing frames
+						mashing = (get_gameplay_time() % 10 < temp_level)
+					}
+					else
+					{
+						if (joy_pad_idle)
+						{
+							noz_sleep_last_joy_dir = -1;
+						}
+						else
+						{
+							// converts range [0-360] into [0-3] to count cardinal directions only
+							var cardinal_joy_dir = floor((joy_dir + 45) / 90) % 4;
+							if (noz_sleep_last_joy_dir != cardinal_joy_dir)
+							{
+								mashing = true;
+								noz_sleep_last_joy_dir = cardinal_joy_dir;
+							}
+						}
+						
+						if (jump_pressed || shield_pressed || attack_pressed || special_pressed
+						 || up_strong_pressed || down_strong_pressed || left_strong_pressed || right_strong_pressed)
+						{
+							mashing = true;
+							
+							//reset all buffers
+							clear_button_buffer( PC_JUMP_PRESSED );
+							clear_button_buffer( PC_SHIELD_PRESSED );
+							clear_button_buffer( PC_ATTACK_PRESSED );
+							clear_button_buffer( PC_STRONG_PRESSED );
+							clear_button_buffer( PC_SPECIAL_PRESSED );
+						}
+					}
+					
+					if (noz_sleep_mashanim_timer > 0)
+					{
+						noz_sleep_mashanim_timer--;
+					}
+					else if (mashing)
+					{
+						var k = spawn_hit_fx(x-(char_height/2) + (char_height* other.anim_rand_y), 
+						                     y-(char_height * other.anim_rand_x), 14);
+						k.draw_angle = joy_pad_idle ? 
+						                (other.anim_rand_x * other.anim_rand_y * 360)
+						               : (joy_dir + 90) % 360;
+						noz_sleep_mashanim_timer = 20;
+					}
 				}
 				else
 				{
@@ -176,12 +227,14 @@ with (oPlayer)
 					mashing = true;
 				}
 				
-				//todo: include mashing
-				noz_sleep_timer--;
+				noz_sleep_timer -= mashing ? other.noz_nspecial_mashing_bonus : 1;
 				noz_sleep_anim_timer++;
 				
 				if (noz_sleep_timer < 0 || state_cat == SC_HITSTUN)
-				{ noz_sleep_timer = 0; }
+				{ 
+					noz_sleep_timer = 0; 
+					noz_sleep_mashanim_timer = 0;
+				}
 			}
 			//===========================================================
 			// Grace period

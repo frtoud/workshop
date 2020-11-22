@@ -1,7 +1,15 @@
 // other_pre_draw
 if ("other_player_id" in self && other_player_id != noz_handler_id) exit;
 
-if (noz_freeze_timer > 0) 
+//Sleep mashing
+if (noz_sleep_mashanim_timer > 0)
+{
+    var mash_sqrt = sqrt(noz_sleep_mashanim_timer);
+    draw_x = (other_player_id.anim_rand_x * mash_sqrt/2) - (mash_sqrt);
+}
+
+//Freeze rotation-animation effect
+else if (noz_freeze_timer > 0) 
 { 
     //Rotation effect while frozen
     if (free && (noz_freeze_anim_rotate != 0))
