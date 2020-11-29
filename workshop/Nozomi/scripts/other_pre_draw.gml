@@ -2,7 +2,7 @@
 if ("other_player_id" in self && other_player_id != noz_handler_id) exit;
 
 //Sleep mashing
-if (noz_sleep_mashanim_timer > 0)
+if (noz_sleep_mashanim_timer > 0 && noz_sleep_timer > 0)
 {
     var mash_sqrt = sqrt(noz_sleep_mashanim_timer);
     draw_x = (other_player_id.anim_rand_x * mash_sqrt/2) - (mash_sqrt);
