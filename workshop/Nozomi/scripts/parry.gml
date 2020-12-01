@@ -10,7 +10,7 @@ if ((attack == AT_DSPECIAL) && (state == PS_ATTACK_AIR || state == PS_ATTACK_GRO
     {
         //This should be zero, but it ends up parrying the same attack multiple times.
         can_be_hit[hit_player_obj.player] = 20;
-        at_dspecial_has_parried = true;
+        at_dspecial_has_reflected = true;
     }
     //This parry state is reached when force-reflecting something.
     //You do not become invincible afterwards.

@@ -50,3 +50,10 @@ if ( (attack == AT_DTILT && hbox_num == 2) )
         set_num_hitboxes(AT_DTILT, 1);
     }
 }
+//DSPECIAL's counter shards
+if (attack == AT_DSPECIAL && hbox_num == 3)
+{
+	hitstop = 8;
+	target_x = 0;
+	target_y = 0;
+}

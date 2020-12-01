@@ -215,80 +215,104 @@ case AT_DSPECIAL:
 {
     switch (window)
     {
-        case 1:
-        {
-        	if (window_timer == 1)
+    	case 1: //Startup
+    	{
+    		if (window_timer == get_window_value(AT_DSPECIAL, 1, AG_WINDOW_LENGTH))
         	{
-	            at_dspecial_done = false;
-	            at_dspecial_has_parried = false;
-	            anim_dspecial_shockwave_frame = 6;
+	            at_dspecial_has_reflected = false;
+                at_dspecial_countered_player = noone;
+                at_dspecial_countered_damage = 0;
 	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
 	            
-	            if (at_dspecial_damage_block < noz_dspecial_damage_min)
+	            if (special_down) //(at_dspecial_damage_block < noz_dspecial_damage_min)
 	            {
-                    set_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX, asset_get("sfx_absa_singlezap2"));
-                    set_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO, 3);
+	                window = 3;
+	                window_timer = 0;
 	            }
 	            else
 	            {
-                    reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX);
-                    reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO);
+	                anim_dspecial_shockwave_frame = 6;
 	            }
-	            
-                //Reflector script
-	            if (!was_parried)
-	            { user_event(1); }
         	}
-            
-            //Dampen momentum
-            hsp *= 0.8;
-            vsp *= (vsp > 0) ? 0.2 : 0.9;
-            
-        } break;
-        case 2:
-        {
+    	} break;
+    	case 2: //Shine
+    	{
+	        //Dampen momentum
+	        hsp *= 0.8;
+	        vsp *= (vsp > 0) ? 0.2 : 0.9;
+    	} break;
+    	case 3: //Counter
+    	{
+	        can_move = false;
+	        can_fast_fall = false;
+	        
+	        if (window_timer < 6)
+	        {
+		        //Dampen momentum
+		        hsp *= 0.8;
+		        vsp *= (vsp > 0) ? 0.2 : 0.9;
+	        }
+	        
+    		user_event(2);
+	        
+    		/*
+    		if (special_down && has_rune("Z") &&
+    			window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH))
+    		{
+    		   window = 6;
+    		   window_timer = 0;
+    		}
+    		*/
+    	} break;
+    	case 4: //Endlag
+    	{
+        	//Prevents excessive jump-cancelled multishines
+        	//move_cooldown[AT_DSPECIAL] = 4;
+    		can_jump = !was_parried;
+            can_attack = !was_parried && 
+                         (at_dspecial_has_reflected || has_hit_player);
+    	} break;
+    	case 5: //Counter success
+    	{
+	        can_fast_fall = false;
+	        if (window_timer == get_hitbox_value(AT_DSPECIAL, 3, HG_WINDOW_CREATION_FRAME))
+	        {
+	        	//spawn ring of projectiles
+	        	//at_dspecial_countered_damage
+	        	//at_dspecial_countered_angle
+	        }
+    	} break;
+    	case 6: //Reflector
+    	{
             can_move = false;
             can_fast_fall = false;
-            
-            //Reflector script
-            if (!was_parried)
-            { user_event(1); }
-        
-            if (!special_down && 
-            (at_dspecial_done || (at_dspecial_has_parried || has_hit_player)) )
+    		user_event(1);
+    		
+            if (!special_down)
             {
-                window = 3;
+                window = 4;
                 window_timer = 0; 
             }
-            else if (special_down && !was_parried && 
-            (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH)) )
+            else if (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH))
             {
-                at_dspecial_done = true;
                 window_timer = 0; 
             }
-        } break;
-        case 3:
-        {
-        	//Prevents excessive jump-cancel multishines
-        	move_cooldown[AT_DSPECIAL] = 8;
-            can_jump = !was_parried;
-            can_attack = !was_parried && 
-                         (at_dspecial_has_parried || has_hit_player);
-        } break;
-        case 4:
-        {
+    	} break;
+    	case 7: //Instaparry window
+    	{
             window = 2;
             window_timer = 0;
-            at_dspecial_done = true;
             init_shader();
-        }break;
-        case 5:
-        {
+    	}
+    	case 8: //Vulnerable window
+    	{
             window = 2;
             window_timer = 0;
-        }break;
-        default: break;
+    	} break;
+    	default:
+    	break;
     }
+    
 } break;
 //==============================================================
 case AT_NSPECIAL: 

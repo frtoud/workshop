@@ -1,8 +1,13 @@
 //USER EVENT 1 - Ice Reflector
+
+#macro VULN_WINDOW 8
+#macro PARRY_WINDOW 7
+
+
 if (instance_place(x, y+5, asset_get("bubble_obj")) != noone)
 {
     //don't reflect bubbles, too inconsistent
-    window = 5;
+    window = VULN_WINDOW;
     window_timer = 0;
     exit;
 }
@@ -165,7 +170,7 @@ if (at_dspecial_damage_block <= 0)
 else if (need_parry)
 {
     //Activate force-parrying.
-    window = 4;
+    window = PARRY_WINDOW;
     window_timer = 0;
     perfect_dodging = true;
     anim_dspecial_shockwave_frame = 6;
@@ -174,13 +179,13 @@ else if (need_parry_fx)
 {
 	anim_fakeparry_timer = 20;
 	sound_play(asset_get("sfx_parry_success"));
-	at_dspecial_has_parried = true;
+	at_dspecial_has_reflected = true;
 	anim_dspecial_shockwave_frame = 6;
 }
 else if (need_vulnerable)
 {
     //Become vulnerable to 'projectiles' that don't move
-    window = 5;
+    window = VULN_WINDOW;
     window_timer = 0;
 }
 
