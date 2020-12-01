@@ -175,7 +175,7 @@ noz_nspecial_interruption_time = 16; //how long before sleeping if a move is in 
 
 noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
-noz_fspecial_cooldown = 150;
+noz_fspecial_cooldown = 180;
 
 noz_uspecial_hover_max = 480;
 noz_uspecial_short_cost = 60; // 1/8

@@ -323,10 +323,19 @@ case AT_FSPECIAL:
     
     if (window == 1)
     {
-        if (window_timer <= 1)
+        if (window_timer == 1)
         {
             move_cooldown[AT_FSPECIAL] = noz_fspecial_cooldown;
-            at_fspecial_ylock = free ? (y - (y % 16)) : y;
+            if (free)
+            {
+                at_fspecial_ylock = (y - (y % 16));
+                set_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED, 6);
+            }
+            else
+            {
+                at_fspecial_ylock = y;
+                reset_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED);
+            }
         }
         else if (free)
         {
