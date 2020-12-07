@@ -91,21 +91,24 @@ switch (state)
             sprite_index = idle_hover_spr;
             
             //Exhausted -> Uses DOWNWARD
-            if (at_uspecial_exhausted) { image_index = 4; }
+            if (at_uspecial_exhausted) 
+                    { image_index = 4; }
             //NEUTRAL
-            else if (joy_pad_idle) {image_index = 0; }
+            else if (joy_pad_idle) 
+                    { image_index = 0; }
             //BACKWARD
             else if ( (spr_dir > 0 && (joy_dir >= 130 && joy_dir <= 230))
                    || (spr_dir < 0 && (joy_dir <=  50 || joy_dir >= 310)) )
                     { image_index = 1; }
             //UPWARD
-            else if (joy_dir >  50 && joy_dir < 130) {image_index = 2; }
+            else if (joy_dir >  50 && joy_dir < 130) 
+                    { image_index = 2; }
             //FORWARD
             else if ( (spr_dir > 0 && (joy_dir <=  50 || joy_dir >= 310))
                    || (spr_dir < 0 && (joy_dir >= 130 && joy_dir <= 230)) )
                     { image_index = 3; }
             //DOWNWARD
-            else { image_index = 4; }
+            else    { image_index = 4; }
         }
         else if (prev_state == PS_ATTACK_AIR)
         { 
@@ -125,6 +128,7 @@ switch (state)
         //Moved this logic in parallel to not clog up attack_update
         switch (attack)
         {
+//==================================================================
             case AT_FSTRONG:
             {
                 if (window == 1 && strong_charge > 0)
@@ -156,6 +160,7 @@ switch (state)
                 }
                 
             }break;
+//==================================================================
             case AT_USTRONG:
             {
                 if (window == 1 && strong_charge > 0
@@ -177,6 +182,7 @@ switch (state)
                                   get_hitbox_value(AT_USTRONG, 2, HG_WIDTH), false);
                 }
             }break;
+//==================================================================
             case AT_DSTRONG:
             {
                 if (window == 1 && strong_charge > 0
@@ -186,6 +192,7 @@ switch (state)
                                                     y - 48, 10, true);
                 }
             }break;
+//==================================================================
             case AT_NSPECIAL:
             {
                 if (window_timer == 0) && (window == 2 || window == 4)
@@ -197,6 +204,7 @@ switch (state)
                     k.depth = depth - 1;
                 }
             }break;
+//==================================================================
             case AT_FSPECIAL:
             {
                 if ((window == 2 || window == 3) && get_gameplay_time() % 2 == 0)
@@ -205,6 +213,7 @@ switch (state)
                                   get_hitbox_value(AT_FSPECIAL, 2, HG_WIDTH), false);
                 }
             }break;
+//==================================================================
             case AT_USPECIAL:
             {
                 if (window == 1) 
@@ -219,10 +228,10 @@ switch (state)
                 && get_window_value(AT_USPECIAL, 5, AG_WINDOW_TYPE) == 7) 
                 { image_index = 22; } //Exhausted frame; going to pratfall
             }break;
-            
-            case AT_NAIR: 
+//==================================================================
+            case AT_NAIR:
                 if !(at_uspecial_hovering && !at_uspecial_exhausted) 
-                    break;
+                    break; // Landed NAIR case
             case AT_FAIR:
             case AT_BAIR:
             case AT_UAIR:
@@ -232,6 +241,7 @@ switch (state)
                 if (at_uspecial_hovering) 
                 { sprite_index = get_attack_value(attack, 55); }
             }break;
+//==================================================================
             default:
             break;
         }
