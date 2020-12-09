@@ -7,31 +7,17 @@
 #macro AT_CLONES     48
 #macro HB_CLONES      8
 
-
-
-
-
+sprite_index = null_sprite;
+image_index = 0;
 if !("clones_array" in self)
 {
     for (var i = (num_clones -1); i >= 0; i--)
     {
-        with (owner)
-        {
-            other.clones_array[i] = instance_create(0, 0, "obj_article3");
-            other.clones_array[i].player_id = self;
-            other.clones_array[i].num = "_cosmicclonebuddy";
-            other.clones_array[i].uses_shader = true;
-        }
-        clones_array[i].hitbox = noone;
+        clones_array[i] = noone;
     }
     
     clone_state = CLONES_INIT;
 }
-/*
-if !("fubar" in self) fubar = 0;
-var array = variable_instance_get_names(clones_array[0])
-print_debug(array[fubar++ % array_length(array)])
-exit;*/
 
 if (!("has_initialized_cosmic_clones_flag" in owner))
 {
@@ -41,21 +27,18 @@ if (!("has_initialized_cosmic_clones_flag" in owner))
     owner.has_initialized_cosmic_clones_flag = true;
 }
 
-sprite_index = null_sprite;
-image_index = 0;
-
 if ( (clone_state == CLONES_INIT) || ((clone_state != CLONES_READY) && 
      (owner.state == PS_SPAWN || owner.state == PS_RESPAWN)) )
 {
     //Kill all previous clone hitboxes
     for (var i = 0; i < num_clones; i++)
     {
-        if instance_exists(clones_array[i].hitbox)
+        if instance_exists(clones_array[i])
         {
-            clones_array[i].hitbox.destroyed = true; 
+            clones_array[i].destroyed = true; 
         }
-        clones_array[i].hitbox = noone;
-        clones_array[i].sprite_index = null_sprite;
+        clones_array[i] = noone;
+        
     }
     
     //reset rolling buffer
@@ -109,7 +92,8 @@ else if (clone_state == CLONES_WAITING)
                 hbx.can_hit[p] = true;
             }
             hbx.image_yscale = 1;
-            clones_array[i].hitbox = hbx;
+            clones_array[i] = hbx;
+            clones_array[i].true_sprite_index = null_sprite;
             clones_array[i].lockout_timer = 0;
         }
         
@@ -139,10 +123,10 @@ else if (clone_state == CLONES_RUNNING)
                 clones_array[i].lockout_timer--;
                 if (clones_array[i].lockout_timer == 0)
                 {
-                    clones_array[i].hitbox.has_hit = false;
-                    for (var p = 0; p < array_length(clones_array[i].hitbox.can_hit); p++)
+                    clones_array[i].has_hit = false;
+                    for (var p = 0; p < array_length(clones_array[i].can_hit); p++)
                     {
-                        clones_array[i].hitbox.can_hit[p] = true;
+                        clones_array[i].can_hit[p] = true;
                     }
                 }
             }
@@ -152,29 +136,23 @@ else if (clone_state == CLONES_RUNNING)
     for (var i = 0; i < num_clones; i++)
     {
         var bufpos = (buffer_pointer + (i + 1) * time_between_clones) % buffer_size;
-        var clone_id = clones_array[i];
-        var clone_hbx = clone_id.hitbox;
-        clone_id.x = buffer_position[bufpos].posx;
-        clone_id.y = buffer_position[bufpos].posy;
-        clone_id.sprite_index = buffer_position[bufpos].sprite;
-        clone_id.image_index = buffer_position[bufpos].index;
-        clone_id.image_xscale = buffer_position[bufpos].dir;
-        clone_id.image_alpha = (clone_id.lockout_timer > 0) ? 0.4 : 0.8;
-        clone_id.image_blend = c_black;
+        var buffer_data = buffer_position[bufpos];
+        var clone_hbx = clones_array[i];
         
-        clone_hbx.x = clone_id.x;
-        clone_hbx.y = clone_id.y;
+        clone_hbx.x = buffer_data.posx;
+        clone_hbx.y = buffer_data.posy;
         clone_hbx.hitbox_timer = 0;
+        clone_hbx.true_sprite_index = buffer_data.sprite;
         clone_hbx.sprite_index = null_sprite;
-        clone_hbx.mask_index = buffer_position[bufpos].mask;
-        clone_hbx.image_index = buffer_position[bufpos].index;
-        clone_hbx.spr_dir = buffer_position[bufpos].dir;
-        clone_hbx.image_xscale = clone_hit_scaling * clone_id.image_xscale;
-        clone_hbx.image_yscale = clone_hit_scaling * clone_id.image_yscale;
+        clone_hbx.mask_index = buffer_data.mask;
+        clone_hbx.image_index = buffer_data.index;
+        clone_hbx.spr_dir = buffer_data.dir;
+        clone_hbx.image_xscale = clone_hit_scaling * spr_dir;
+        clone_hbx.image_yscale = clone_hit_scaling;
         
-        if (clone_id.lockout_timer == 0 && clone_id.hitbox.has_hit)
+        if (clone_hbx.lockout_timer == 0 && clone_hbx.has_hit)
         {
-            clone_id.lockout_timer = clone_hit_lockout;
+            clone_hbx.lockout_timer = clone_hit_lockout;
             for (var p = 0; p < array_length(clone_hbx.can_hit); p++)
             {
                 clone_hbx.can_hit[p] = false;
