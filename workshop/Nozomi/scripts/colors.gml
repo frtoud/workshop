@@ -16,8 +16,8 @@ set_color_profile_slot(0, 1, 255, 188, 167); //Skin
 set_color_profile_slot_range(1, 19, 19, 13);
 
 //RGB HSV
-// 35: 62: 43 - 137: 43: 24 - Main color
-// 45: 94: 61 - 139: 52: 36
+// 35: 62: 43 - 137: 43: 24
+// 45: 94: 61 - 139: 52: 36 - Main color
 set_color_profile_slot(0, 2,  35,  62,  43); //Bow
 set_color_profile_slot_range(2,  5, 10, 15);
 
@@ -72,7 +72,7 @@ set_color_profile_slot( 2, 6, 205, 201, 235); //VFX
 //Renai Circulation
 set_color_profile_slot( 3, 0, 175, 210, 160); //Hair
 set_color_profile_slot( 3, 1, 255, 188, 167); //Skin
-set_color_profile_slot( 3, 2, 245, 245, 245); //Bow
+set_color_profile_slot( 3, 2, 255, 234, 233); //Bow
 set_color_profile_slot( 3, 3, 240, 115, 125); //Shirt
 set_color_profile_slot( 3, 4, 125, 125, 220); //Skirt
 set_color_profile_slot( 3, 5,  95,  95, 200); //Leggings
@@ -81,7 +81,7 @@ set_color_profile_slot( 3, 6, 195, 231, 205); //VFX
 //Kyun! Vampire Girl
 set_color_profile_slot( 4, 0, 242, 240, 245); //Hair
 set_color_profile_slot( 4, 1, 255, 188, 167); //Skin
-set_color_profile_slot( 4, 2, 245, 245, 245); //Bow
+set_color_profile_slot( 4, 2, 255, 234, 233); //Bow
 set_color_profile_slot( 4, 3, 200,  40,  50); //Shirt
 set_color_profile_slot( 4, 4, 200,  40,  50); //Skirt
 set_color_profile_slot( 4, 5, 130,  95, 115); //Leggings
@@ -90,7 +90,7 @@ set_color_profile_slot( 4, 6, 220, 190, 190); //VFX
 //Go My Way!!
 set_color_profile_slot( 5, 0, 115,  65,  45); //Hair
 set_color_profile_slot( 5, 1, 255, 188, 167); //Skin
-set_color_profile_slot( 5, 2, 180,  45,  50); //Bow
+set_color_profile_slot( 5, 2, 212,  35,  38); //Bow
 set_color_profile_slot( 5, 3, 255, 235, 235); //Shirt
 set_color_profile_slot( 5, 4, 255, 135, 165); //Skirt
 set_color_profile_slot( 5, 5, 240, 240, 240); //Leggings
@@ -126,7 +126,7 @@ set_color_profile_slot( 8, 6, 189, 153, 216 ); //VFX
 //Ievan Polkka
 set_color_profile_slot( 9, 0,  60, 215, 225 ); //Hair
 set_color_profile_slot( 9, 1, 252, 226, 189 ); //Skin
-set_color_profile_slot( 9, 2,   0, 165, 185 ); //Bow
+set_color_profile_slot( 9, 2,   0, 185, 215 ); //Bow
 set_color_profile_slot( 9, 3, 220, 226, 224 ); //Shirt
 set_color_profile_slot( 9, 4,  45,  45,  45 ); //Skirt
 set_color_profile_slot( 9, 5,  25,  25,  25 ); //Leggings
@@ -143,8 +143,8 @@ set_color_profile_slot(10, 6, 251, 239, 197 ); //VFX
 
 //Koi No Mikuru Densetsu
 set_color_profile_slot(11, 0, 197, 115,  91 ); //Hair
-set_color_profile_slot(11, 1, 255, 188, 167); //Skin
-set_color_profile_slot(11, 2, 146,  61,  49 ); //Bow
+set_color_profile_slot(11, 1, 255, 188, 167 ); //Skin
+set_color_profile_slot(11, 2, 178,  65,  44 ); //Bow
 set_color_profile_slot(11, 3, 252, 151, 148 ); //Shirt
 set_color_profile_slot(11, 4, 249, 245, 236 ); //Skirt
 set_color_profile_slot(11, 5,  93,  68,  63 ); //Leggings
@@ -153,7 +153,7 @@ set_color_profile_slot(11, 6, 131, 216, 131 ); //VFX
 //Reach for the Summit
 set_color_profile_slot(12, 0, 245, 120,  92); //Hair
 set_color_profile_slot(12, 1, 255, 188, 167); //Skin
-set_color_profile_slot(12, 2,  80,  50,  75); //Bow
+set_color_profile_slot(12, 2, 112,  60, 102); //Bow
 set_color_profile_slot(12, 3,  90, 115, 210); //Shirt
 set_color_profile_slot(12, 4,  85, 105, 210); //Skirt
 set_color_profile_slot(12, 5, 147,  64,  50); //Leggings
