@@ -12,3 +12,6 @@ noz_freeze_timer = 0;
 noz_freeze_vsp = 0;
 noz_freeze_hsp = 0;
 noz_freeze_anim_rotate = 0;
+
+//Kirby-specific
+noz_has_kirby_ability = false;

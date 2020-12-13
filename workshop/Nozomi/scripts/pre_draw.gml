@@ -1,5 +1,6 @@
 //PreDraw
 
+//===================================================================
 //Setting Outline color
 if (noz_handler_id == self)
 {
@@ -19,6 +20,8 @@ outline_color = [0, 0, 0];
 
 shader_start();
 
+//===================================================================
+// Hovering hair
 if (at_uspecial_hovering && state != PS_PRATFALL &&
         //Attack with exceptions to the Hover Hair drawing.
       !(state == PS_ATTACK_AIR && 
@@ -31,6 +34,7 @@ if (at_uspecial_hovering && state != PS_PRATFALL &&
                     spr_dir, 1, 0, c_white, 1);
 }
 
+//===================================================================
 //NSPECIAL: Sing
 if (attack == AT_NSPECIAL && (window > 1) &&
    (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) )
@@ -41,14 +45,16 @@ if (attack == AT_NSPECIAL && (window > 1) &&
                        get_window_value(AT_NSPECIAL, 5, AG_WINDOW_LENGTH)) 
              : 100);
     
-    draw_sprite_ext(sprite_get("vfx_nspecial"), 
+    draw_sprite_ext(vfx_nspecial_spr, 
        floor(get_gameplay_time() / 5 ) % 4, x, y-24, 1, 1, 
        floor(get_gameplay_time() * 5 ) % 360, c_white,
        (alpha) * 0.01 * 0.7 );
 }
+//===================================================================
 
 shader_end();
 
+//===================================================================
 //Simulate parry VFX
 if (anim_fakeparry_timer > 0)
 {

@@ -157,6 +157,7 @@ user_event(0);
 
 //Compat specific
 //==============================================================================
+//Wall-e
 if (walle_taunt_playing)
 {
 	walle_taunt_buffer = 60 * 12;
@@ -165,6 +166,56 @@ if (walle_taunt_buffer > 0)
 {
 	walle_taunt_buffer--;
 	suppress_stage_music(0.1, 0.2);
+}
+
+//Kirby
+if (swallowed && instance_exists(enemykirby))
+{
+	var ability_spr = sprite_get("cmp_kirby");
+	var ability_hurt = sprite_get("cmp_kirby_hurt")
+	var ability_icon = sprite_get("cmp_kirby_icon")
+	var kirby_sleep_sfx = sound_get("cmp_kirby_sleep")
+	with (enemykirby) 
+	{
+		//Define AT_EXTRA_3 for Kirby
+		set_attack_value(AT_EXTRA_3, AG_CATEGORY, 2);
+        set_attack_value(AT_EXTRA_3, AG_SPRITE, ability_spr);
+        set_attack_value(AT_EXTRA_3, AG_AIR_SPRITE, ability_spr);
+        set_attack_value(AT_EXTRA_3, AG_NUM_WINDOWS, 3);
+        set_attack_value(AT_EXTRA_3, AG_OFF_LEDGE, 1);
+        set_attack_value(AT_EXTRA_3, AG_HURTBOX_SPRITE, ability_hurt);
+        
+        set_window_value(AT_EXTRA_3, 1, AG_WINDOW_TYPE, 0);
+        set_window_value(AT_EXTRA_3, 1, AG_WINDOW_LENGTH, 8);
+        set_window_value(AT_EXTRA_3, 1, AG_WINDOW_ANIM_FRAMES, 1);
+        
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_TYPE, 0);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_LENGTH, 48);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_ANIM_FRAMES, 5);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_ANIM_FRAME_START, 1);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_HAS_SFX, 1);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_SFX_FRAME, 12);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_SFX, kirby_sleep_sfx);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_HAS_CUSTOM_FRICTION, 1);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_CUSTOM_AIR_FRICTION, 999);
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_CUSTOM_GROUND_FRICTION, 0.5);
+        
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_TYPE, 0);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_LENGTH, 40);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_ANIM_FRAMES, 8);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_ANIM_FRAME_START, 6);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_HAS_CUSTOM_FRICTION, 1);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_CUSTOM_AIR_FRICTION, 999);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_CUSTOM_GROUND_FRICTION, 0.5);
+        
+        set_num_hitboxes(AT_EXTRA_3, 0);
+		
+		newicon = ability_icon;
+		//Nozomi will track this Kirby to handle sleep debuff shenanigans
+		noz_handler_id = other;
+		noz_has_kirby_ability = true;
+	}
+	swallowed = false;
 }
 
 //DEFINES

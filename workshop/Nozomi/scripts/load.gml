@@ -89,3 +89,4 @@ set_victory_bg(sprite_get("victory"));
 //Compatibility
 sprite_change_offset("cmp_miiverse", 60, 30);
 sprite_change_offset("cmp_trial_grounds", 31, 0);
+sprite_change_offset("cmp_kirby", 36, 76);

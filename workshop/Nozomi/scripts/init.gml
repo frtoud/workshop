@@ -112,6 +112,8 @@ vfx_snow_twinkle = hit_fx_create(sprite_get("vfx_snow_twinkle"), 9);
 vfx_snow_falling = hit_fx_create(sprite_get("vfx_snow_twinkle_falling"), 9);
 vfx_ice_small = hit_fx_create(sprite_get("vfx_ice_small"), 12);
 vfx_ice_big = hit_fx_create(sprite_get("vfx_ice_big"), 20);
+
+vfx_nspecial_spr = sprite_get("vfx_nspecial");
 vfx_sleep = hit_fx_create(sprite_get("vfx_sleep"), 25);
 vfx_lnotes = hit_fx_create(sprite_get("vfx_nspecial_notes_left"), 24);
 vfx_rnotes = hit_fx_create(sprite_get("vfx_nspecial_notes_right"), 24);
@@ -228,6 +230,8 @@ noz_freeze_timer = 0;
 noz_freeze_vsp = 0;
 noz_freeze_hsp = 0;
 noz_freeze_anim_rotate = 0;
+//Kirby-specific
+noz_has_kirby_ability = false;
 
 //=================================================
 // Compatibility Zone
@@ -255,4 +259,8 @@ walle_taunt_buffer = 0;
 //Miiverse
 miiverse_post = sprite_get("cmp_miiverse");
 
+//Kirby
+enemykirby = noone;
+kirbyability = 16;
+swallowed = false;
 

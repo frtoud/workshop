@@ -9,26 +9,31 @@ with (oPlayer)
 	if (noz_handler_id == other) 
 	{	   
 		//===========================================================
-		// Resets on death/parry
+		// Reset debuffs on death/parry
 		if (state == PS_RESPAWN || (invincible && state == PS_PARRY))
 		{
 			noz_freeze_timer = 0;
 			noz_freeze_anim_rotate = 0;
 			noz_snowstack_timer = 0;
-			noz_snowimmune_timer = 0;
 			noz_sleep_timer = 0;
-			noz_sleepimmune_timer = 0;
 			noz_sleep_anim_timer = 0;
 			noz_sleep_interrupt_timer = 0;
-			noz_handler_id = noone;
+			if (state == PS_RESPAWN)
+			{
+				//Reset immunities only on death
+			    noz_snowimmune_timer = 0;
+			    noz_sleepimmune_timer = 0;
+			    noz_handler_id = noone;
+			}
 		}
 		//===========================================================
 		//Stop tracking if theres nothing left to handle
-		else if (0 == noz_freeze_timer
-		      && 0 == noz_snowstack_timer
-		      && 0 == noz_snowimmune_timer
-		      && 0 == noz_sleep_timer
-		      && 0 == noz_sleepimmune_timer)
+		if (0 == noz_freeze_timer
+		 && 0 == noz_snowstack_timer
+		 && 0 == noz_snowimmune_timer
+		 && 0 == noz_sleep_timer
+		 && 0 == noz_sleepimmune_timer
+		 && !noz_has_kirby_ability)
 		{
 			noz_freeze_anim_rotate = 0;
 			noz_sleep_anim_timer = 0;
@@ -148,7 +153,6 @@ with (oPlayer)
 			// Sleep effect
 			if (noz_sleep_timer > 0)
 			{
-				
 				if (state_cat == SC_HITSTUN || noz_sleep_timer < 0)
 				{ 
 					noz_sleep_timer = 0; 
@@ -251,6 +255,50 @@ with (oPlayer)
 				noz_sleep_anim_timer = 0;
 				noz_sleep_interrupt_timer = 0;
 			}
+			
+			//===========================================================
+			// Kirby Ability
+			if (noz_has_kirby_ability)
+			{
+				if (current_ability == 0)
+				{
+					//Losing the ability is needed to get a new one so this is ok
+					noz_has_kirby_ability = false;
+				}
+				else if ((state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND)
+				         && (attack == AT_EXTRA_3))
+				{
+					//Using the copied move -- see attack_update AT_NSPECIAL
+					can_move = false;
+                    //Dampen fallspeeds
+                    vsp *= (vsp > 3) ? 0.25 : 1;
+                    
+				    if (window == 2)
+				    {
+				    	// use a collision test because we can't access Kirby's hit_player.gml
+				    	with (oPlayer)
+				    	{
+				    	    if (self != other && (!free) && noz_sleepimmune_timer == 0 && 
+				    	    	hurtboxID == collision_circle(other.x, other.y-20, 50, hurtboxID, true, false))
+				    	    {
+				    	    	//Kirby inflicts Nozomi's debuff
+				    	    	//Victim's debuffs will get handled by Kirby's handler
+						        noz_handler_id = other.noz_handler_id;
+						        
+								noz_sleep_anim_timer = 0;
+								noz_sleepimmune_timer = noz_handler_id.noz_nspecial_sleepimmune_max;
+								
+								// base + early hit bonus + (damage * mult) & capped
+						        noz_sleep_timer = floor( min( (noz_handler_id.noz_nspecial_sleep_base 
+						           + (other.window == 2 ? noz_handler_id.noz_nspecial_sleep_early : 0)
+						           + get_player_damage(player) * noz_handler_id.noz_nspecial_sleep_mult)
+						           , noz_handler_id.noz_nspecial_sleep_max) );
+				    	    }
+				    	}
+				    }
+				}
+			}
+			//===========================================================
 		}
     }
 }
