@@ -264,3 +264,8 @@ enemykirby = noone;
 kirbyability = 16;
 swallowed = false;
 
+//Agent N
+nname = "Smol Nozomi"
+ncode1 = "Class: Figment     Reward: $1000";
+ncode2 = "Can fly with her twintails. Exhibits cryokinetic powers.";
+ncode3 = "Wanted by 'Haltmann Works' for 'being weaboo trash'...?";
