@@ -44,8 +44,9 @@ if (at_uspecial_hovering)
 		at_nair_hover_need_grid_adjust = true;
 	}
 	else if ( !at_uspecial_exhausted &&
-		!(state == PS_ATTACK_AIR && attack == AT_USPECIAL && 
-		  (window == 5 || window == 6 && window_timer < 6)) )
+	    //exception: no control during USPECIAL window 5 and 6
+		!( state == PS_ATTACK_AIR && attack == AT_USPECIAL && 
+		  (window == 5 || (window == 6 && window_timer < 6))) )
 	{
 		if (fast_falling)
 		{
@@ -101,8 +102,9 @@ else if (!at_uspecial_was_hovering
 	//recharges meter
 	at_uspecial_exhausted = false;
 	var recharge = (!free ? 1 : 0.5) * noz_uspecial_hover_recharge;
-	at_uspecial_hover_meter = (at_uspecial_hover_meter >= noz_uspecial_hover_max) ? 
-	noz_uspecial_hover_max : at_uspecial_hover_meter + recharge;
+	at_uspecial_hover_meter = 
+	   (at_uspecial_hover_meter >= noz_uspecial_hover_max) ? 
+	    noz_uspecial_hover_max : at_uspecial_hover_meter + recharge;
 }
 else if (!free || state == PS_HITSTUN || state == PS_WALL_JUMP)
 {
@@ -197,7 +199,6 @@ if (swallowed && instance_exists(enemykirby))
         set_window_value(AT_EXTRA_3, 2, AG_WINDOW_SFX_FRAME, 12);
         set_window_value(AT_EXTRA_3, 2, AG_WINDOW_SFX, kirby_sleep_sfx);
         set_window_value(AT_EXTRA_3, 2, AG_WINDOW_HAS_CUSTOM_FRICTION, 1);
-        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_CUSTOM_AIR_FRICTION, 999);
         set_window_value(AT_EXTRA_3, 2, AG_WINDOW_CUSTOM_GROUND_FRICTION, 0.5);
         
         set_window_value(AT_EXTRA_3, 3, AG_WINDOW_TYPE, 0);
@@ -205,8 +206,12 @@ if (swallowed && instance_exists(enemykirby))
         set_window_value(AT_EXTRA_3, 3, AG_WINDOW_ANIM_FRAMES, 8);
         set_window_value(AT_EXTRA_3, 3, AG_WINDOW_ANIM_FRAME_START, 6);
         set_window_value(AT_EXTRA_3, 3, AG_WINDOW_HAS_CUSTOM_FRICTION, 1);
-        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_CUSTOM_AIR_FRICTION, 999);
         set_window_value(AT_EXTRA_3, 3, AG_WINDOW_CUSTOM_GROUND_FRICTION, 0.5);
+        
+        //absurd values, but prevents movement during the move
+        //can_move cannot be set to false for kirby... I suspect update order is at fault
+        set_window_value(AT_EXTRA_3, 2, AG_WINDOW_CUSTOM_AIR_FRICTION, 999);
+        set_window_value(AT_EXTRA_3, 3, AG_WINDOW_CUSTOM_AIR_FRICTION, 999);
         
         set_num_hitboxes(AT_EXTRA_3, 0);
 		
@@ -220,8 +225,7 @@ if (swallowed && instance_exists(enemykirby))
 
 //DEFINES
 //==============================================================================
-#define trueground
-/// trueground()
+#define trueground()
 return !free && 
    (noone != collision_rectangle( bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, asset_get("solid_32_obj"), false, true) ||
     noone != collision_rectangle( bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, asset_get("obj_stage_article_solid"), false, true) ||
