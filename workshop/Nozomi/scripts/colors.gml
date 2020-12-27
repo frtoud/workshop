@@ -126,10 +126,10 @@ set_color_profile_slot( 8, 6, 189, 153, 216 ); //VFX
 //Ievan Polkka
 set_color_profile_slot( 9, 0,  60, 215, 225 ); //Hair
 set_color_profile_slot( 9, 1, 252, 226, 189 ); //Skin
-set_color_profile_slot( 9, 2,   0, 185, 215 ); //Bow
-set_color_profile_slot( 9, 3, 220, 226, 224 ); //Shirt
-set_color_profile_slot( 9, 4,  45,  45,  45 ); //Skirt
-set_color_profile_slot( 9, 5,  25,  25,  25 ); //Leggings
+set_color_profile_slot( 9, 2,  20, 155, 175 ); //Bow
+set_color_profile_slot( 9, 3, 190, 206, 204 ); //Shirt
+set_color_profile_slot( 9, 4,  70,  75,  80 ); //Skirt
+set_color_profile_slot( 9, 5,  25,  28,  30 ); //Leggings
 set_color_profile_slot( 9, 6, 110, 195, 215 ); //VFX
 
 //Oreimo - Irony
