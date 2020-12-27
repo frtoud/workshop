@@ -101,7 +101,8 @@ else if (!at_uspecial_was_hovering
 {
 	//recharges meter
 	at_uspecial_exhausted = false;
-	var recharge = (!free ? 1 : 0.5) * noz_uspecial_hover_recharge;
+	var recharge = (trueground() ? noz_uspecial_hover_recharge 
+	                             : noz_uspecial_hover_recharge_air);
 	at_uspecial_hover_meter = 
 	   (at_uspecial_hover_meter >= noz_uspecial_hover_max) ? 
 	    noz_uspecial_hover_max : at_uspecial_hover_meter + recharge;
