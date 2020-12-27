@@ -328,7 +328,7 @@ case AT_FSPECIAL:
             move_cooldown[AT_FSPECIAL] = noz_fspecial_cooldown;
             if (free)
             {
-                at_fspecial_ylock = (y - (y % 16));
+                at_fspecial_ylock = max(noz_fspecial_ylock_max, (y - (y % 16)));
                 set_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED, 6);
             }
             else
