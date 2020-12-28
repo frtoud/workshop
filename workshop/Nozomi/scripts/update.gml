@@ -66,6 +66,11 @@ if (at_uspecial_hovering)
 	            hover_cost_mult -= lengthdir_y(0.8, joy_dir);
 			}
 			
+			if (y < 0) //penalty if above camera view
+			{ hover_cost_mult -= (y / 16.0); }
+			
+			at_uspecial_hover_meter -= hover_cost_mult * 2;
+			
 			//dampen vertical control depending on meter level
 			var exhaustion_factor = 
 			   0.01 * ease_cubeOut(noz_uspecial_hover_exhaustion_base, 100,
@@ -91,8 +96,6 @@ if (at_uspecial_hovering)
 				       vsp - noz_uspecial_hover_vstrength : target_vsp;
 			}
 			//else: gravity handles it
-	
-			at_uspecial_hover_meter -= hover_cost_mult * 2;
 		}
 	}
 }
