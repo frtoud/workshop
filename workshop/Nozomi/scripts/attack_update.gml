@@ -154,9 +154,14 @@ case AT_NAIR:
     }
     
     //Slightly slows fall
-    if (window == 2 && attack_down)
+    if (free && window == 2 && attack_down)
     { 
     	vsp *= (vsp > 2) ? 0.8 : 1; 
+    	// [RUNE A] -- Vertical boost when held
+    	if (has_rune("A") && !hitpause && vsp > -5)
+    	{
+    		vsp -= 1.5;
+    	}
     }
     else if (window == 4 && (has_hit || !free))
     {
