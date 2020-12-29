@@ -222,6 +222,7 @@ at_uspecial_cooldown_override = false;
 // Looking at you, Kirby >:]
 noz_handler_id = noone;
 noz_snowstack_timer = 0;
+noz_snow_frostbite_timer = 0;
 noz_snowimmune_timer = 0;
 noz_sleep_timer = 0;
 noz_sleep_anim_timer = 0;

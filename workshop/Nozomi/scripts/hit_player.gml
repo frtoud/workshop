@@ -15,6 +15,9 @@ if (my_hitboxID.orig_player == player) //ONLY CHECK WITH YOUR OWN HITBOXES!!
         {
             hit_player_obj.noz_snowstack_timer = noz_snowstack_timer_max;
             hit_player_obj.noz_handler_id = self;
+            
+            if (has_rune("I")) // [RUNE I] -- Frostbite debuff
+            { hit_player_obj.noz_snow_frostbite_timer = noz_snowstack_timer_max; }
         }
     }
     // Strong attacks: apply ice effects

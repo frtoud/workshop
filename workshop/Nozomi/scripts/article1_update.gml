@@ -64,10 +64,17 @@ else
     var victim = instance_position(x, y-2, oPlayer)
     if (victim != noone && victim != player_id && !victim.free
         && get_player_team(player_id.player) != get_player_team(victim.player)
-        && victim.noz_snowimmune_timer < 1 && victim.noz_snowstack_timer < 5)
+        && victim.noz_snowimmune_timer < 1)
     {
-        victim.noz_snowstack_timer = 5;
-        victim.noz_handler_id = player_id;
+        if (victim.noz_snowstack_timer < 5)
+        {
+            victim.noz_snowstack_timer = 5;
+            victim.noz_handler_id = player_id;
+        }
+
+        // [RUNE I] -- Frostbite debuff
+        if (has_rune("I") && victim.noz_snow_frostbite_timer < 5)
+        { victim.noz_snow_frostbite_timer = 5; }
     }
     
     //sparkles randomly
