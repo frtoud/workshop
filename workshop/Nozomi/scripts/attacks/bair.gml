@@ -47,6 +47,7 @@ set_hitbox_value(AT_BAIR, 1, HG_VISUAL_EFFECT_X_OFFSET, 0);
 set_hitbox_value(AT_BAIR, 1, HG_VISUAL_EFFECT_Y_OFFSET, 0);
 set_hitbox_value(AT_BAIR, 1, HG_HIT_SFX, asset_get("sfx_blow_medium1"));
 set_hitbox_value(AT_BAIR, 1, HG_HIT_LOCKOUT, 12);
+set_hitbox_value(AT_BAIR, 1, HG_HITBOX_GROUP, 1);
 
 //Lingering hitbox
 set_hitbox_value(AT_BAIR, 2, HG_PARENT_HITBOX, 0);
@@ -83,4 +84,30 @@ set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_PARRY_STUN, 0);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_UNBASHABLE, 0);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+
+// [RUNE B] -- BAIR with STRONG effects
+if (has_rune("B"))
+{
+    set_window_value(AT_BAIR, 1, AG_WINDOW_SFX, sound_get("sfx_noz_ice_medium"));
+    
+    set_hitbox_value(AT_BAIR, 1, HG_BASE_KNOCKBACK, 8);
+    set_hitbox_value(AT_BAIR, 1, HG_KNOCKBACK_SCALING, 1);
+    set_hitbox_value(AT_BAIR, 1, HG_HIT_SFX, asset_get("sfx_ice_shatter"));
+    set_hitbox_value(AT_BAIR, 1, HG_VISUAL_EFFECT, 199);
+    
+    set_hitbox_value(AT_BAIR, 2, HG_LIFETIME, 8);
+    set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_SPRITE, sprite_get("vfx_ice_small"));
+    set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_ANIM_SPEED, (4.0 / get_hitbox_value(AT_BAIR, 2, HG_LIFETIME)));
+    set_hitbox_value(AT_BAIR, 2, HG_DAMAGE, 6);
+    set_hitbox_value(AT_BAIR, 2, HG_ANGLE, 55);
+    set_hitbox_value(AT_BAIR, 2, HG_BASE_KNOCKBACK, 6);
+    set_hitbox_value(AT_BAIR, 2, HG_KNOCKBACK_SCALING, .8);
+    set_hitbox_value(AT_BAIR, 2, HG_HITPAUSE_SCALING, .5);
+    set_hitbox_value(AT_BAIR, 2, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
+    set_hitbox_value(AT_BAIR, 2, HG_VISUAL_EFFECT, 28);
+    set_hitbox_value(AT_BAIR, 2, HG_HITBOX_GROUP, 1);
+    set_hitbox_value(AT_BAIR, 2, HG_IGNORES_PROJECTILES, 0);
+    set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_PARRY_STUN, 1);
+    set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_UNBASHABLE, 1);
+}
 
