@@ -230,6 +230,13 @@ switch (state)
                 { image_index = 22; } //Exhausted frame; going to pratfall
             }break;
 //==================================================================
+            case AT_DSPECIAL:
+            {
+                //Counter success hitpause frame
+                if (window == 5 && window_timer <= 1) 
+                   { image_index = 8; }
+            }break;
+//==================================================================
             case AT_NAIR:
                 if !(at_uspecial_hovering && !at_uspecial_exhausted) 
                     break; // Landed NAIR case
