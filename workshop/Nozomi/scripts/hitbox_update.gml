@@ -63,7 +63,48 @@ if ( player_id.anim_do_draw_twinkle)
     var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_twinkle);
 	k.depth = depth - 1;
 }
-
+//==================================================================
+//DSPECIAL's counter shards
+if ( (attack == AT_DSPECIAL && hbox_num == 4) )
+{
+	//Homing to target
+	if (do_homing)
+	{
+		if (homing_target == noone || hitbox_timer > player_id.noz_dspecial_homing_time
+		|| (hitbox_timer > player_id.noz_dspecial_pre_homing_time 
+		    && point_distance(x, y, homing_target.x, homing_target.y - homing_target.char_height/2) < 30))
+		{
+			do_homing = false;
+		}
+		else
+		{
+			//adjust hsp/vsp
+			var lookat_angle = point_direction(x, y, homing_target.x, homing_target.y - homing_target.char_height/2);
+			
+			var target_hsp = lengthdir_x(player_id.noz_dspecial_top_speed, lookat_angle);
+			var target_vsp = lengthdir_y(player_id.noz_dspecial_top_speed, lookat_angle);
+			
+			var time_fraction = min(1, (1/100.0) * 
+			    ease_quadIn(0, 100, hitbox_timer, player_id.noz_dspecial_homing_time/2));
+			hsp = hsp * (1.0 - time_fraction) + target_hsp * (time_fraction);
+			vsp = vsp * (1.0 - time_fraction) + target_vsp * (time_fraction);
+		}
+	}
+	
+	if (hitbox_timer == player_id.noz_dspecial_pre_homing_time )
+	{
+		//reactivate destructibility
+		transcendent = false;
+	}
+	
+	//visuals
+	proj_angle = point_direction(0, 0, hsp, vsp);
+	if (player_id.anim_do_draw_twinkle)
+    {
+    	var k = spawn_hit_fx(x-5, y-5, player_id.vfx_snow_twinkle);
+	    k.depth = depth + 1;
+    }
+}
 //====================================================================
 #define try_getting_kicked()
 {

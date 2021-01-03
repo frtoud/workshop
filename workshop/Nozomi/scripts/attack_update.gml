@@ -220,7 +220,7 @@ case AT_DSPECIAL:
     		if (window_timer == get_window_value(AT_DSPECIAL, 1, AG_WINDOW_LENGTH))
         	{
 	            at_dspecial_has_reflected = false;
-                at_dspecial_countered_player = noone;
+                at_dspecial_counter_target = noone;
                 at_dspecial_countered_damage = 0;
 	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
 	            
@@ -275,11 +275,29 @@ case AT_DSPECIAL:
     	case 5: //Counter success
     	{
 	        can_fast_fall = false;
-	        if (window_timer == get_hitbox_value(AT_DSPECIAL, 3, HG_WINDOW_CREATION_FRAME))
+	        if (at_dspecial_countered_damage > 0 &&
+	        	window_timer == get_hitbox_value(AT_DSPECIAL, 4, HG_WINDOW_CREATION_FRAME))
 	        {
+	        	//Helps visuals
+	            invincible = true;
+	            invince_time = noz_dspecial_invince_time;
+	            
 	        	//spawn ring of projectiles
-	        	//at_dspecial_countered_damage
-	        	//at_dspecial_countered_angle
+	        	for (var i = 0; i < 6; i++)
+	        	{
+	        		var angle = 30 + (i * 60);
+	        		var k = create_hitbox(AT_DSPECIAL, 4, x, y - 24);
+	        		k.hsp = lengthdir_x(noz_dspecial_top_speed, angle);
+	        		k.vsp = lengthdir_y(noz_dspecial_top_speed, angle);
+	        		k.x += k.hsp;
+	        		k.y += k.vsp;
+	        		k.damage = 1 + floor(at_dspecial_countered_damage/6);
+	        		k.depth = depth + 1;
+	        		k.spr_dir = 1;
+	        		
+	        		k.homing_target = at_dspecial_counter_target;
+	        	}
+	        	at_dspecial_countered_damage = 0;
 	        }
     	} break;
     	case 6: //Reflector

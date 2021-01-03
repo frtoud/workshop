@@ -39,7 +39,6 @@ if (is_a_cloud)
         kick_boosted = 0;
     }
 }
-
 //====================================================================
 // Lingering projectile for DTILT has a cooldown; avoids spamming too many at once
 if ( (attack == AT_DTILT && hbox_num == 2) )
@@ -51,9 +50,9 @@ if ( (attack == AT_DTILT && hbox_num == 2) )
     }
 }
 //DSPECIAL's counter shards
-if (attack == AT_DSPECIAL && hbox_num == 3)
+if (attack == AT_DSPECIAL && hbox_num == 4)
 {
-	hitstop = 8;
-	target_x = 0;
-	target_y = 0;
+	do_homing = true;
+	if ("homing_target" not in self) 
+       { homing_target = noone; }
 }

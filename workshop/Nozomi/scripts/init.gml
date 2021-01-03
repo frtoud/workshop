@@ -177,7 +177,9 @@ noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_dmg_mult = 1.5;
 noz_dspecial_invince_time = 60;
 noz_dspecial_top_speed = 12;
-noz_dspecial_homing_time = 8;
+noz_dspecial_pre_homing_time = 8;
+noz_dspecial_homing_time = 40;
+noz_dspecial_homing_distance = 300;
 
 noz_nspecial_mashing_bonus = 2;
 noz_nspecial_sleep_base = floor(75 * noz_nspecial_mashing_bonus);
@@ -222,7 +224,9 @@ at_dair_early_cancel = false;
 at_dair_need_landing_lag_hitbox = false;
 
 at_dspecial_has_reflected = false;
-at_dspecial_countered_angle = 0;
+//local object to simulate a player position if no appropriate target can be found
+at_dspecial_target_object = { x:0, y:0, char_height:0 };
+at_dspecial_counter_target = noone;
 at_dspecial_countered_damage = 0;
 at_dspecial_damage_block = noz_dspecial_damage_max;
 

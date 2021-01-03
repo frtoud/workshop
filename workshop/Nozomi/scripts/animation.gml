@@ -233,7 +233,7 @@ switch (state)
             case AT_DSPECIAL:
             {
                 //Counter success hitpause frame
-                if (window == 5 && window_timer <= 1) 
+                if (window == 5 && window_timer < 1) 
                    { image_index = 8; }
             }break;
 //==================================================================

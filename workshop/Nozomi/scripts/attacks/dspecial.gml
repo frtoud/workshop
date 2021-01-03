@@ -59,7 +59,7 @@ set_window_value(AT_DSPECIAL, 8, AG_WINDOW_LENGTH, 3);
 set_window_value(AT_DSPECIAL, 8, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_DSPECIAL, 8, AG_WINDOW_ANIM_FRAME_START, 4);
 
-set_num_hitboxes(AT_DSPECIAL, 2);
+set_num_hitboxes(AT_DSPECIAL, 3);
 
 set_hitbox_value(AT_DSPECIAL, 1, HG_PARENT_HITBOX, 1);
 set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_TYPE, 1);
@@ -69,6 +69,7 @@ set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_Y, -24);
 set_hitbox_value(AT_DSPECIAL, 1, HG_WIDTH, 80);
 set_hitbox_value(AT_DSPECIAL, 1, HG_HEIGHT, 80);
 set_hitbox_value(AT_DSPECIAL, 1, HG_PRIORITY, 1);
+set_hitbox_value(AT_DSPECIAL, 1, HG_ANGLE, 0);
 set_hitbox_value(AT_DSPECIAL, 1, HG_DAMAGE, 2);
 set_hitbox_value(AT_DSPECIAL, 1, HG_BASE_KNOCKBACK, 4);
 set_hitbox_value(AT_DSPECIAL, 1, HG_KNOCKBACK_SCALING, 0);
@@ -78,41 +79,65 @@ set_hitbox_value(AT_DSPECIAL, 1, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
 set_hitbox_value(AT_DSPECIAL, 1, HG_ANGLE_FLIPPER, 8);
 set_hitbox_value(AT_DSPECIAL, 1, HG_MUNO_OBJECT_LAUNCH_ANGLE, -2);
 set_hitbox_value(AT_DSPECIAL, 1, HG_IGNORES_PROJECTILES, 1);
+set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_GROUP, -1);
 
-//Counter-shockwave
+//Counter-shockwave (early, for hitpause & projectiles)
 set_hitbox_value(AT_DSPECIAL, 2, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_DSPECIAL, 2, HG_WINDOW, 5);
-set_hitbox_value(AT_DSPECIAL, 2, HG_WINDOW_CREATION_FRAME, 2);
-set_hitbox_value(AT_DSPECIAL, 2, HG_LIFETIME, 4);
+set_hitbox_value(AT_DSPECIAL, 2, HG_WINDOW_CREATION_FRAME, 0);
+set_hitbox_value(AT_DSPECIAL, 2, HG_LIFETIME, 1);
 set_hitbox_value(AT_DSPECIAL, 2, HG_HITBOX_Y, -24);
-set_hitbox_value(AT_DSPECIAL, 2, HG_WIDTH, 160);
-set_hitbox_value(AT_DSPECIAL, 2, HG_HEIGHT, 160);
+set_hitbox_value(AT_DSPECIAL, 2, HG_WIDTH, 100);
+set_hitbox_value(AT_DSPECIAL, 2, HG_HEIGHT, 100);
 set_hitbox_value(AT_DSPECIAL, 2, HG_PRIORITY, 1);
-set_hitbox_value(AT_DSPECIAL, 2, HG_DAMAGE, 8);
-set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_KNOCKBACK, 4);
-set_hitbox_value(AT_DSPECIAL, 2, HG_KNOCKBACK_SCALING, 0);
-set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_HITPAUSE, 5);
-set_hitbox_value(AT_DSPECIAL, 2, HG_VISUAL_EFFECT, 27);
-set_hitbox_value(AT_DSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_icehit_weak2"));
+set_hitbox_value(AT_DSPECIAL, 2, HG_DAMAGE, 1);
+set_hitbox_value(AT_DSPECIAL, 2, HG_EFFECT, 9); //Polite
+set_hitbox_value(AT_DSPECIAL, 2, HG_ANGLE, 45);
+set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_KNOCKBACK, 1);
 set_hitbox_value(AT_DSPECIAL, 2, HG_ANGLE_FLIPPER, 8);
+set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_HITPAUSE, 8);
+set_hitbox_value(AT_DSPECIAL, 2, HG_HITBOX_GROUP, -1);
 
-//Counter-shards
-set_hitbox_value(AT_DSPECIAL, 3, HG_HITBOX_TYPE, 2);
-set_hitbox_value(AT_DSPECIAL, 3, HG_LIFETIME, 300);
-set_hitbox_value(AT_DSPECIAL, 3, HG_WINDOW_CREATION_FRAME, 2);
-set_hitbox_value(AT_DSPECIAL, 3, HG_WIDTH, 20);
-set_hitbox_value(AT_DSPECIAL, 3, HG_HEIGHT, 20);
-set_hitbox_value(AT_DSPECIAL, 3, HG_PRIORITY, 1);
-set_hitbox_value(AT_DSPECIAL, 3, HG_DAMAGE, 1);
+//Counter-shockwave
+set_hitbox_value(AT_DSPECIAL, 3, HG_HITBOX_TYPE, 1);
+set_hitbox_value(AT_DSPECIAL, 3, HG_WINDOW, 5);
+set_hitbox_value(AT_DSPECIAL, 3, HG_WINDOW_CREATION_FRAME, 1);
+set_hitbox_value(AT_DSPECIAL, 3, HG_LIFETIME, 1);
+set_hitbox_value(AT_DSPECIAL, 3, HG_HITBOX_Y, -24);
+set_hitbox_value(AT_DSPECIAL, 3, HG_WIDTH, 160);
+set_hitbox_value(AT_DSPECIAL, 3, HG_HEIGHT, 160);
+set_hitbox_value(AT_DSPECIAL, 3, HG_PRIORITY, 2);
+set_hitbox_value(AT_DSPECIAL, 3, HG_DAMAGE, 2);
+set_hitbox_value(AT_DSPECIAL, 3, HG_ANGLE, 45);
+set_hitbox_value(AT_DSPECIAL, 3, HG_HIT_LOCKOUT, noz_dspecial_pre_homing_time);
 set_hitbox_value(AT_DSPECIAL, 3, HG_BASE_KNOCKBACK, 4);
 set_hitbox_value(AT_DSPECIAL, 3, HG_KNOCKBACK_SCALING, 0);
 set_hitbox_value(AT_DSPECIAL, 3, HG_BASE_HITPAUSE, 5);
 set_hitbox_value(AT_DSPECIAL, 3, HG_VISUAL_EFFECT, 27);
-set_hitbox_value(AT_DSPECIAL, 3, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
+set_hitbox_value(AT_DSPECIAL, 3, HG_HIT_SFX, asset_get("sfx_icehit_weak2"));
 set_hitbox_value(AT_DSPECIAL, 3, HG_ANGLE_FLIPPER, 8);
-set_hitbox_value(AT_DSPECIAL, 3, HG_IGNORES_PROJECTILES, 1);
-set_hitbox_value(AT_DSPECIAL, 3, HG_PROJECTILE_SPRITE, sprite_get("shard_proj"));
-set_hitbox_value(AT_DSPECIAL, 3, HG_PROJECTILE_MASK, -1);
-set_hitbox_value(AT_DSPECIAL, 3, HG_PROJECTILE_WALL_BEHAVIOR, 1);
-set_hitbox_value(AT_DSPECIAL, 3, HG_PROJECTILE_GROUND_BEHAVIOR, 1);
-set_hitbox_value(AT_DSPECIAL, 3, HG_PROJECTILE_DESTROY_EFFECT, 6);
+set_hitbox_value(AT_DSPECIAL, 3, HG_HITBOX_GROUP, -1);
+
+//Counter-shards
+set_hitbox_value(AT_DSPECIAL, 4, HG_HITBOX_TYPE, 2);
+set_hitbox_value(AT_DSPECIAL, 4, HG_LIFETIME, 300);
+set_hitbox_value(AT_DSPECIAL, 4, HG_WINDOW_CREATION_FRAME, 2);
+set_hitbox_value(AT_DSPECIAL, 4, HG_WIDTH, 20);
+set_hitbox_value(AT_DSPECIAL, 4, HG_HEIGHT, 20);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PRIORITY, 1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_DAMAGE, 1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_BASE_KNOCKBACK, 4);
+set_hitbox_value(AT_DSPECIAL, 4, HG_KNOCKBACK_SCALING, 0);
+set_hitbox_value(AT_DSPECIAL, 4, HG_BASE_HITPAUSE, 5);
+set_hitbox_value(AT_DSPECIAL, 4, HG_VISUAL_EFFECT, 27);
+set_hitbox_value(AT_DSPECIAL, 4, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
+set_hitbox_value(AT_DSPECIAL, 4, HG_ANGLE, 45);
+set_hitbox_value(AT_DSPECIAL, 4, HG_ANGLE_FLIPPER, 8);
+set_hitbox_value(AT_DSPECIAL, 4, HG_IGNORES_PROJECTILES, 1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_SPRITE, sprite_get("shard_proj"));
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_MASK, -1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_WALL_BEHAVIOR, 1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_GROUND_BEHAVIOR, 1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_DESTROY_EFFECT, 6);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_DOES_NOT_REFLECT, 1); //manual reflection logic

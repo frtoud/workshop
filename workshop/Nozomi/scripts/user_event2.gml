@@ -7,7 +7,7 @@
 //Detect hitboxes. (only those that could have damaged you)
 //var team_attack = get_match_setting(???);
 
-
+var target_object = noone;
 var target_angle = noone;
 var best_damage = 0.99; //minimum damage is 1
 
@@ -20,7 +20,7 @@ with (pHitBox)
 	  && place_meeting(x, y, other.hurtboxID) )
 	{
 		var angle = 0;
-		if (type = 1)
+		if (type == 1)
 		{
 		    with (orig_player_id) { do_hitpause(HITSTOP_AMOUNT); }
 		    angle = point_direction(other.x, floor(other.y - other.char_height/2), 
@@ -28,28 +28,48 @@ with (pHitBox)
 		}
 		else
 		{
-		    destroyed = true;
-		    angle = point_direction(other.x, floor(other.y - other.char_height/2), x, y);
+		    if (hsp != 0 || vsp != 0)
+		    {
+		    	angle = point_direction(hsp, vsp, 0, 0);
+		    }
+		    else if (x != xprevious || y != yprevious)
+		    {
+		    	angle = point_direction(xprevious, yprevious, x, y);
+		    }
+		    else
+		    {
+		    	angle = point_direction(other.x, floor(other.y - other.char_height/2), x, y);
+		    }
 		}
 		if (damage > best_damage)
 		{
+			target_object = (type == 1 || (orig_player_id != noone && orig_player_id.player == player))
+			                             ? orig_player_id : noone;
 			target_angle = angle;
 			best_damage = damage;
 		}
 	}
 }
 
-if (target_angle != noone)
+if (target_object == noone && target_angle != noone)
+{
+	at_dspecial_target_object.x = x + lengthdir_x(noz_dspecial_homing_distance, target_angle);
+	at_dspecial_target_object.y = y - 20 + lengthdir_y(noz_dspecial_homing_distance, target_angle);
+	
+	target_object = at_dspecial_target_object;
+}
+
+if (target_object != noone)
 {
 	//counter sucess: spawn projectiles
-	at_dspecial_countered_angle = target_angle;
+	at_dspecial_counter_target = target_object;
 	at_dspecial_countered_damage = best_damage;
 	
 	window = SUCCESS_WINDOW;
 	window_timer = 0;
-	invincible = true;
+	// Shockwave
+	create_hitbox(AT_DSPECIAL, 2, 0, -24);
 	do_hitpause(HITSTOP_AMOUNT);
-	invince_time = noz_dspecial_invince_time;
 }
 
 //==================================================================
