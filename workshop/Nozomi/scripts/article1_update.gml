@@ -69,6 +69,22 @@ else
         victim.noz_snowstack_timer = 5;
         victim.noz_handler_id = player_id;
     }
+    
+    //sparkles randomly
+    if (player_id.anim_do_draw_twinkle &&
+        player_id.anim_rand_twinkle == random_twinkle)
+    {
+        spawn_twinkle(player_id.vfx_snow_twinkle, x, y-8, 12)
+    }
 }
 article_timer++;
 anim_timer++;
+
+#define spawn_twinkle(vfx, pos_x, pos_y, radius)
+with (player_id)
+{
+    var kx = pos_x - (radius / 2) + anim_rand_x * radius;
+    var ky = pos_y - (radius / 2) + anim_rand_y * radius;
+    
+    var k = spawn_hit_fx(kx, ky, vfx);
+}

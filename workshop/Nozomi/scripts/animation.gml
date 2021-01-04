@@ -3,6 +3,7 @@
 anim_do_draw_twinkle = (get_gameplay_time() % 3 == 0);
 anim_rand_x = random_func(0, 100, true) / 100.0;
 anim_rand_y = random_func(1, 100, true) / 100.0;
+anim_rand_twinkle = random_func(2, 32, true);
 
 //Hud meter animation
 //==============================================================================

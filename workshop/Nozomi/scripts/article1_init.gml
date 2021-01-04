@@ -21,6 +21,7 @@ plat_collider = noone;
 
 anim_timer = 0;
 article_timer = 0;
+random_twinkle = player_id.anim_rand_twinkle;
 
 //death flags
 should_die = false; //set to trigger death animation
