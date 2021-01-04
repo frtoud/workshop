@@ -52,7 +52,6 @@ sprite_change_offset("article1", 8, 2);
 sprite_change_offset("article1_spawn", 18, -4);
 sprite_change_offset("article1_col", 8, 0);
 sprite_change_collision_mask( "article1", false, 2, 0, 0, 16, 2, 1 );
-sprite_change_collision_mask( "article1_col", false, 2, 0, 0, 16, 0, 1 );
 
 sprite_change_offset("cloud_proj_small", 32, 32);
 sprite_change_offset("cloud_proj_big", 28, 26);
