@@ -339,8 +339,17 @@ case AT_FSPECIAL:
         }
         else if (free)
         {
-            y = ease_linear(y, at_fspecial_ylock, window_timer, 
-            get_window_value(AT_FSPECIAL, 1, AG_WINDOW_LENGTH));
+        	//lengthen easing
+            if (abs(y - at_fspecial_ylock) > 48)
+            {
+            	y += 16 * sign(at_fspecial_ylock - y);
+            	window_timer--;
+            }
+            else
+            {
+	            y = ease_linear(y, at_fspecial_ylock, window_timer, 
+	            get_window_value(AT_FSPECIAL, 1, AG_WINDOW_LENGTH));
+            }
         }
     }
     else if (window == 2 || window == 3)
