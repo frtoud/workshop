@@ -80,3 +80,9 @@ set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_PARRY_STUN, 1);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_UNBASHABLE, 1);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+
+// [RUNE G] -- Longer clouds
+if (has_rune("G"))
+{
+    set_hitbox_value(AT_DATTACK, 2, HG_LIFETIME, 90);
+}

@@ -110,4 +110,12 @@ if (has_rune("B"))
     set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_PARRY_STUN, 1);
     set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_UNBASHABLE, 1);
 }
+else 
+{
+    // [RUNE G] -- Longer clouds
+    if (has_rune("G"))
+    {
+        set_hitbox_value(AT_BAIR, 2, HG_LIFETIME, 120);
+    }
+}
 
