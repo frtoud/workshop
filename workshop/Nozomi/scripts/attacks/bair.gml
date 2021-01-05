@@ -73,7 +73,7 @@ set_hitbox_value(AT_BAIR, 2, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
 set_hitbox_value(AT_BAIR, 2, HG_VISUAL_EFFECT, 6);
 
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_SPRITE, sprite_get("cloud_proj_big"));
-set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_ANIM_SPEED, (9.0 / get_hitbox_value(AT_BAIR, 2, HG_LIFETIME)));
+set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_ANIM_SPEED, (8.0 / get_hitbox_value(AT_BAIR, 2, HG_LIFETIME)));
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_MASK, -1);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_HSPEED, -1.25);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_WALL_BEHAVIOR, 0);

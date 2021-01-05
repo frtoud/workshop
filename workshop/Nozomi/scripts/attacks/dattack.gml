@@ -50,7 +50,7 @@ set_hitbox_value(AT_DATTACK, 2, HG_PARENT_HITBOX, 0);
 set_hitbox_value(AT_DATTACK, 2, HG_HITBOX_TYPE, 2);
 set_hitbox_value(AT_DATTACK, 2, HG_WINDOW, 2);
 set_hitbox_value(AT_DATTACK, 2, HG_WINDOW_CREATION_FRAME, 4);
-set_hitbox_value(AT_DATTACK, 2, HG_LIFETIME, 30);
+set_hitbox_value(AT_DATTACK, 2, HG_LIFETIME, 32);
 set_hitbox_value(AT_DATTACK, 2, HG_HITBOX_X, 30);
 set_hitbox_value(AT_DATTACK, 2, HG_HITBOX_Y, -18);
 set_hitbox_value(AT_DATTACK, 2, HG_WIDTH, 30);
@@ -69,7 +69,7 @@ set_hitbox_value(AT_DATTACK, 2, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
 set_hitbox_value(AT_DATTACK, 2, HG_VISUAL_EFFECT, 6);
 
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_SPRITE, sprite_get("cloud_proj_small"));
-set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_ANIM_SPEED, 1.0/5);
+set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_ANIM_SPEED, 1.0/6);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_MASK, -1);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_HSPEED, 2);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_WALL_BEHAVIOR, 0);
