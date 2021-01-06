@@ -1,12 +1,10 @@
 
 if (my_hitboxID.orig_player == player) //ONLY CHECK WITH YOUR OWN HITBOXES!!
 {
+    var is_a_cloud = ("is_a_cloud" in my_hitboxID) && my_hitboxID.is_a_cloud;
     // Lingering projectile hitboxes: applies snow effects
     // [RUNE B] -- BAIR with STRONG effects
-    if (((my_hitboxID.attack == AT_BAIR    && (my_hitboxID.hbox_num == 2) && !has_rune("B") )
-      || (my_hitboxID.attack == AT_FAIR    && (my_hitboxID.hbox_num == 2) )
-      || (my_hitboxID.attack == AT_DTILT   && (my_hitboxID.hbox_num == 2) )
-      || (my_hitboxID.attack == AT_DATTACK && (my_hitboxID.hbox_num == 2) )
+    if ((( is_a_cloud )
     // Plus some specials!
       || (my_hitboxID.attack == AT_DSPECIAL) 
       || (my_hitboxID.attack == AT_FSPECIAL) ))
@@ -18,6 +16,12 @@ if (my_hitboxID.orig_player == player) //ONLY CHECK WITH YOUR OWN HITBOXES!!
             
             if (has_rune("I")) // [RUNE I] -- Frostbite debuff
             { hit_player_obj.noz_snow_frostbite_timer = noz_snowstack_timer_max; }
+        }
+        
+        // [RUNE L] -- Exploding clouds
+        if (is_a_cloud && has_rune("L"))
+        {
+            create_hitbox(my_hitboxID.attack, 3, my_hitboxID.x, my_hitboxID.y);
         }
     }
     // Strong attacks: apply ice effects
