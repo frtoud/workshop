@@ -1,25 +1,44 @@
 
 // Lingering projectile hitboxes 
-if ( (attack == AT_BAIR && hbox_num == 2 && !has_rune("B"))
-    || (attack == AT_FAIR && hbox_num == 2)
-    || (attack == AT_DTILT && hbox_num == 2)
-    || (attack == AT_DATTACK && hbox_num == 2) )
-{ 
-	if ( (attack == AT_BAIR) 
-	  || (attack == AT_FAIR) )
+if ( is_a_cloud )
+{
+	// Air friction needs to apply vertically (in case of bashing or other shenans)
+	vsp = (vsp < 0) ? min( 0.001, vsp + frict)
+	                : max(-0.001, vsp - frict);
+	
+	
+	// [RUNE H] -- Kicking clouds
+	if (has_rune("H"))
 	{
-	    // Air friction needs to apply vertically (in case of bashing)
-	  	vsp =  (vsp < 0) ? min( 0.001, vsp + air_friction)
-	  	                 : max(-0.001, vsp - air_friction);
+		if (kick_cooldown > 0) 
+		{
+			kick_cooldown--;
+		}
+		else
+		{
+		    try_getting_kicked();
+		    
+			if (kick_boosted > 0)
+			{
+				kick_boosted--;
+				frict = boosted_friction;
+				air_friction = frict;
+			}
+			else
+			{
+				frict = saved_friction;
+				air_friction = frict;
+			}
+		}
 	}
 	
 	// Animating cloud
 	// sprites: 0-1 2-3-4 5-6
-	if (hitbox_timer > length - (2.0 / img_spd)) //end
+	if (hitbox_timer > length - anim_fade_frames) //end
 	{
 		image_index = max(5, image_index);
 	}
-	else if (hitbox_timer > (2.0 / img_spd)) && (image_index >= 5) //loop
+	else if (hitbox_timer > anim_fade_frames) && (image_index >= 5) //loop
 	{
 		image_index = 2;
 	}
@@ -43,4 +62,81 @@ if ( player_id.anim_do_draw_twinkle)
     
     var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_twinkle);
 	k.depth = depth - 1;
+}
+
+//====================================================================
+#define try_getting_kicked()
+{
+	var top_priority = 0;
+	var top_damage = 0;
+	var top_hitbox = noone;
+	with (pHitBox)
+	{
+		if (self != other && (top_priority < hit_priority || 
+		 top_priority == hit_priority && top_damage < damage)
+		   && (("is_a_cloud" not in self) || (!is_a_cloud))
+		   && place_meeting(x, y, other) )
+		{
+			top_priority = hit_priority;
+			top_damage = damage;
+			top_hitbox = self;
+		}
+	}
+	
+	//best hitbox for being kicked
+	if instance_exists(top_hitbox)
+	{
+		var angle = get_muno_angle(top_hitbox);
+		//simulating kb calculations with cloud
+		var force = player_id.noz_cloudkick_mult * 
+		 (top_hitbox.kb_value + player_id.noz_cloudkick_scale * top_hitbox.kb_scale * 0.12)
+		
+		hsp += lengthdir_x(force, angle);
+		vsp += lengthdir_y(force, angle);
+		//recalculated additive force clamped to a maximum
+		force = clamp(point_distance(0, 0, hsp, vsp), 0, player_id.noz_cloudkick_speed);
+		angle = point_direction(0, 0, hsp, vsp);
+		hsp = lengthdir_x(force, angle);
+		vsp = lengthdir_y(force, angle);
+		
+	    //reset cloud's timer to start of loop
+		hitbox_timer = anim_fade_frames;
+		
+		//boosts friction!
+		kick_boosted = 8;
+	}
+}
+
+//==============================================================================
+// returns the angle of an hitbox while considering HG_MUNO_OBJECT_LAUNCH_ANGLE
+#define get_muno_angle(hitbox)
+{
+	var angle = 0;
+	//MUNO compat
+    if ("HG_MUNO_OBJECT_LAUNCH_ANGLE" in hitbox.player_id) with (hitbox.player_id) 
+    { angle = get_hitbox_value(hitbox.attack, hitbox.hbox_num, HG_MUNO_OBJECT_LAUNCH_ANGLE); }
+    switch(angle)
+    {
+		// Special values:
+		//  0: use normal angles
+		// -1: Horizontal Away (simulates Angle 0 flipper 3)
+		// -2: Radial Away (resembles flipper 8)
+    	case 0: 
+    	   angle = get_hitbox_angle(hitbox);
+    	   break;
+    	case -1:
+    	   angle = (x > hitbox.x) ? 0 : 180;
+    	   break;
+    	case -2:
+    	   angle = point_direction(hitbox.x, hitbox.y, x, y);
+    	   break;
+    	default:
+    	   // flips angle horizontally based on spr_dir
+    	   // ±90° rotates the angle and cancel themselves
+    	   // negative spr_dir flips it vertically (but rotated back)
+    	   // modulo 360 to stay in usual ranges
+    	   angle = ((hitbox.spr_dir * (angle - 90)) + 90 + 360) % 360;
+    	   break;
+    }
+    return angle;
 }

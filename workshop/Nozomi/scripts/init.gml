@@ -101,6 +101,14 @@ bubble_x = 0;
 bubble_y = 4;
 
 //=================================================
+//Custom Frame Data indices
+HG_MUNO_OBJECT_LAUNCH_ANGLE = 77; //Thanks Muno
+// Special values:
+//  0: use normal angles
+// -1: Horizontal Away (simulates Angle 0 flipper 3)
+// -2: Radial Away (resembles flipper 8)
+
+//=================================================
 //Custom vfx & sprites
 
 anim_dspecial_shockwave_frame = 0;
@@ -191,6 +199,13 @@ noz_uspecial_hover_exhaustion_base = 30;
 noz_uspecial_hover_hspeed = 1.5 + air_max_speed;
 noz_uspecial_hover_vstrength = 0.80;
 noz_uspecial_hover_hstrength = 1.5 * air_accel;
+
+//Runes
+// H
+noz_cloudkick_mult = 0.33;
+noz_cloudkick_scale = 50;
+noz_cloudkick_friction = 0.33; //to lessen friction after a kick
+noz_cloudkick_speed = 8;
 
 //=================================================
 // Move variables/flags initialized here
