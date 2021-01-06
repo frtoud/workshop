@@ -50,7 +50,7 @@ set_hitbox_value(AT_DATTACK, 1, HG_MUNO_OBJECT_LAUNCH_ANGLE, 1);
 set_hitbox_value(AT_DATTACK, 2, HG_PARENT_HITBOX, 0);
 set_hitbox_value(AT_DATTACK, 2, HG_HITBOX_TYPE, 2);
 set_hitbox_value(AT_DATTACK, 2, HG_WINDOW, 2);
-set_hitbox_value(AT_DATTACK, 2, HG_WINDOW_CREATION_FRAME, 4);
+set_hitbox_value(AT_DATTACK, 2, HG_WINDOW_CREATION_FRAME, 5);
 set_hitbox_value(AT_DATTACK, 2, HG_LIFETIME, 32);
 set_hitbox_value(AT_DATTACK, 2, HG_HITBOX_X, 30);
 set_hitbox_value(AT_DATTACK, 2, HG_HITBOX_Y, -18);
