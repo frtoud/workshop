@@ -26,7 +26,7 @@ if (is_a_cloud)
     anim_fade_frames = (2.0 / img_spd);
     
     //inherit Nozomi's speed
-    hsp += player_id.hsp; 
+    if (attack != AT_DTILT) { hsp += player_id.hsp; }
 
     // [RUNE H] -- Kicking clouds
     if (has_rune("H"))
