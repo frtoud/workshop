@@ -54,3 +54,4 @@ set_hitbox_value(AT_DSPECIAL, 1, HG_BASE_HITPAUSE, 5);
 set_hitbox_value(AT_DSPECIAL, 1, HG_VISUAL_EFFECT, 27);
 set_hitbox_value(AT_DSPECIAL, 1, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
 set_hitbox_value(AT_DSPECIAL, 1, HG_ANGLE_FLIPPER, 8);
+set_hitbox_value(AT_DSPECIAL, 1, HG_MUNO_OBJECT_LAUNCH_ANGLE, -2);

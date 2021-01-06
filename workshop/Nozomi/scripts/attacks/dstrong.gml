@@ -95,6 +95,7 @@ set_hitbox_value(AT_DSTRONG, 3, HG_VISUAL_EFFECT, 199);
 set_hitbox_value(AT_DSTRONG, 3, HG_VISUAL_EFFECT_X_OFFSET, 10);
 set_hitbox_value(AT_DSTRONG, 3, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
 set_hitbox_value(AT_DSTRONG, 3, HG_HITBOX_GROUP, 1);
+set_hitbox_value(AT_DSTRONG, 3, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);
 
 //not actually a hitbox just a vfx
 set_hitbox_value(AT_DSTRONG, 4, HG_PARENT_HITBOX, 0);

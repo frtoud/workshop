@@ -116,3 +116,4 @@ set_hitbox_value(AT_DAIR, 4, HG_BASE_HITPAUSE, 6);
 set_hitbox_value(AT_DAIR, 4, HG_HITPAUSE_SCALING, 0.25);
 set_hitbox_value(AT_DAIR, 4, HG_HIT_SFX, asset_get("sfx_blow_weak2"));
 set_hitbox_value(AT_DAIR, 4, HG_HITBOX_GROUP, 1);
+set_hitbox_value(AT_DAIR, 4, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);

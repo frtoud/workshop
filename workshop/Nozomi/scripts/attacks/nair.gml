@@ -49,6 +49,7 @@ set_hitbox_value(AT_NAIR, 1, HG_BASE_HITPAUSE, 3);
 set_hitbox_value(AT_NAIR, 1, HG_VISUAL_EFFECT, 302);
 set_hitbox_value(AT_NAIR, 1, HG_HIT_SFX, asset_get("sfx_blow_weak2"));
 set_hitbox_value(AT_NAIR, 1, HG_HITBOX_GROUP, 1);
+set_hitbox_value(AT_NAIR, 1, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);
 
 set_hitbox_value(AT_NAIR, 2, HG_PARENT_HITBOX, 1);
 set_hitbox_value(AT_NAIR, 2, HG_HITBOX_TYPE, 1);
@@ -57,6 +58,7 @@ set_hitbox_value(AT_NAIR, 2, HG_WINDOW_CREATION_FRAME, 5);
 set_hitbox_value(AT_NAIR, 2, HG_LIFETIME, 2);
 set_hitbox_value(AT_NAIR, 2, HG_HITBOX_Y, -28);
 set_hitbox_value(AT_NAIR, 2, HG_HITBOX_GROUP, 2);
+set_hitbox_value(AT_NAIR, 2, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);
 
 set_hitbox_value(AT_NAIR, 3, HG_PARENT_HITBOX, 1);
 set_hitbox_value(AT_NAIR, 3, HG_HITBOX_TYPE, 1);
@@ -65,6 +67,7 @@ set_hitbox_value(AT_NAIR, 3, HG_WINDOW_CREATION_FRAME, 10);
 set_hitbox_value(AT_NAIR, 3, HG_LIFETIME, 2);
 set_hitbox_value(AT_NAIR, 3, HG_HITBOX_Y, -28);
 set_hitbox_value(AT_NAIR, 3, HG_HITBOX_GROUP, 3);
+set_hitbox_value(AT_NAIR, 3, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);
 
 //Launcher hit
 set_hitbox_value(AT_NAIR, 4, HG_PARENT_HITBOX, 0);
@@ -106,6 +109,7 @@ set_hitbox_value(AT_NAIR, 5, HG_BASE_HITPAUSE, 3);
 set_hitbox_value(AT_NAIR, 5, HG_VISUAL_EFFECT, 302);
 set_hitbox_value(AT_NAIR, 5, HG_HIT_SFX, asset_get("sfx_blow_weak2"));
 set_hitbox_value(AT_NAIR, 5, HG_HITBOX_GROUP, 1);
+set_hitbox_value(AT_NAIR, 5, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);
 
 set_hitbox_value(AT_NAIR, 6, HG_PARENT_HITBOX, 5);
 set_hitbox_value(AT_NAIR, 6, HG_HITBOX_TYPE, 1);
@@ -114,6 +118,7 @@ set_hitbox_value(AT_NAIR, 6, HG_WINDOW_CREATION_FRAME, 5);
 set_hitbox_value(AT_NAIR, 6, HG_LIFETIME, 2);
 set_hitbox_value(AT_NAIR, 6, HG_HITBOX_Y, -18);
 set_hitbox_value(AT_NAIR, 6, HG_HITBOX_GROUP, 2);
+set_hitbox_value(AT_NAIR, 6, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);
 
 set_hitbox_value(AT_NAIR, 7, HG_PARENT_HITBOX, 5);
 set_hitbox_value(AT_NAIR, 7, HG_HITBOX_TYPE, 1);
@@ -122,3 +127,4 @@ set_hitbox_value(AT_NAIR, 7, HG_WINDOW_CREATION_FRAME, 10);
 set_hitbox_value(AT_NAIR, 7, HG_LIFETIME, 2);
 set_hitbox_value(AT_NAIR, 7, HG_HITBOX_Y, -18);
 set_hitbox_value(AT_NAIR, 7, HG_HITBOX_GROUP, 3);
+set_hitbox_value(AT_NAIR, 7, HG_MUNO_OBJECT_LAUNCH_ANGLE, -1);

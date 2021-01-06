@@ -79,7 +79,8 @@ set_hitbox_value(AT_DTILT, 2, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
 set_hitbox_value(AT_DTILT, 2, HG_PROJECTILE_IS_TRANSCENDENT, 1);
 
 // [RUNE G] -- Longer clouds
-if (has_rune("G"))
-{
-    set_hitbox_value(AT_DTILT, 2, HG_LIFETIME, 90);
-}
+// [RUNE H] -- Kicking clouds
+var duration = get_hitbox_value(AT_DTILT, 2, HG_LIFETIME);
+if (has_rune("G")) { duration += 80; }
+if (has_rune("H")) { duration += 32; }
+set_hitbox_value(AT_DTILT, 2, HG_LIFETIME, duration);
