@@ -52,17 +52,6 @@ else if (attack == AT_BAIR && hbox_num == 2)
 	spawn_twinkle();
 }
 
-//====================================================================
-#define spawn_twinkle()
-if ( player_id.anim_do_draw_twinkle)
-{
-	var radius = image_xscale*200; // Assume circular: WIDTH == HEIGHT
-	var kx = x - (radius / 2) + player_id.anim_rand_x * radius;
-	var ky = y - (radius / 2) + player_id.anim_rand_y * radius;
-    
-    var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_twinkle);
-	k.depth = depth - 1;
-}
 //==================================================================
 //DSPECIAL's counter shards
 if ( (attack == AT_DSPECIAL && hbox_num == 4) )
@@ -104,6 +93,18 @@ if ( (attack == AT_DSPECIAL && hbox_num == 4) )
     	var k = spawn_hit_fx(x-5, y-5, player_id.vfx_snow_twinkle);
 	    k.depth = depth + 1;
     }
+}
+
+//====================================================================
+#define spawn_twinkle()
+if ( player_id.anim_do_draw_twinkle)
+{
+	var radius = image_xscale*200; // Assume circular: WIDTH == HEIGHT
+	var kx = x - (radius / 2) + player_id.anim_rand_x * radius;
+	var ky = y - (radius / 2) + player_id.anim_rand_y * radius;
+    
+    var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_twinkle);
+	k.depth = depth - 1;
 }
 //====================================================================
 #define try_getting_kicked()
