@@ -9,11 +9,11 @@
 
 var target_object = noone;
 var target_angle = noone;
-var best_damage = 0.99; //minimum damage is 1
+var best_damage = -1;
 
 with (pHitBox)
 {
-	if ( (damage > 0) && (player != other.player || can_hit_self)
+	if ( (hit_priority > 0) && (player != other.player || can_hit_self)
 	  && (other.can_be_hit[player] == 0) && (can_hit[other.player])
 	  && (groundedness == 0 || (other.free ? 2 : 1) == groundedness)
 	  && (get_player_team(other.player) != get_player_team(player))

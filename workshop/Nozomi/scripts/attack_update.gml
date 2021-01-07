@@ -275,13 +275,14 @@ case AT_DSPECIAL:
     	case 5: //Counter success
     	{
 	        can_fast_fall = false;
-	        if (at_dspecial_countered_damage > 0 &&
-	        	window_timer == get_hitbox_value(AT_DSPECIAL, 4, HG_WINDOW_CREATION_FRAME))
+	        if (window_timer == get_hitbox_value(AT_DSPECIAL, 4, HG_WINDOW_CREATION_FRAME))
 	        {
 	        	//Helps visuals
 	            invincible = true;
 	            invince_time = noz_dspecial_invince_time;
 	            
+	        	if (at_dspecial_countered_damage > 0)
+	        	{
 	        	//spawn ring of projectiles
 	        	for (var i = 0; i < 6; i++)
 	        	{
@@ -298,6 +299,7 @@ case AT_DSPECIAL:
 	        		k.homing_target = at_dspecial_counter_target;
 	        	}
 	        	at_dspecial_countered_damage = 0;
+	        }
 	        }
     	} break;
     	case 6: //Reflector
