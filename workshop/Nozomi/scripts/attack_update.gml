@@ -255,14 +255,13 @@ case AT_DSPECIAL:
 	        
     		user_event(2);
 	        
-    		/*
-    		if (special_down && has_rune("Z") &&
-    			window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH))
+            // [Rune D] reflection
+    		if (special_down && has_rune("D") &&
+    			window_timer == get_window_value(AT_DSPECIAL, 3, AG_WINDOW_LENGTH))
     		{
     		   window = 6;
     		   window_timer = 0;
     		}
-    		*/
     	} break;
     	case 4: //Endlag
     	{
@@ -283,23 +282,23 @@ case AT_DSPECIAL:
 	            
 	        	if (at_dspecial_countered_damage > 0)
 	        	{
-	        	//spawn ring of projectiles
-	        	for (var i = 0; i < 6; i++)
-	        	{
-	        		var angle = 30 + (i * 60);
-	        		var k = create_hitbox(AT_DSPECIAL, 4, x, y - 24);
-	        		k.hsp = lengthdir_x(noz_dspecial_top_speed, angle);
-	        		k.vsp = lengthdir_y(noz_dspecial_top_speed, angle);
-	        		k.x += k.hsp;
-	        		k.y += k.vsp;
-	        		k.damage = 1 + floor(at_dspecial_countered_damage/6);
-	        		k.depth = depth + 1;
-	        		k.spr_dir = 1;
-	        		
-	        		k.homing_target = at_dspecial_counter_target;
-	        	}
-	        	at_dspecial_countered_damage = 0;
-	        }
+		        	//spawn ring of projectiles
+		        	for (var i = 0; i < 6; i++)
+		        	{
+		        		var angle = 30 + (i * 60);
+		        		var k = create_hitbox(AT_DSPECIAL, 4, x, y - 24);
+		        		k.hsp = lengthdir_x(noz_dspecial_top_speed, angle);
+		        		k.vsp = lengthdir_y(noz_dspecial_top_speed, angle);
+		        		k.x += k.hsp;
+		        		k.y += k.vsp;
+		        		k.damage = 1 + floor(at_dspecial_countered_damage/6);
+		        		k.depth = depth + 1;
+		        		k.spr_dir = 1;
+		        		
+		        		k.homing_target = at_dspecial_counter_target;
+		        	}
+		        	at_dspecial_countered_damage = 0;
+	            }
 	        }
     	} break;
     	case 6: //Reflector
