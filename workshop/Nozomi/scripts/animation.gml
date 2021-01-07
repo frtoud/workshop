@@ -262,14 +262,28 @@ if (anim_dspecial_shockwave_frame > 0)
     { anim_dspecial_shockwave_frame -= 1; }
 if (anim_fakeparry_timer > 0) 
     { anim_fakeparry_timer -= 1; }
-    
-    
-#define spawn_twinkle(vfx, pos_x, pos_y, radius, front)
+   
+//===========================================================     
+#define spawn_twinkle(vfx, pos_x, pos_y, width, front)
 {
-    var kx = pos_x - (radius / 2) + anim_rand_x * radius;
-    var ky = pos_y - (radius / 2) + anim_rand_y * radius;
+    var kx = pos_x - (width / 2) + anim_rand_x * width;
+    var ky = pos_y - (width / 2) + anim_rand_y * width;
     
     var k = spawn_hit_fx(kx, ky, vfx);
+    if (front)
+    {
+        k.depth = depth - 1;
+    }
+}
+//===========================================================
+#define spawn_twinkle_round(vfx, pos_x, pos_y, width, front)
+{
+    var kx = -(width / 2) + anim_rand_x * width;
+    var ky = -(width / 2) + anim_rand_y * width;
+    var adjusted_x = pos_x + kx - (0.33*abs(ky)*(kx/width));
+    var adjusted_y = pos_y + ky - (0.33*abs(kx)*(ky/width));
+    
+    var k = spawn_hit_fx(adjusted_x, adjusted_y, vfx);
     if (front)
     {
         k.depth = depth - 1;
