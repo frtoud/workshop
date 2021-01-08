@@ -133,14 +133,45 @@ if (at_uspecial_hover_meter < 0)
     at_nair_hover_need_grid_adjust = true; 
 }
 
-//DSPECIAL recharging
 //==============================================================================
+//DSPECIAL Counter: frost zone
+if (at_dspecial_zone_timer > 0) { at_dspecial_zone_timer--; }
+var diff = clamp(at_dspecial_zone_timer - at_dspecial_zone.timer, -16, 32);
+if (diff != 0)
+{
+	var noz_zone = at_dspecial_zone; //shortcut
+	noz_zone.timer += diff;
+	noz_zone.radius = ease_quintOut(0, noz_dspecial_zone_radius, 
+	                                noz_zone.timer, noz_dspecial_zone_time);
+	                          
+	// applying frost to targets
+	with (oPlayer)
+	{
+	    if (self != other && (noz_snowimmune_timer == 0) 
+	    && get_player_team(player) != get_player_team(other.player)
+	    && hurtboxID == collision_circle(noz_zone.x, noz_zone.y, 
+	                     noz_zone.radius, hurtboxID, true, false))
+	    {
+	    	if (noz_snowstack_timer < 5)
+	    	{
+	        	noz_handler_id = other;
+				noz_snowstack_timer = 5;
+	    	}
+	        // [RUNE I] -- Frostbite debuff
+	        if (has_rune("I") && noz_snow_frostbite_timer < 5)
+	        { noz_snow_frostbite_timer = 5; }
+	    }
+	}
+}
+
+//Reflector recharging
 if ( (at_dspecial_damage_block <= noz_dspecial_damage_max) &&
     !((attack == AT_DSPECIAL) && (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND)))
 {
 	//recharges the damage buffer for DSPECIAL
 	at_dspecial_damage_block += noz_dspecial_recharge_rate;
 }
+
 
 
 //Cooldown overrides

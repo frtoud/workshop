@@ -258,6 +258,16 @@ switch (state)
     break;
 };
 
+//===========================================================    
+// DSPECIAL Counter effects
+if (at_dspecial_zone.radius > 0)
+{
+    spawn_twinkle_round(vfx_snow_twinkle, at_dspecial_zone.x, 
+                        at_dspecial_zone.y, at_dspecial_zone.radius, false)
+}
+
+//===========================================================    
+// DSPECIAL Reflect effects
 if (anim_dspecial_shockwave_frame > 0) 
     { anim_dspecial_shockwave_frame -= 1; }
 if (anim_fakeparry_timer > 0) 
@@ -276,12 +286,13 @@ if (anim_fakeparry_timer > 0)
     }
 }
 //===========================================================
-#define spawn_twinkle_round(vfx, pos_x, pos_y, width, front)
+#define spawn_twinkle_round(vfx, pos_x, pos_y, radius, front)
 {
-    var kx = -(width / 2) + anim_rand_x * width;
-    var ky = -(width / 2) + anim_rand_y * width;
-    var adjusted_x = pos_x + kx - (0.33*abs(ky)*(kx/width));
-    var adjusted_y = pos_y + ky - (0.33*abs(kx)*(ky/width));
+    var width = radius*2;
+    var kx = -(radius) + anim_rand_x * width;
+    var ky = -(radius) + anim_rand_y * width;
+    var adjusted_x = pos_x + kx - (0.25*abs(ky)*(kx/radius));
+    var adjusted_y = pos_y + ky - (0.25*abs(kx)*(ky/radius));
     
     var k = spawn_hit_fx(adjusted_x, adjusted_y, vfx);
     if (front)

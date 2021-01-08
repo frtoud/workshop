@@ -224,7 +224,8 @@ case AT_DSPECIAL:
                 at_dspecial_countered_damage = 0;
 	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
 	            
-	            if (special_down) //(at_dspecial_damage_block < noz_dspecial_damage_min)
+	            if (special_down && (at_dspecial_zone_timer < 1)
+	            && (at_dspecial_damage_block > noz_dspecial_damage_min))
 	            {
 	                window = 3;
 	                window_timer = 0;
@@ -279,6 +280,9 @@ case AT_DSPECIAL:
 	        	//Helps visuals
 	            invincible = true;
 	            invince_time = noz_dspecial_invince_time;
+	            at_dspecial_zone_timer = noz_dspecial_zone_time;
+	            at_dspecial_zone.x = x;
+	            at_dspecial_zone.y = y - (char_height/2);
 	            
 	        	if (at_dspecial_countered_damage > 0)
 	        	{

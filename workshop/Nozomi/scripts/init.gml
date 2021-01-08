@@ -171,15 +171,19 @@ noz_pratfall_max_vsp = 5.5;
 
 noz_dtilt_proj_cooldown_max = 24;
 
-noz_dspecial_damage_max = 40;
-noz_dspecial_damage_min = 10;
-noz_dspecial_recharge_rate = 0.05;
-noz_dspecial_dmg_mult = 1.5;
+//counter
 noz_dspecial_invince_time = 60;
 noz_dspecial_top_speed = 12;
 noz_dspecial_pre_homing_time = 8;
 noz_dspecial_homing_time = 40;
 noz_dspecial_homing_distance = 300;
+noz_dspecial_zone_time = 600;
+noz_dspecial_zone_radius = 120;
+//reflect
+noz_dspecial_damage_max = 40;
+noz_dspecial_damage_min = 10;
+noz_dspecial_recharge_rate = 0.05;
+noz_dspecial_dmg_mult = 1.5;
 
 noz_nspecial_mashing_bonus = 2;
 noz_nspecial_sleep_base = floor(75 * noz_nspecial_mashing_bonus);
@@ -226,6 +230,10 @@ at_dair_need_landing_lag_hitbox = false;
 at_dspecial_has_reflected = false;
 //local object to simulate a player position if no appropriate target can be found
 at_dspecial_target_object = { x:0, y:0, char_height:0 };
+//local object for the exploded shine frost zone
+//secondary timer used to smoothen shrinking upon death
+at_dspecial_zone = { x:0, y:0, radius:0, timer:0 };
+at_dspecial_zone_timer = 0;
 at_dspecial_counter_target = noone;
 at_dspecial_countered_damage = 0;
 at_dspecial_damage_block = noz_dspecial_damage_max;

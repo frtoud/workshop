@@ -1,4 +1,10 @@
 
+//will not draw if Nozomi's dead... need alternative
+if (at_dspecial_zone.radius > 0)
+{
+    draw_circle_color(at_dspecial_zone.x, at_dspecial_zone.y, 
+                      at_dspecial_zone.radius, c_white, c_white, true);
+}
 shader_start();
 //DSPECIAL: Ice Shine
 if (attack == AT_DSPECIAL && (window == 3 || window >= 6)
