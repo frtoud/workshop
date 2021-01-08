@@ -1,5 +1,6 @@
 //article1_update
 
+//======================================================================
 if (should_die && !dying)
 {
     dying = true;
@@ -13,6 +14,7 @@ if (should_die && !dying)
     
     instance_destroy(plat_collider);
 }
+//======================================================================
 if (dying)
 {
     if (has_proj)
@@ -28,6 +30,7 @@ if (dying)
     
     image_index = 3 + floor(article_timer / 4);
 }
+//======================================================================
 else
 {
     image_index = 3 - 
@@ -81,12 +84,13 @@ else
     if (player_id.anim_do_draw_twinkle &&
         player_id.anim_rand_twinkle == random_twinkle)
     {
-        spawn_twinkle(player_id.vfx_snow_twinkle, x, y-8, 12)
+        spawn_twinkle(player_id.vfx_snow_twinkle, x, y-8, 12);
     }
 }
 article_timer++;
 anim_timer++;
 
+//======================================================================
 #define spawn_twinkle(vfx, pos_x, pos_y, radius)
 with (player_id)
 {
