@@ -230,10 +230,9 @@ at_dair_need_landing_lag_hitbox = false;
 at_dspecial_has_reflected = false;
 //local object to simulate a player position if no appropriate target can be found
 at_dspecial_target_object = { x:0, y:0, char_height:0 };
-//local object for the exploded shine frost zone
-//secondary timer used to smoothen shrinking upon death
-at_dspecial_zone = { x:0, y:0, radius:0, timer:0 };
+at_dspecial_zone = noone;
 at_dspecial_zone_timer = 0;
+at_dspecial_zone_position = { x:0, y:0 };
 at_dspecial_counter_target = noone;
 at_dspecial_countered_damage = 0;
 at_dspecial_damage_block = noz_dspecial_damage_max;

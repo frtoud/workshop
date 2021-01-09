@@ -281,8 +281,8 @@ case AT_DSPECIAL:
 	            invincible = true;
 	            invince_time = noz_dspecial_invince_time;
 	            at_dspecial_zone_timer = noz_dspecial_zone_time;
-	            at_dspecial_zone.x = x;
-	            at_dspecial_zone.y = y - (char_height/2);
+	            at_dspecial_zone_position.x = x;
+	            at_dspecial_zone_position.y = y - (char_height/2);
 	            
 	        	if (at_dspecial_countered_damage > 0)
 	        	{
