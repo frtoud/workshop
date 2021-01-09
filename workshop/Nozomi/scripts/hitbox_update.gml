@@ -6,6 +6,11 @@ if ( is_a_cloud )
 	vsp = (vsp < 0) ? min( 0.001, vsp + frict)
 	                : max(-0.001, vsp - frict);
 	
+	if (attack == AT_DATTACK && dattack_speedcheck_timer > 0)
+	{
+		if (abs(player_id.hsp) > abs(hsp)) { hsp = player_id.hsp; }
+		dattack_speedcheck_timer++;
+	}
 	
 	// [RUNE H] -- Kicking clouds
 	if (has_rune("H"))

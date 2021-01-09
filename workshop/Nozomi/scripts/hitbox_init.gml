@@ -27,6 +27,8 @@ if (is_a_cloud)
     
     //inherit Nozomi's speed
     if (attack != AT_DTILT) { hsp += player_id.hsp; }
+    //DATTACK cloud needs some help on platforms
+    if (attack == AT_DATTACK) { dattack_speedcheck_timer = 20; }
 
     // [RUNE H] -- Kicking clouds
     if (has_rune("H"))
