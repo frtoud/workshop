@@ -129,7 +129,11 @@ if (!free)
 if (at_uspecial_hover_meter < 0) 
 {
 	at_uspecial_hover_meter = 0;
-    at_uspecial_exhausted = true;
+	if (!at_uspecial_exhausted)
+	{
+		set_state(PS_PRATFALL);
+    	at_uspecial_exhausted = true;
+	}
     at_nair_hover_need_grid_adjust = true; 
 }
 
