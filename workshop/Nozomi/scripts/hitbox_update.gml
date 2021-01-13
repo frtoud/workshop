@@ -9,7 +9,7 @@ if ( is_a_cloud )
 	if (attack == AT_DATTACK && dattack_speedcheck_timer > 0)
 	{
 		if (abs(player_id.hsp) > abs(hsp)) { hsp = player_id.hsp; }
-		dattack_speedcheck_timer++;
+		dattack_speedcheck_timer--;
 	}
 	
 	// [RUNE H] -- Kicking clouds
