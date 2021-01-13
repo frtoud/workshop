@@ -293,7 +293,8 @@ with (oPlayer)
 				    	// use a collision test because we can't access Kirby's hit_player.gml
 				    	with (oPlayer)
 				    	{
-				    	    if (self != other && (!free) && noz_sleepimmune_timer == 0 && 
+				    	    if (self != other && (get_player_team(self.player) != get_player_team(other.player))
+				    	        && (!free) && noz_sleepimmune_timer == 0 && 
 				    	    	hurtboxID == collision_circle(other.x, other.y-20, 50, hurtboxID, true, false))
 				    	    {
 				    	    	//Kirby inflicts Nozomi's debuff
