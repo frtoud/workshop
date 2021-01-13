@@ -350,7 +350,8 @@ case AT_NSPECIAL:
     	// use a collision test because singing somehow hurts RockWall's pillars
     	with (oPlayer)
     	{
-    	    if (self != other && (!free) && noz_sleepimmune_timer == 0 && 
+    	    if (self != other && (get_player_team(self.player) != get_player_team(other.player))
+    	        && (!free) && noz_sleepimmune_timer == 0 && 
     	    	hurtboxID == collision_circle(other.x, other.y-25, 50, hurtboxID, true, false))
     	    {
 		        noz_handler_id = other;
