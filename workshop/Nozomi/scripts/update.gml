@@ -136,6 +136,7 @@ if (at_uspecial_hover_meter < 0)
 //Hover ran out
 if (at_uspecial_exhausted && at_uspecial_hover_meter == 0)
     && (free && state != PS_PRATFALL)
+    && !(state == PS_ATTACK_AIR && attack == AT_USPECIAL)
 {
 	set_state(PS_PRATFALL);
 }

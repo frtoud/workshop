@@ -501,7 +501,7 @@ case AT_USPECIAL:
         {
             if (window_timer == 1)
             {
-                if (at_uspecial_was_hovering)
+                if (at_uspecial_was_hovering || at_uspecial_hover_meter <= 0)
                 { 
                     at_uspecial_hover_meter = -1;
                     set_window_value(AT_USPECIAL, 5, AG_WINDOW_TYPE, 7);
