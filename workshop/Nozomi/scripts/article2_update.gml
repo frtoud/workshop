@@ -6,7 +6,7 @@ y = player_id.at_dspecial_zone_position.y;
 
 //update radius
 anim_timer += clamp(player_id.at_dspecial_zone_timer - anim_timer, -16, 32);
-radius = ease_quintOut(0, max_radius, anim_timer, max_timer);
+radius = ease_quintOut(0, max_radius, min(max_timer/2, anim_timer), max_timer/2);
 draw_angle += 3;
                           
 // applying frost to targets
@@ -17,6 +17,11 @@ if (radius > 0) with (oPlayer)
     && hurtboxID == collision_circle(other.x, other.y, other.radius, 
                                      hurtboxID, true, false))
     {
+    	//Slowing within zone
+    	var slow_factor = (free ? 0.025 : 0.05);
+    	slow_factor += clamp(0.015 * abs(hsp), 0, 0.20)
+		hsp *= (1 - slow_factor);
+		
     	if (noz_snowstack_timer < 5)
     	{
         	noz_handler_id = other.player_id;
