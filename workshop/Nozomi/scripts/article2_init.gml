@@ -26,3 +26,5 @@ draw_angle = 0;
 radius = 0;
 x = 0;
 y = 0;
+
+shine_cooldown = 0;

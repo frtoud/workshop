@@ -68,6 +68,7 @@ set_window_value(AT_DSPECIAL, 9, AG_WINDOW_ANIM_FRAME_START, 5);
 
 set_num_hitboxes(AT_DSPECIAL, 3);
 
+//Shine
 set_hitbox_value(AT_DSPECIAL, 1, HG_PARENT_HITBOX, 1);
 set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_DSPECIAL, 1, HG_WINDOW, 2);
@@ -148,3 +149,30 @@ set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_GROUND_BEHAVIOR, 1);
 set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_DESTROY_EFFECT, 6);
 set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_IS_TRANSCENDENT, 1);
 set_hitbox_value(AT_DSPECIAL, 4, HG_PROJECTILE_DOES_NOT_REFLECT, 1); //manual reflection logic
+
+//Remote Shine
+set_hitbox_value(AT_DSPECIAL, 5, HG_HITBOX_TYPE, 2);
+set_hitbox_value(AT_DSPECIAL, 5, HG_WINDOW, 2);
+set_hitbox_value(AT_DSPECIAL, 5, HG_WINDOW_CREATION_FRAME, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_LIFETIME, 3);
+set_hitbox_value(AT_DSPECIAL, 5, HG_WIDTH, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_HEIGHT, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PRIORITY, 4);
+set_hitbox_value(AT_DSPECIAL, 5, HG_ANGLE, 0);
+set_hitbox_value(AT_DSPECIAL, 5, HG_DAMAGE, 5);
+set_hitbox_value(AT_DSPECIAL, 5, HG_BASE_KNOCKBACK, 4);
+set_hitbox_value(AT_DSPECIAL, 5, HG_KNOCKBACK_SCALING, 0);
+set_hitbox_value(AT_DSPECIAL, 5, HG_BASE_HITPAUSE, 5);
+set_hitbox_value(AT_DSPECIAL, 5, HG_VISUAL_EFFECT, 27);
+set_hitbox_value(AT_DSPECIAL, 5, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
+set_hitbox_value(AT_DSPECIAL, 5, HG_ANGLE_FLIPPER, 8);
+set_hitbox_value(AT_DSPECIAL, 5, HG_MUNO_OBJECT_LAUNCH_ANGLE, -2);
+set_hitbox_value(AT_DSPECIAL, 5, HG_IGNORES_PROJECTILES, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_HITBOX_GROUP, -1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_SPRITE, asset_get("empty_sprite"));
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_MASK, -1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_WALL_BEHAVIOR, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_GROUND_BEHAVIOR, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_DESTROY_EFFECT, 6);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+set_hitbox_value(AT_DSPECIAL, 5, HG_PROJECTILE_DOES_NOT_REFLECT, 1);

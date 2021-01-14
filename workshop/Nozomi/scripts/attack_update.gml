@@ -238,6 +238,16 @@ case AT_DSPECIAL:
     	} break;
     	case 2: //Shine
     	{
+    		if (at_dspecial_zone.radius > 0) && (at_dspecial_zone.shine_cooldown == 0)
+    		&& window_timer == get_hitbox_value(AT_DSPECIAL, 5, HG_WINDOW_CREATION_FRAME)
+    		{
+    			//Remote shining
+    			var hb = create_hitbox(AT_DSPECIAL, 5, at_dspecial_zone.x, at_dspecial_zone.y);
+                hb.image_xscale = at_dspecial_zone.radius/100;
+                hb.image_yscale = hb.image_xscale;
+    			at_dspecial_zone.shine_cooldown = noz_dspecial_remote_shine_cooldown;
+    		}
+    		
 	        //Dampen momentum
 	        hsp *= 0.8;
 	        vsp *= (vsp > 0) ? 0.2 : 0.9;

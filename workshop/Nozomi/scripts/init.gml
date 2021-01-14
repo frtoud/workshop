@@ -179,6 +179,7 @@ noz_dspecial_homing_time = 40;
 noz_dspecial_homing_distance = 300;
 noz_dspecial_zone_time = 600;
 noz_dspecial_zone_radius = 120;
+noz_dspecial_remote_shine_cooldown = 60;
 //reflect
 noz_dspecial_damage_max = 40;
 noz_dspecial_damage_min = 10;

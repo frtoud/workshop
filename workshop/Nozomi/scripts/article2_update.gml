@@ -4,6 +4,8 @@
 x = player_id.at_dspecial_zone_position.x;
 y = player_id.at_dspecial_zone_position.y;
 
+if (shine_cooldown > 0) shine_cooldown--;
+
 //update radius
 anim_timer += clamp(player_id.at_dspecial_zone_timer - anim_timer, -16, 32);
 radius = ease_quintOut(0, max_radius, min(max_timer/2, anim_timer), max_timer/2);
