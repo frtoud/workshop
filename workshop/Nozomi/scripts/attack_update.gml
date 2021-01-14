@@ -256,18 +256,16 @@ case AT_DSPECIAL:
 	        
     		user_event(2);
 	        
-            // [Rune D] reflection
-    		if (special_down && has_rune("D") &&
-    			window_timer == get_window_value(AT_DSPECIAL, 3, AG_WINDOW_LENGTH))
+    		
+    		if (window_timer == get_window_value(AT_DSPECIAL, 3, AG_WINDOW_LENGTH))
     		{
-    		   window = 6;
+               // [Rune D] reflection
+    		   window = (special_down && has_rune("D")) ? 6 : 9; // >:]
     		   window_timer = 0;
     		}
     	} break;
-    	case 4: //Endlag
+    	case 4: //Shine Endlag window
     	{
-        	//Prevents excessive jump-cancelled multishines
-        	//move_cooldown[AT_DSPECIAL] = 4;
     		can_jump = !was_parried;
             can_attack = !was_parried && 
                          (at_dspecial_has_reflected || has_hit_player);
@@ -332,6 +330,7 @@ case AT_DSPECIAL:
             window = 2;
             window_timer = 0;
     	} break;
+    	case 9: //Counter Endlag window
     	default:
     	break;
     }

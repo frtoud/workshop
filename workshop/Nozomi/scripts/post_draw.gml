@@ -2,7 +2,7 @@
 shader_start();
 //=============================================================================
 //DSPECIAL: Ice Shine
-if (attack == AT_DSPECIAL && (window == 3 || window >= 6)
+if (attack == AT_DSPECIAL && (window == 3 || (window >= 6 && window < 9))
    && (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) )
 {
     var vfxframe = (get_gameplay_time() / 3 ) % 4;
