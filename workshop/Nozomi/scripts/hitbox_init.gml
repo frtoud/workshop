@@ -10,7 +10,7 @@ if (hbox_num == 2) && ( (attack == AT_FAIR)
 }
 else if ( (attack == AT_BAIR && hbox_num == 2) )
 {
-    is_a_cloud = !has_rune("B");
+    is_a_cloud = !player_id.noz_rune_flags.bair_strong;
     // Lingering projectile for BAIR needs to be flipped
     spr_dir *= -1;
     if (!is_a_cloud)
@@ -30,8 +30,9 @@ if (is_a_cloud)
     //DATTACK cloud needs some help on platforms
     if (attack == AT_DATTACK) { dattack_speedcheck_timer = 20; }
 
-    // [RUNE H] -- Kicking clouds
-    if (has_rune("H"))
+    // Kicking clouds
+    is_kickable = player_id.noz_rune_flags.cloud_kick;
+    if (is_kickable)
     {
         //save friction
         saved_friction = frict;

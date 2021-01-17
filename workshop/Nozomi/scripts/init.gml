@@ -186,7 +186,7 @@ noz_dspecial_damage_min = 10;
 noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_dmg_mult = 1.5;
 
-noz_nspecial_mashing_bonus = 2;
+noz_nspecial_mashing_bonus = 1;
 noz_nspecial_sleep_base = floor(75 * noz_nspecial_mashing_bonus);
 noz_nspecial_sleep_early = floor(25 * noz_nspecial_mashing_bonus);
 noz_nspecial_sleep_mult = 0.2 * noz_nspecial_mashing_bonus;
@@ -246,6 +246,22 @@ at_uspecial_hover_meter = noz_uspecial_hover_max;
 
 at_fspecial_cooldown_override = false;
 at_uspecial_cooldown_override = false;
+
+//=================================================
+//Rune flags to reorder easier
+noz_rune_flags = 
+{
+    dstrong_spread: false,
+    jumpcancels: false,
+    nair_boost: has_rune("A"),
+    bair_strong: has_rune("B"),
+    air_sleep: false,
+    reflector: has_rune("D"),
+    frostbite: has_rune("I"),
+    cloud_kick: has_rune("H"),
+    cloud_longer: has_rune("G"),
+    cloud_explode: has_rune("L")
+}
 
 //=================================================
 // Copy of other_init

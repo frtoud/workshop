@@ -12,8 +12,8 @@ if ( is_a_cloud )
 		dattack_speedcheck_timer--;
 	}
 	
-	// [RUNE H] -- Kicking clouds
-	if (has_rune("H"))
+	// Kicking clouds
+	if (is_kickable)
 	{
 		if (kick_cooldown > 0) 
 		{

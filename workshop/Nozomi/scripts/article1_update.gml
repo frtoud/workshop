@@ -75,8 +75,9 @@ else
             victim.noz_handler_id = player_id;
         }
 
-        // [RUNE I] -- Frostbite debuff
-        if (has_rune("I") && victim.noz_snow_frostbite_timer < 5)
+        // Frostbite debuff
+        if (player_id.noz_rune_flags.frostbite
+            && victim.noz_snow_frostbite_timer < 5)
         { victim.noz_snow_frostbite_timer = 5; }
     }
     

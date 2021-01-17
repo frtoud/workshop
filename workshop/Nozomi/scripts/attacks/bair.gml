@@ -85,8 +85,8 @@ set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_UNBASHABLE, 0);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
 set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_IS_TRANSCENDENT, 1);
 
-// [RUNE B] -- BAIR with STRONG effects
-if (has_rune("B"))
+// BAIR with STRONG effects
+if (noz_rune_flags.bair_strong)
 {
     set_window_value(AT_BAIR, 1, AG_WINDOW_SFX, sound_get("sfx_noz_ice_medium"));
     
@@ -112,9 +112,8 @@ if (has_rune("B"))
 }
 else 
 {
-    
-    // [RUNE L] -- Exploding clouds
-    if (has_rune("L"))
+    // Exploding clouds
+    if (noz_rune_flags.cloud_explode)
     {
         set_hitbox_value(AT_BAIR, 2, HG_DAMAGE, 0);
         set_hitbox_value(AT_BAIR, 2, HG_PROJECTILE_ENEMY_BEHAVIOR, 0);
@@ -145,11 +144,10 @@ else
         set_hitbox_value(AT_BAIR, 3, HG_PROJECTILE_IS_TRANSCENDENT, 1);
         set_hitbox_value(AT_BAIR, 3, HG_MUNO_OBJECT_LAUNCH_ANGLE, -2);
     }
-    // [RUNE G] -- Longer clouds
-    // [RUNE H] -- Kicking clouds
+    // Cloud extensions
     var duration = get_hitbox_value(AT_BAIR, 2, HG_LIFETIME);
-    if (has_rune("G")) { duration += 90; }
-    if (has_rune("H")) { duration += 36; }
+    if (noz_rune_flags.cloud_longer) { duration += 90; }
+    if (noz_rune_flags.cloud_kick) { duration += 36; }
     set_hitbox_value(AT_BAIR, 2, HG_LIFETIME, duration);
 }
 

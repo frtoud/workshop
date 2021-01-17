@@ -157,8 +157,9 @@ case AT_NAIR:
     if (free && window == 2 && attack_down)
     { 
     	vsp *= (vsp > 2) ? 0.8 : 1; 
-    	// [RUNE A] -- Vertical boost when held
-    	if (has_rune("A") && !hitpause && vsp > -5)
+    	
+    	if (noz_rune_flags.nair_boost
+    	    && !hitpause && vsp > -5)
     	{
     		vsp -= 1.5;
     	}
@@ -269,8 +270,7 @@ case AT_DSPECIAL:
     		
     		if (window_timer == get_window_value(AT_DSPECIAL, 3, AG_WINDOW_LENGTH))
     		{
-               // [Rune D] reflection
-    		   window = (special_down && has_rune("D")) ? 6 : 9; // >:]
+    		   window = (special_down && noz_rune_flags.reflector) ? 6 : 9; // >:]
     		   window_timer = 0;
     		}
     	} break;

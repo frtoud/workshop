@@ -52,7 +52,7 @@ with (oPlayer)
 			    { 
 			    	noz_snowstack_timer--;
 			    	
-			    	// [RUNE I] -- Frostbite debuff
+			    	// Frostbite debuff
 			        noz_snow_frostbite_timer = min(noz_snowstack_timer, 
 			                                       noz_snow_frostbite_timer--);
 				    if (noz_snow_frostbite_timer > 0 &&

@@ -82,8 +82,8 @@ set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_UNBASHABLE, 1);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
 set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_IS_TRANSCENDENT, 1);
 
-// [RUNE L] -- Exploding clouds
-if (has_rune("L"))
+// Exploding clouds
+if (noz_rune_flags.cloud_explode)
 {
     set_hitbox_value(AT_DATTACK, 2, HG_DAMAGE, 0);
     set_hitbox_value(AT_DATTACK, 2, HG_PROJECTILE_ENEMY_BEHAVIOR, 0);
@@ -115,9 +115,8 @@ if (has_rune("L"))
     set_hitbox_value(AT_DATTACK, 3, HG_MUNO_OBJECT_LAUNCH_ANGLE, -2);
 }
 
-// [RUNE G] -- Longer clouds
-// [RUNE H] -- Kicking clouds
+// Cloud extensions
 var duration = get_hitbox_value(AT_DATTACK, 2, HG_LIFETIME);
-if (has_rune("G")) { duration += 80; }
-if (has_rune("H")) { duration += 32; }
+if (noz_rune_flags.cloud_longer) { duration += 80; }
+if (noz_rune_flags.cloud_kick) { duration += 32; }
 set_hitbox_value(AT_DATTACK, 2, HG_LIFETIME, duration);

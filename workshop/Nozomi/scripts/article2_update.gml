@@ -29,8 +29,9 @@ if (radius > 0) with (oPlayer)
         	noz_handler_id = other.player_id;
 			noz_snowstack_timer = 5;
     	}
-        // [RUNE I] -- Frostbite debuff
-        if (has_rune("I") && noz_snow_frostbite_timer < 5)
+        // Frostbite debuff
+        if (player_id.noz_rune_flags.frostbite
+            && noz_snow_frostbite_timer < 5)
         { noz_snow_frostbite_timer = 5; }
     }
 }
