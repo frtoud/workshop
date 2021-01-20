@@ -585,3 +585,21 @@ case AT_TAUNT:
 //==============================================================
 default: break;
 }
+
+//universal jumpcancelling
+var is_aerial = (attack == AT_NAIR || attack == AT_DAIR || attack == AT_UAIR
+              || attack == AT_FAIR || attack == AT_BAIR)
+if (noz_rune_flags.jumpcancels && is_aerial && has_hit_player)
+{
+	can_jump = true;
+	if (jump_pressed && djumps >= max_djumps)
+	{
+		//free simulated jump
+		set_state(PS_DOUBLE_JUMP);
+		move_cooldown[attack] = 5;
+		if (hitpause) old_vsp = -djump_speed;
+		else vsp = -djump_speed;
+	}
+}
+
+

@@ -252,7 +252,7 @@ at_uspecial_cooldown_override = false;
 noz_rune_flags = 
 {
     dstrong_spread: false,
-    jumpcancels: false,
+    jumpcancels: has_rune("F"),
     nair_boost: has_rune("A"),
     bair_strong: has_rune("B"),
     air_sleep: false,
