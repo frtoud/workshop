@@ -168,7 +168,9 @@ with (oPlayer)
 			// Sleep effect
 			if (noz_sleep_timer > 0)
 			{
-				if (state_cat == SC_HITSTUN || noz_sleep_timer < 0)
+				if (state_cat == SC_HITSTUN) || (state == PS_WALL_JUMP ) ||
+				    //Consider length of pratland to be consistent across characters
+				   (noz_sleep_timer < max(prat_land_time, 1))
 				{ 
 					noz_sleep_timer = 0; 
 					noz_sleep_mashanim_timer = 0;
