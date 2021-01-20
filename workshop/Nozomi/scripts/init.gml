@@ -255,7 +255,7 @@ noz_rune_flags =
     jumpcancels: has_rune("F"),
     nair_boost: has_rune("A"),
     bair_strong: has_rune("B"),
-    air_sleep: false,
+    air_sleep: has_rune("N"),
     reflector: has_rune("D"),
     frostbite: has_rune("I"),
     cloud_kick: has_rune("H"),
