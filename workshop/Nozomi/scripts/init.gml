@@ -168,7 +168,7 @@ noz_rune_flags =
     cloud_kick: has_rune("H"),
     cloud_longer: has_rune("G"),
     cloud_explode: has_rune("L"),
-    enhanced_hover: false
+    enhanced_hover: has_rune("O")
 }
 //=================================================
 //Balancing variables
@@ -215,7 +215,7 @@ noz_fspecial_lifetime = 600;
 noz_fspecial_cooldown = 160;
 noz_fspecial_ylock_max = 160; //lower value means higher position -- Y=0 is at the top of the screen
 
-noz_uspecial_hover_max = 480;
+noz_uspecial_hover_max = 480 * (1 + noz_rune_flags.enhanced_hover);
 noz_uspecial_short_cost = 60; // 1/8
 noz_uspecial_long_cost = 120; // 1/4
 noz_uspecial_hover_recharge = 2;

@@ -48,10 +48,12 @@ if (at_uspecial_hovering)
 		!( state == PS_ATTACK_AIR && attack == AT_USPECIAL && 
 		  (window == 5 || (window == 6 && window_timer < 6))) )
 	{
-		if (fast_falling)
+		if (fast_falling) || (noz_rune_flags.enhanced_hover
+		                  && up_down && special_pressed)
 		{
 			at_uspecial_exhausted = true;
 			at_nair_hover_need_grid_adjust = true;
+		    clear_button_buffer(PC_SPECIAL_PRESSED);
 		}
 		else
 		{
@@ -135,6 +137,7 @@ if (at_uspecial_hover_meter < 0)
 
 //Hover ran out
 if (at_uspecial_exhausted && at_uspecial_hover_meter == 0)
+    && !noz_rune_flags.enhanced_hover
     && at_uspecial_hovering && (state != PS_PRATFALL)
     && !(state == PS_ATTACK_AIR && attack == AT_USPECIAL)
 {
@@ -166,7 +169,11 @@ if (at_uspecial_cooldown_override)
     move_cooldown[AT_DSPECIAL] += (move_cooldown[AT_DSPECIAL] > 2) ? 0 : 2;
     move_cooldown[AT_NSPECIAL] += (move_cooldown[AT_NSPECIAL] > 2) ? 0 : 2;
     move_cooldown[AT_FSPECIAL] += (move_cooldown[AT_FSPECIAL] > 2) ? 0 : 2;
-    move_cooldown[AT_USPECIAL] += (move_cooldown[AT_USPECIAL] > 2) ? 0 : 2;
+    
+    //Enhanced hover: can reactivate USPECIAL if not hovering/has hover
+    if !(noz_rune_flags.enhanced_hover && at_uspecial_hover_meter > 0 
+         && (!at_uspecial_hovering || at_uspecial_exhausted) )
+    	move_cooldown[AT_USPECIAL] += (move_cooldown[AT_USPECIAL] > 2) ? 0 : 2;
 }
 if (at_fspecial_cooldown_override)
 {

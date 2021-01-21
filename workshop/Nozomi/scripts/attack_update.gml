@@ -483,15 +483,22 @@ case AT_USPECIAL:
             at_uspecial_long = true;
             if (!special_down || at_uspecial_was_hovering)
             {
-                if (window_timer < 8 && !at_uspecial_was_hovering)
+                if (window_timer < 8) && 
+                (!at_uspecial_was_hovering || noz_rune_flags.enhanced_hover)
                 {
                     //Tap: Smaller attack, activates hover directly
                     window = 6;
                     window_timer = 0;
                     //Manually applying VSP from move data
                     vsp += get_window_value(AT_USPECIAL, window, AG_WINDOW_VSPEED);
+                    
+                    if (at_uspecial_was_hovering) 
+                    { 
+                    	at_uspecial_hover_meter -= noz_uspecial_short_cost; 
+                    	at_uspecial_exhausted = false;
+                    }
                 }
-                else 
+                else
                 {
                     window = 2;
                     window_timer = 0;
@@ -511,6 +518,7 @@ case AT_USPECIAL:
             if (window_timer == 1)
             {
                 if (at_uspecial_was_hovering || at_uspecial_hover_meter <= 0)
+                && (!noz_rune_flags.enhanced_hover)
                 { 
                     at_uspecial_hover_meter = -1;
                     set_window_value(AT_USPECIAL, 5, AG_WINDOW_TYPE, 7);
@@ -565,6 +573,7 @@ case AT_USPECIAL:
 	            at_uspecial_was_hovering = true;
 	            at_uspecial_cooldown_override = true;
 	            at_nair_hover_need_grid_adjust = true;
+	            clear_button_buffer(PC_SPECIAL_PRESSED);
             }
             
         }break;
