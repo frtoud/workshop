@@ -155,6 +155,22 @@ anim_fakeparry_timer = 0;
 anim_fakeparry_bg = asset_get("fx_parry_new");
 
 //=================================================
+//Rune flags
+noz_rune_flags = 
+{
+    dstrong_spread: false,
+    jumpcancels: has_rune("F"),
+    nair_boost: has_rune("A"),
+    bair_strong: has_rune("B"),
+    air_sleep: has_rune("N"),
+    reflector: has_rune("D"),
+    frostbite: has_rune("I"),
+    cloud_kick: has_rune("H"),
+    cloud_longer: has_rune("G"),
+    cloud_explode: has_rune("L"),
+    enhanced_hover: false
+}
+//=================================================
 //Balancing variables
 
 noz_snowstack_timer_max = 60 * 5;
@@ -210,8 +226,7 @@ noz_uspecial_hover_hspeed = 1.5 + air_max_speed;
 noz_uspecial_hover_vstrength = 0.80;
 noz_uspecial_hover_hstrength = 1.5 * air_accel;
 
-//Runes
-// H
+//Cloudkick
 noz_cloudkick_mult = 0.33;
 noz_cloudkick_scale = 50;
 noz_cloudkick_friction = 0.33; //to lessen friction after a kick
@@ -247,21 +262,6 @@ at_uspecial_hover_meter = noz_uspecial_hover_max;
 at_fspecial_cooldown_override = false;
 at_uspecial_cooldown_override = false;
 
-//=================================================
-//Rune flags to reorder easier
-noz_rune_flags = 
-{
-    dstrong_spread: false,
-    jumpcancels: has_rune("F"),
-    nair_boost: has_rune("A"),
-    bair_strong: has_rune("B"),
-    air_sleep: has_rune("N"),
-    reflector: has_rune("D"),
-    frostbite: has_rune("I"),
-    cloud_kick: has_rune("H"),
-    cloud_longer: has_rune("G"),
-    cloud_explode: has_rune("L")
-}
 
 //=================================================
 // Copy of other_init
