@@ -49,6 +49,7 @@ sprite_change_offset("vfx_hair_exhausted", 36, 24);
 sprite_change_offset("hovermeter", 15, 0);
 
 sprite_change_offset("article1", 8, 2);
+sprite_change_offset("article1_spike", 6, 16);
 sprite_change_offset("article1_spawn", 18, -4);
 sprite_change_offset("article1_col", 8, 0);
 sprite_change_collision_mask( "article1", false, 2, 0, 0, 16, 2, 1 );

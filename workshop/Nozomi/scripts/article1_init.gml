@@ -6,6 +6,9 @@ image_index = 3;
 spr_dir = player_id.spr_dir;
 uses_shader = true;
 
+sprite_spawn = player_id.article1_spawn_spr;
+sprite_spike = player_id.article1_spike_spr;
+
 //Physics
 hitstop = 0;
 hsp = 0;
@@ -26,8 +29,15 @@ random_twinkle = player_id.anim_rand_twinkle;
 //death flags
 should_die = false; //set to trigger death animation
 dying = false; //is this in the process of dying?
+
+//Runes
 has_proj = false; //set to spawn the falling projectile on death
 
+spike_timer = 0; //controls the DSTRONG spike; going down
+spike_timer_max = 3 * 8; 
+spike_hitbox_frame = spike_timer_max - 3;
+spike_spread_frame = spike_timer_max - 1;
+spike_dir = 1; //direction (-1 for left 1 for right)
 
 //find & greet neighbors
 

@@ -37,7 +37,31 @@ else
     (spr_dir < 1 ? (2*(left_plat != noone) + (right_plat != noone))
                  : ((left_plat != noone) + 2*(right_plat != noone)) );
 
-    if (article_timer >= player_id.noz_fspecial_lifetime)
+    //=====================================================================
+    //dstrong spikes
+    if (spike_timer > 0)
+    {
+        if (spike_timer == spike_hitbox_frame)
+        {
+            sound_play(asset_get("sfx_ice_end"), false, noone, 0.5, 1.5);
+            create_hitbox(AT_DSTRONG, 5, x + spike_dir * 6, y-10);
+        }
+        if (spike_timer == spike_spread_frame)
+        {
+            var neighbor = spike_dir > 0 ? right_plat : left_plat;
+            if (instance_exists(neighbor) && !neighbor.should_die)
+            {
+                neighbor.spike_timer = spike_timer_max;
+                neighbor.spike_dir = spike_dir;
+                //earlier platforms were updated first; correction needed
+                if (neighbor.article_timer < article_timer)
+                { neighbor.spike_timer--; }
+            }
+        }
+        spike_timer--;
+    }
+    //=====================================================================
+    else if (article_timer >= player_id.noz_fspecial_lifetime)
     {
         should_die = true;
     }

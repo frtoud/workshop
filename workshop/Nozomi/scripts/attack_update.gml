@@ -122,13 +122,37 @@ case AT_FSTRONG:
 } break;
 //==============================================================
 case AT_DSTRONG:
+{
+    if (has_hit) { can_jump = true; }
+    
+    //dstrong spreads through ice
+    if (noz_rune_flags.dstrong_spread
+    && window ==  get_hitbox_value(AT_DSTRONG, 3, HG_WINDOW)
+    && window_timer == get_hitbox_value(AT_DSTRONG, 3, HG_WINDOW_CREATION_FRAME))
+    {
+    	var half_width = get_hitbox_value(AT_DSTRONG, 3, HG_WIDTH) / 2;
+    	//try finding ice
+    	var left_ice = collision_line(x - half_width, y+2, x - half_width, y-2, 
+    	                              obj_article1, false, true);
+    	if (left_ice != noone && left_ice.player_id == self)
+    	{
+    		left_ice.spike_timer = left_ice.spike_timer_max;
+    		left_ice.spike_dir = -1;
+    	}
+    	
+    	var right_ice = collision_line(x + half_width, y+2, x + half_width, y-2, 
+    		                           obj_article1, false, true);
+    	if (right_ice != noone && right_ice.player_id == self)
+    	{
+    		right_ice.spike_timer = right_ice.spike_timer_max;
+    		right_ice.spike_dir = +1;
+    	}
+    }
+} break;
 //==============================================================
 case AT_USTRONG:
 {
-    if (has_hit)
-    {
-        can_jump = true;
-    }
+    if (has_hit) { can_jump = true; }
 } break;
 //==============================================================
 case AT_NAIR: 

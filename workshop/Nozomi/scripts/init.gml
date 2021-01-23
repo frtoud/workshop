@@ -145,6 +145,7 @@ pratland_spr = sprite_get("pratland");
 
 article1_spr = sprite_get("article1");
 article1_spawn_spr = sprite_get("article1_spawn");
+article1_spike_spr = sprite_get("article1_spike");
 article1_col_spr = sprite_get("article1_col");
 
 anim_hairblink_timer = 0;
@@ -158,7 +159,7 @@ anim_fakeparry_bg = asset_get("fx_parry_new");
 //Rune flags
 noz_rune_flags = 
 {
-    dstrong_spread: false,
+    dstrong_spread: has_rune("C"),
     jumpcancels: has_rune("F"),
     nair_boost: has_rune("A"),
     bair_strong: has_rune("B"),

@@ -127,3 +127,28 @@ set_hitbox_value(AT_DSTRONG, 4, HG_PROJECTILE_PARRY_STUN, 0);
 set_hitbox_value(AT_DSTRONG, 4, HG_PROJECTILE_UNBASHABLE, 1);
 set_hitbox_value(AT_DSTRONG, 4, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
 set_hitbox_value(AT_DSTRONG, 4, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+
+//DSTRONG spikes spread
+set_hitbox_value(AT_DSTRONG, 5, HG_HITBOX_TYPE, 2);
+set_hitbox_value(AT_DSTRONG, 5, HG_LIFETIME, 3);
+set_hitbox_value(AT_DSTRONG, 5, HG_WIDTH, 8);
+set_hitbox_value(AT_DSTRONG, 5, HG_HEIGHT, 20);
+set_hitbox_value(AT_DSTRONG, 5, HG_SHAPE, 2);
+set_hitbox_value(AT_DSTRONG, 5, HG_PRIORITY, 1);
+set_hitbox_value(AT_DSTRONG, 5, HG_DAMAGE, 6);
+set_hitbox_value(AT_DSTRONG, 5, HG_ANGLE, 90);
+set_hitbox_value(AT_DSTRONG, 5, HG_BASE_KNOCKBACK, 6);
+set_hitbox_value(AT_DSTRONG, 5, HG_KNOCKBACK_SCALING, 0.8);
+set_hitbox_value(AT_DSTRONG, 5, HG_BASE_HITPAUSE, 6);
+set_hitbox_value(AT_DSTRONG, 5, HG_HITPAUSE_SCALING, .4);
+set_hitbox_value(AT_DSTRONG, 5, HG_IGNORES_PROJECTILES, 1);
+set_hitbox_value(AT_DSTRONG, 5, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
+set_hitbox_value(AT_DSTRONG, 5, HG_HIT_LOCKOUT, 9);
+
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_SPRITE, asset_get("empty_sprite"));
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_MASK, -1);
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_WALL_BEHAVIOR, 1);
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_ENEMY_BEHAVIOR, 1);
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_UNBASHABLE, 1);
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
+set_hitbox_value(AT_DSTRONG, 5, HG_PROJECTILE_IS_TRANSCENDENT, 1);
