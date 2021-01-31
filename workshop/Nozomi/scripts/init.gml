@@ -162,16 +162,16 @@ anim_fakeparry_bg = asset_get("fx_parry_new");
 //Rune flags
 noz_rune_flags = 
 {
-    dstrong_spread: has_rune("C"),
-    jumpcancels: has_rune("F"),
     nair_boost: has_rune("A"),
     bair_strong: has_rune("B"),
-    air_sleep: has_rune("N"),
+    dstrong_spread: has_rune("C"),
     reflector: has_rune("D"),
+    jumpcancels: has_rune("F"),
     frostbite: has_rune("I"),
     cloud_kick: has_rune("H"),
     cloud_longer: has_rune("G"),
     cloud_explode: has_rune("L"),
+    air_sleep: has_rune("N"),
     enhanced_hover: has_rune("O")
 }
 //=================================================
