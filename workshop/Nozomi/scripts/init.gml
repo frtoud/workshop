@@ -235,6 +235,11 @@ noz_cloudkick_mult = 0.33;
 noz_cloudkick_scale = 50;
 noz_cloudkick_friction = 0.33; //to lessen friction after a kick
 noz_cloudkick_speed = 8;
+//Extended clouds
+noz_long_cloud_big = 90;
+noz_long_cloud_small = 80;
+noz_long_cloud_big_kick = 36;
+noz_long_cloud_small_kick = 32;
 
 //=================================================
 // Move variables/flags initialized here
