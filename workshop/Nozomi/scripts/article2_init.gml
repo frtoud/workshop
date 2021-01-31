@@ -6,6 +6,9 @@ image_index = 0;
 spr_dir = player_id.spr_dir;
 uses_shader = true;
 
+flake_spr = player_id.vfx_dspecial_flake_spr;
+zone_spr = player_id.vfx_dspecial_zone_spr;
+
 //Physics
 hitstop = 0;
 hsp = 0;
@@ -28,3 +31,4 @@ x = 0;
 y = 0;
 
 shine_cooldown = 0;
+shine_cooldown_max = player_id.noz_dspecial_remote_shine_cooldown;

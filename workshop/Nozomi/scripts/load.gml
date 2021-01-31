@@ -68,6 +68,8 @@ sprite_change_offset("vfx_nspecial_notes_left", 52, 52);
 sprite_change_offset("vfx_nspecial_notes_right", 52, 52);
 sprite_change_offset("vfx_sleep", 24, 38);
 sprite_change_offset("vfx_shine", 45, 46);
+sprite_change_offset("vfx_dspecial_flake", 60, 60);
+sprite_change_offset("vfx_dspecial_zone", 60, 60);
  
 sprite_change_offset("fstrong", 36, 48);
 sprite_change_offset("ustrong", 32, 52);

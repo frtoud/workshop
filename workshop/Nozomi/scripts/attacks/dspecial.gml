@@ -104,6 +104,7 @@ set_hitbox_value(AT_DSPECIAL, 2, HG_ANGLE, 45);
 set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_KNOCKBACK, 1);
 set_hitbox_value(AT_DSPECIAL, 2, HG_ANGLE_FLIPPER, 8);
 set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_HITPAUSE, 8);
+set_hitbox_value(AT_DSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_icehit_weak1"));
 set_hitbox_value(AT_DSPECIAL, 2, HG_HITBOX_GROUP, -1);
 
 //Counter-shockwave
@@ -122,7 +123,8 @@ set_hitbox_value(AT_DSPECIAL, 3, HG_BASE_KNOCKBACK, 4);
 set_hitbox_value(AT_DSPECIAL, 3, HG_KNOCKBACK_SCALING, 0);
 set_hitbox_value(AT_DSPECIAL, 3, HG_BASE_HITPAUSE, 5);
 set_hitbox_value(AT_DSPECIAL, 3, HG_VISUAL_EFFECT, 27);
-set_hitbox_value(AT_DSPECIAL, 3, HG_HIT_SFX, asset_get("sfx_icehit_weak2"));
+set_hitbox_value(AT_DSPECIAL, 3, HG_HIT_SFX, asset_get("sfx_may_arc_hit"));
+set_hitbox_value(AT_DSPECIAL, 3, HG_VISUAL_EFFECT, 199);
 set_hitbox_value(AT_DSPECIAL, 3, HG_ANGLE_FLIPPER, 8);
 set_hitbox_value(AT_DSPECIAL, 3, HG_HITBOX_GROUP, -1);
 

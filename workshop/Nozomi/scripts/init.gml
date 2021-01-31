@@ -135,6 +135,9 @@ idle_hover_spr = sprite_get("idle_hover");
 vfx_hair_hover_spr = sprite_get("vfx_hair_hover");
 vfx_hair_exhausted_spr = sprite_get("vfx_hair_exhausted");
 
+vfx_dspecial_flake_spr = sprite_get("vfx_dspecial_flake");
+vfx_dspecial_zone_spr = sprite_get("vfx_dspecial_zone");
+
 anim_hud_rollin = 0;
 anim_hud_fadeout = 0;
 anim_hud_timers_max = 16;
