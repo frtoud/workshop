@@ -12,8 +12,8 @@ if (attack == AT_DSPECIAL && (window == 3 || (window >= 6 && window < 9))
 }
 if (anim_dspecial_shockwave_frame > 0)
 { 
-    draw_sprite(sprite_get("vfx_shine"), 
-         4 - min(anim_dspecial_shockwave_frame, 4), x, y-(char_height/2)); 
+    draw_sprite(vfx_shine_spr, 4 - min(anim_dspecial_shockwave_frame, 4),
+                x, y-(char_height/2)); 
 }
 
 

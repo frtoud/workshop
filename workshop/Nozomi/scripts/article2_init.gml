@@ -6,6 +6,7 @@ image_index = 0;
 spr_dir = player_id.spr_dir;
 uses_shader = true;
 
+shine_spr = player_id.vfx_shine_spr;
 flake_spr = player_id.vfx_dspecial_flake_spr;
 zone_spr = player_id.vfx_dspecial_zone_spr;
 

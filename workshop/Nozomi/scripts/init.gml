@@ -135,6 +135,7 @@ idle_hover_spr = sprite_get("idle_hover");
 vfx_hair_hover_spr = sprite_get("vfx_hair_hover");
 vfx_hair_exhausted_spr = sprite_get("vfx_hair_exhausted");
 
+vfx_shine_spr = sprite_get("vfx_shine"); //no relation to Sunshine
 vfx_dspecial_flake_spr = sprite_get("vfx_dspecial_flake");
 vfx_dspecial_zone_spr = sprite_get("vfx_dspecial_zone");
 
