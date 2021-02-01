@@ -167,15 +167,17 @@ noz_rune_flags =
     bair_strong: has_rune("B"),
     dstrong_spread: has_rune("C"),
     reflector: has_rune("D"),
-    frostbite: has_rune("I"),
+    air_taunt: has_rune("E"),
+    frostbite: has_rune("G"),
     jumpcancels: has_rune("J"),
-    ice_longer: has_rune("M"),
+    ice_boost: has_rune("F"),
     ice_dripping: has_rune("K"),
+    ice_longer: has_rune("O"),
     cloud_kick: has_rune("H"),
-    cloud_longer: has_rune("G"),
-    cloud_explode: has_rune("L"),
-    air_sleep: has_rune("N"),
-    enhanced_hover: has_rune("O")
+    cloud_longer: has_rune("I"),
+    cloud_explode: has_rune("M"),
+    air_sleep: has_rune("L"),
+    enhanced_hover: has_rune("N")
 }
 //=================================================
 //Balancing variables
