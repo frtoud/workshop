@@ -36,6 +36,63 @@ if ( is_a_cloud )
 			}
 		}
 	}
+	if (is_extended)
+	{
+		//try restoring can_hit if nothing is close for long enough
+		if (has_hit && !place_meeting(x, y, oPlayer))
+		{
+			restore_hit_timer++;
+			if (restore_hit_timer >= player_id.noz_cloud_hit_restore_time)
+			{
+                has_hit = false;
+                for (var p = 0; p < array_length(can_hit); p++)
+                {
+                    can_hit[p] = true;
+                }
+			    restore_hit_timer = 0;
+			}
+		}
+		else
+		{
+			restore_hit_timer = 0;
+		}
+		
+//===================================================================
+	    //Snowing clouds
+		//try increasing range
+		if (noone == collision_line(x, y, x, y+snow_depth, asset_get("par_block"), false, true))
+		{ snow_depth += 8; }
+		else
+		{ snow_depth -= 16; }
+		
+		var modulo = (snow_depth > 256) ? 1 : (snow_depth > 128) ? 2 : 3;
+		if (snow_depth > 32 && get_gameplay_time() % modulo == 0)
+		{
+			spawn_falling_twinkle(snow_width, snow_depth - 16);
+		}
+		
+		//apply debuff
+		var cloud_player = player_id;
+		with (oPlayer)
+    	{
+    	    if (self != cloud_player && noz_snowimmune_timer == 0 
+    	    && (get_player_team(self.player) != get_player_team(cloud_player.player))
+    	    && (hurtboxID == collision_rectangle(other.x - other.snow_width, other.y, 
+    	    	other.x + other.snow_width, other.y + other.snow_depth, hurtboxID, false, false)))
+    	    {
+		        if (noz_snowstack_timer < 5)
+		        {
+		            noz_snowstack_timer = 5;
+		            noz_handler_id = cloud_player;
+		        }
+                // Frostbite debuff
+                if (cloud_player.noz_rune_flags.frostbite
+                    && victim.noz_snow_frostbite_timer < 5)
+                { noz_snow_frostbite_timer = 5; }
+    	    }  
+    	}
+//===================================================================
+	}
 	
 	// Animating cloud
 	// sprites: 0-1 2-3-4 5-6
@@ -110,6 +167,14 @@ if ( player_id.anim_do_draw_twinkle)
     
     var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_twinkle);
 	k.depth = depth - 1;
+}
+//====================================================================
+#define spawn_falling_twinkle(_width, _height)
+{
+	var kx = x - _width + player_id.anim_rand_x * 2 * _width;
+	var ky = y + player_id.anim_rand_y * _height;
+    
+    var k = spawn_hit_fx(kx, ky, player_id.vfx_snow_falling);
 }
 //====================================================================
 #define try_getting_kicked()

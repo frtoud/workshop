@@ -41,6 +41,11 @@ if (is_a_cloud)
         kick_cooldown = 8;
         kick_boosted = 0;
     }
+    //Extended clouds
+    is_extended = player_id.noz_rune_flags.cloud_longer;
+    snow_width = (attack == AT_FAIR || attack == AT_BAIR)? 20 : 12;
+    snow_depth = 0;
+    restore_hit_timer = 0;
 }
 //====================================================================
 // Lingering projectile for DTILT has a cooldown; avoids spamming too many at once
