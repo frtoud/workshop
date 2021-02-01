@@ -113,10 +113,15 @@ else if (attack == AT_BAIR && hbox_num == 2)
 {
 	spawn_twinkle();
 }
-
+//==================================================================
+//FSPECIAL's dripping shards
+else if ( (attack == AT_FSPECIAL && hbox_num == 3) )
+{
+	if (!free || was_parried) { destroyed = true; }
+}
 //==================================================================
 //DSPECIAL's counter shards
-if ( (attack == AT_DSPECIAL && hbox_num == 4) )
+else if ( (attack == AT_DSPECIAL && hbox_num == 4) )
 {
 	//Homing to target
 	if (do_homing)

@@ -17,9 +17,9 @@ if (should_die && !dying)
 //======================================================================
 if (dying)
 {
-    if (has_proj)
+    if (has_proj && was_airborne)
     {
-        //spawn the projectile on death
+        spawn_projectile();
         has_proj = false;
     }
     
@@ -63,7 +63,13 @@ else
     //=====================================================================
     else if (does_not_decay)
     {
-        //prevent death by natural causes
+        //prevents death by natural causes
+        if (has_proj && was_airborne && random_proj_timer != 0
+                     && random_proj_timer <= article_timer)
+        {
+            spawn_projectile();
+            has_proj = false;
+        }
     }
     else if (article_timer >= player_id.noz_fspecial_lifetime)
     {
@@ -72,7 +78,6 @@ else
     else if (plat_collider != noone && article_timer >= player_id.noz_fspecial_airtime)
     {
         should_die = true;
-        has_proj = true;
     }
     
     //Sync collider article if you weren't spawned on top of something
@@ -89,6 +94,7 @@ else
         can_be_grounded = false;
         ignores_walls = true;
         through_platforms = true;
+        was_airborne = true;
     }
     
     //frosty debuffs
@@ -127,4 +133,9 @@ with (player_id)
     var ky = pos_y - (radius / 2) + anim_rand_y * radius;
     
     var k = spawn_hit_fx(kx, ky, vfx);
+}
+//======================================================================
+#define spawn_projectile()
+{
+    create_hitbox(AT_FSPECIAL, 3, x, y+5);
 }

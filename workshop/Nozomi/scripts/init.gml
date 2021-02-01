@@ -170,6 +170,7 @@ noz_rune_flags =
     frostbite: has_rune("I"),
     jumpcancels: has_rune("J"),
     ice_longer: has_rune("M"),
+    ice_dripping: has_rune("K"),
     cloud_kick: has_rune("H"),
     cloud_longer: has_rune("G"),
     cloud_explode: has_rune("L"),

@@ -480,8 +480,16 @@ case AT_FSPECIAL:
         else
         {
             var k = instance_create(x + 8 - (x % 16), y, "obj_article1");
+            if (noz_rune_flags.ice_dripping)
+            {
+            	k.has_proj = true;
+            }
             if (noz_rune_flags.ice_longer)
-            { k.does_not_decay = true; }
+            { 
+            	k.does_not_decay = true;
+            	k.random_proj_timer = noz_fspecial_airtime + 
+            	random_func(5, noz_fspecial_lifetime-noz_fspecial_airtime, true);
+            }
         }
         
         if (window == 3 && was_parried)

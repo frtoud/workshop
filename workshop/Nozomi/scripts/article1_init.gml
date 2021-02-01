@@ -32,6 +32,8 @@ dying = false; //is this in the process of dying?
 
 //Runes
 does_not_decay = false;
+was_airborne = false;
+random_proj_timer = 0;
 has_proj = false; //set to spawn the falling projectile on death
 
 spike_timer = 0; //controls the DSTRONG spike; going down
