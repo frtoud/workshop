@@ -167,7 +167,6 @@ noz_rune_flags =
     bair_strong: has_rune("B"),
     dstrong_spread: has_rune("C"),
     reflector: has_rune("D"),
-    jumpcancels: has_rune("F"),
     frostbite: has_rune("I"),
     jumpcancels: has_rune("J"),
     ice_longer: has_rune("M"),
