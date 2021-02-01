@@ -416,12 +416,22 @@ case AT_FSPECIAL:
             if (free)
             {
                 at_fspecial_ylock = max(noz_fspecial_ylock_max, (y - (y % 16)));
-                set_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED, 6);
+                if (!noz_rune_flags.ice_longer)
+                { set_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED, 6); }
             }
             else
             {
                 at_fspecial_ylock = y;
                 reset_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED);
+            }
+            
+            //remove previous ice
+            if (noz_rune_flags.ice_longer)
+            {
+				with (obj_article1) if (player_id == other)
+				{
+				    should_die = true;
+				}
             }
         }
         else if (free)
@@ -469,7 +479,9 @@ case AT_FSPECIAL:
         }
         else
         {
-            instance_create(x + 8 - (x % 16), y, "obj_article1");
+            var k = instance_create(x + 8 - (x % 16), y, "obj_article1");
+            if (noz_rune_flags.ice_longer)
+            { k.does_not_decay = true; }
         }
         
         if (window == 3 && was_parried)

@@ -17,10 +17,7 @@ at_fspecial_cooldown_override = false;
 
 
 //destroy articles
-with (obj_article1)
+with (obj_article1) if (player_id == other)
 {
-    if (player_id == other)
-    {
-        should_die = true;
-    }
+    should_die = true;
 }

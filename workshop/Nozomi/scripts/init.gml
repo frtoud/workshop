@@ -169,6 +169,8 @@ noz_rune_flags =
     reflector: has_rune("D"),
     jumpcancels: has_rune("F"),
     frostbite: has_rune("I"),
+    jumpcancels: has_rune("J"),
+    ice_longer: has_rune("M"),
     cloud_kick: has_rune("H"),
     cloud_longer: has_rune("G"),
     cloud_explode: has_rune("L"),

@@ -61,6 +61,10 @@ else
         spike_timer--;
     }
     //=====================================================================
+    else if (does_not_decay)
+    {
+        //prevent death by natural causes
+    }
     else if (article_timer >= player_id.noz_fspecial_lifetime)
     {
         should_die = true;
