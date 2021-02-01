@@ -271,6 +271,7 @@ case AT_DSPECIAL:
                 hb.image_xscale = at_dspecial_zone.radius/100;
                 hb.image_yscale = hb.image_xscale;
     			at_dspecial_zone.shine_cooldown = noz_dspecial_remote_shine_cooldown;
+    			with (at_dspecial_zone) { sound_play(asset_get("sfx_zetter_shine")); }
     		}
     		
 	        //Dampen momentum
