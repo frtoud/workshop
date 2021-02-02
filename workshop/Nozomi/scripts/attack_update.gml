@@ -271,7 +271,8 @@ case AT_DSPECIAL:
                 hb.image_xscale = at_dspecial_zone.radius/100;
                 hb.image_yscale = hb.image_xscale;
     			at_dspecial_zone.shine_cooldown = noz_dspecial_remote_shine_cooldown;
-    			with (at_dspecial_zone) { sound_play(asset_get("sfx_zetter_shine")); }
+    			with (at_dspecial_zone) 
+    			{ sound_play(asset_get("sfx_zetter_shine_charged"), false, noone, 0.9, 1.4); }
     		}
     		
 	        //Dampen momentum
@@ -319,6 +320,7 @@ case AT_DSPECIAL:
 	            
 	        	if (at_dspecial_countered_damage > 0)
 	        	{
+	                sound_play(asset_get("sfx_may_arc_hit"), false, noone, 2, 1.1);
 		        	//spawn ring of projectiles
 		        	for (var i = 0; i < 6; i++)
 		        	{
