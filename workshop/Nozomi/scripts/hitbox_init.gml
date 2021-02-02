@@ -26,7 +26,8 @@ if (is_a_cloud)
     anim_fade_frames = (2.0 / img_spd);
     
     //inherit Nozomi's speed
-    if (attack != AT_DTILT) { hsp += player_id.hsp; }
+    hsp += player_id.hsp * ((attack == AT_DTILT) ? 0.75 : 1);
+    
     //DATTACK cloud needs some help on platforms
     if (attack == AT_DATTACK) { dattack_speedcheck_timer = 20; }
 
