@@ -9,6 +9,21 @@ if (at_dtilt_proj_cooldown > 0)
 	}
 }
 
+//For friction overrides
+//==============================================================================
+if (at_fspecial_on_ice_timer > 0)
+{
+	if (noz_rune_flags.ice_boost && abs(hsp) < abs(prev_hsp) && abs(hsp) > 0.2)
+	{
+		//force-restore hsp and apply only 25% of friction
+		hsp = prev_hsp - (prev_hsp - hsp) * 0.25;
+	}
+	at_fspecial_on_ice_timer--;
+}
+prev_hsp = hsp;
+
+hurt_img = sprite_get("idle");
+
 //Extra landing hitbox for DAIR
 //==============================================================================
 if (state == PS_LANDING_LAG)
@@ -159,8 +174,6 @@ if ( (at_dspecial_damage_block <= noz_dspecial_damage_max) &&
 	//recharges the damage buffer for DSPECIAL
 	at_dspecial_damage_block += noz_dspecial_recharge_rate;
 }
-
-
 
 //Cooldown overrides
 //==============================================================================

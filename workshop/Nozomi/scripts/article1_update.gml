@@ -99,20 +99,26 @@ else
     
     //frosty debuffs
     var victim = instance_position(x, y-2, oPlayer)
-    if (victim != noone && victim != player_id && !victim.free
-        && get_player_team(player_id.player) != get_player_team(victim.player)
-        && victim.noz_snowimmune_timer < 1)
+    if (victim != noone && !victim.free && victim.noz_snowimmune_timer < 1)
     {
-        if (victim.noz_snowstack_timer < 5)
+        if (victim == player_id)
         {
-            victim.noz_snowstack_timer = 5;
-            victim.noz_handler_id = player_id;
+            player_id.at_fspecial_on_ice_timer = 3;
         }
-
-        // Frostbite debuff
-        if (player_id.noz_rune_flags.frostbite
-            && victim.noz_snow_frostbite_timer < 5)
-        { victim.noz_snow_frostbite_timer = 5; }
+        else if (get_player_team(player_id.player) != get_player_team(victim.player)
+             && (victim.noz_snowimmune_timer < 1))
+        {
+            if (victim.noz_snowstack_timer < 5)
+            {
+                victim.noz_snowstack_timer = 5;
+                victim.noz_handler_id = player_id;
+            }
+    
+            // Frostbite debuff
+            if (player_id.noz_rune_flags.frostbite
+                && victim.noz_snow_frostbite_timer < 5)
+            { victim.noz_snow_frostbite_timer = 5; }
+        }
     }
     
     //sparkles randomly

@@ -290,6 +290,9 @@ at_uspecial_hover_meter = noz_uspecial_hover_max;
 at_fspecial_cooldown_override = false;
 at_uspecial_cooldown_override = false;
 
+//frictionless ice rune
+at_fspecial_on_ice_timer = 0;
+prev_hsp = 0;
 
 //=================================================
 // Copy of other_init
