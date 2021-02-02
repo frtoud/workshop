@@ -15,6 +15,7 @@ with (oPlayer)
 			noz_freeze_timer = 0;
 			noz_freeze_anim_rotate = 0;
 			noz_snowstack_timer = 0;
+			noz_snow_frostbite_timer = 0;
 			noz_sleep_timer = 0;
 			noz_sleep_anim_timer = 0;
 			noz_sleep_interrupt_timer = 0;
@@ -38,6 +39,7 @@ with (oPlayer)
 			noz_freeze_anim_rotate = 0;
 			noz_sleep_anim_timer = 0;
 			noz_sleep_interrupt_timer = 0;
+			noz_snow_frostbite_timer = 0;
 			noz_handler_id = noone;
 		}
 		else
@@ -47,9 +49,21 @@ with (oPlayer)
 			if (noz_snowstack_timer > 0) 
 			{
 			    if (!hitpause)
-			    { noz_snowstack_timer--; }
+			    { 
+			    	noz_snowstack_timer--;
+			    	
+			    	// Frostbite debuff
+			        noz_snow_frostbite_timer = min(noz_snowstack_timer, 
+			                                       noz_snow_frostbite_timer--);
+				    if (noz_snow_frostbite_timer > 0 &&
+				        (get_gameplay_time() % 30 == 0))
+				    {
+				    	take_damage(player, other.player, 1);
+				    }
+			    }
 				if (noz_snowstack_timer == 0)
-				{ 
+				{
+					noz_snow_frostbite_timer = 0;
 					sound_play(asset_get("sfx_ice_uspecial_jump"), 
 					           false, noone, 0.6, 1.5);
 				}
@@ -146,6 +160,7 @@ with (oPlayer)
 			// Grace period
 			else if (noz_snowimmune_timer > 0)
 			{
+			    noz_snow_frostbite_timer = 0;
 				noz_snowimmune_timer--;
 			}
 			
@@ -153,7 +168,9 @@ with (oPlayer)
 			// Sleep effect
 			if (noz_sleep_timer > 0)
 			{
-				if (state_cat == SC_HITSTUN || noz_sleep_timer < 0)
+				if (state_cat == SC_HITSTUN) || (state == PS_WALL_JUMP ) ||
+				    //Consider length of pratland to be consistent across characters
+				   (noz_sleep_timer < max(prat_land_time, 1))
 				{ 
 					noz_sleep_timer = 0; 
 					noz_sleep_mashanim_timer = 0;
@@ -278,7 +295,8 @@ with (oPlayer)
 				    	// use a collision test because we can't access Kirby's hit_player.gml
 				    	with (oPlayer)
 				    	{
-				    	    if (self != other && (!free) && noz_sleepimmune_timer == 0 && 
+				    	    if (self != other && (get_player_team(self.player) != get_player_team(other.player))
+				    	        && (!free) && noz_sleepimmune_timer == 0 && 
 				    	    	hurtboxID == collision_circle(other.x, other.y-20, 50, hurtboxID, true, false))
 				    	    {
 				    	    	//Kirby inflicts Nozomi's debuff

@@ -77,6 +77,7 @@ set_hitbox_value(AT_FSTRONG, 2, HG_VISUAL_EFFECT, 28);
 set_hitbox_value(AT_FSTRONG, 2, HG_VISUAL_EFFECT_Y_OFFSET, -10);
 set_hitbox_value(AT_FSTRONG, 2, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
 set_hitbox_value(AT_FSTRONG, 2, HG_HITBOX_GROUP, -1);
+set_hitbox_value(AT_FSTRONG, 2, HG_MUNO_OBJECT_LAUNCH_ANGLE, 1);
 
 set_hitbox_value(AT_FSTRONG, 3, HG_PARENT_HITBOX, 2);
 set_hitbox_value(AT_FSTRONG, 3, HG_HITBOX_TYPE, 1);
@@ -86,6 +87,7 @@ set_hitbox_value(AT_FSTRONG, 3, HG_LIFETIME, 3);
 set_hitbox_value(AT_FSTRONG, 3, HG_HITBOX_X, 32);
 set_hitbox_value(AT_FSTRONG, 3, HG_HITBOX_Y, -20);
 set_hitbox_value(AT_FSTRONG, 3, HG_HITBOX_GROUP, -1);
+set_hitbox_value(AT_FSTRONG, 3, HG_MUNO_OBJECT_LAUNCH_ANGLE, 1);
 
 set_hitbox_value(AT_FSTRONG, 4, HG_PARENT_HITBOX, 0);
 set_hitbox_value(AT_FSTRONG, 4, HG_HITBOX_TYPE, 1);

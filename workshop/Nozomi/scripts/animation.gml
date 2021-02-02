@@ -230,6 +230,13 @@ switch (state)
                 { image_index = 22; } //Exhausted frame; going to pratfall
             }break;
 //==================================================================
+            case AT_DSPECIAL:
+            {
+                //Counter success hitpause frame
+                if (window == 5 && window_timer < 1) 
+                   { image_index = 8; }
+            }break;
+//==================================================================
             case AT_NAIR:
                 if !(at_uspecial_hovering && !at_uspecial_exhausted) 
                     break; // Landed NAIR case
@@ -251,16 +258,18 @@ switch (state)
     break;
 };
 
+//===========================================================    
+// DSPECIAL Reflect effects
 if (anim_dspecial_shockwave_frame > 0) 
     { anim_dspecial_shockwave_frame -= 1; }
 if (anim_fakeparry_timer > 0) 
     { anim_fakeparry_timer -= 1; }
-    
-    
-#define spawn_twinkle(vfx, pos_x, pos_y, radius, front)
+   
+//===========================================================     
+#define spawn_twinkle(vfx, pos_x, pos_y, width, front)
 {
-    var kx = pos_x - (radius / 2) + anim_rand_x * radius;
-    var ky = pos_y - (radius / 2) + anim_rand_y * radius;
+    var kx = pos_x - (width / 2) + anim_rand_x * width;
+    var ky = pos_y - (width / 2) + anim_rand_y * width;
     
     var k = spawn_hit_fx(kx, ky, vfx);
     if (front)

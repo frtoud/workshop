@@ -9,6 +9,21 @@ if (at_dtilt_proj_cooldown > 0)
 	}
 }
 
+//For friction overrides
+//==============================================================================
+if (at_fspecial_on_ice_timer > 0)
+{
+	if (noz_rune_flags.ice_boost && abs(hsp) < abs(prev_hsp) && abs(hsp) > 0.2)
+	{
+		//force-restore hsp and apply only 25% of friction
+		hsp = prev_hsp - (prev_hsp - hsp) * 0.25;
+	}
+	at_fspecial_on_ice_timer--;
+}
+prev_hsp = hsp;
+
+hurt_img = sprite_get("idle");
+
 //Extra landing hitbox for DAIR
 //==============================================================================
 if (state == PS_LANDING_LAG)
@@ -48,10 +63,12 @@ if (at_uspecial_hovering)
 		!( state == PS_ATTACK_AIR && attack == AT_USPECIAL && 
 		  (window == 5 || (window == 6 && window_timer < 6))) )
 	{
-		if (fast_falling)
+		if (fast_falling) || (noz_rune_flags.enhanced_hover
+		                  && up_down && special_pressed)
 		{
 			at_uspecial_exhausted = true;
 			at_nair_hover_need_grid_adjust = true;
+		    clear_button_buffer(PC_SPECIAL_PRESSED);
 		}
 		else
 		{
@@ -129,19 +146,34 @@ if (!free)
 if (at_uspecial_hover_meter < 0) 
 {
 	at_uspecial_hover_meter = 0;
-    at_uspecial_exhausted = true;
+	at_uspecial_exhausted = true;
     at_nair_hover_need_grid_adjust = true; 
 }
 
-//DSPECIAL recharging
+//Hover ran out
+if (at_uspecial_exhausted && at_uspecial_hover_meter == 0)
+    && !noz_rune_flags.enhanced_hover
+    && at_uspecial_hovering && (state != PS_PRATFALL)
+    && !(state == PS_ATTACK_AIR && attack == AT_USPECIAL)
+{
+	set_state(PS_PRATFALL);
+}
+
 //==============================================================================
+//DSPECIAL Counter: frost zone
+if (at_dspecial_zone_timer > 0) { at_dspecial_zone_timer--; }
+
+//ensure article exists
+if (!instance_exists(at_dspecial_zone)) 
+{ at_dspecial_zone = instance_create(0, 0, "obj_article2"); }
+
+//Reflector recharging
 if ( (at_dspecial_damage_block <= noz_dspecial_damage_max) &&
     !((attack == AT_DSPECIAL) && (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND)))
 {
 	//recharges the damage buffer for DSPECIAL
 	at_dspecial_damage_block += noz_dspecial_recharge_rate;
 }
-
 
 //Cooldown overrides
 //==============================================================================
@@ -150,7 +182,11 @@ if (at_uspecial_cooldown_override)
     move_cooldown[AT_DSPECIAL] += (move_cooldown[AT_DSPECIAL] > 2) ? 0 : 2;
     move_cooldown[AT_NSPECIAL] += (move_cooldown[AT_NSPECIAL] > 2) ? 0 : 2;
     move_cooldown[AT_FSPECIAL] += (move_cooldown[AT_FSPECIAL] > 2) ? 0 : 2;
-    move_cooldown[AT_USPECIAL] += (move_cooldown[AT_USPECIAL] > 2) ? 0 : 2;
+    
+    //Enhanced hover: can reactivate USPECIAL if not hovering/has hover
+    if !(noz_rune_flags.enhanced_hover && at_uspecial_hover_meter > 0 
+         && (!at_uspecial_hovering || at_uspecial_exhausted) )
+    	move_cooldown[AT_USPECIAL] += (move_cooldown[AT_USPECIAL] > 2) ? 0 : 2;
 }
 if (at_fspecial_cooldown_override)
 {

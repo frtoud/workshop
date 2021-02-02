@@ -1,5 +1,6 @@
 //article1_update
 
+//======================================================================
 if (should_die && !dying)
 {
     dying = true;
@@ -13,11 +14,12 @@ if (should_die && !dying)
     
     instance_destroy(plat_collider);
 }
+//======================================================================
 if (dying)
 {
-    if (has_proj)
+    if (has_proj && was_airborne)
     {
-        //spawn the projectile on death
+        spawn_projectile();
         has_proj = false;
     }
     
@@ -28,20 +30,54 @@ if (dying)
     
     image_index = 3 + floor(article_timer / 4);
 }
+//======================================================================
 else
 {
     image_index = 3 - 
     (spr_dir < 1 ? (2*(left_plat != noone) + (right_plat != noone))
                  : ((left_plat != noone) + 2*(right_plat != noone)) );
 
-    if (article_timer >= player_id.noz_fspecial_lifetime)
+    //=====================================================================
+    //dstrong spikes
+    if (spike_timer > 0)
+    {
+        if (spike_timer == spike_hitbox_frame)
+        {
+            sound_play(asset_get("sfx_ice_end"), false, noone, 0.5, 1.5);
+            create_hitbox(AT_DSTRONG, 5, x + spike_dir * 6, y-10);
+        }
+        if (spike_timer == spike_spread_frame)
+        {
+            var neighbor = spike_dir > 0 ? right_plat : left_plat;
+            if (instance_exists(neighbor) && !neighbor.should_die)
+            {
+                neighbor.spike_timer = spike_timer_max;
+                neighbor.spike_dir = spike_dir;
+                //earlier platforms were updated first; correction needed
+                if (neighbor.article_timer < article_timer)
+                { neighbor.spike_timer--; }
+            }
+        }
+        spike_timer--;
+    }
+    //=====================================================================
+    else if (does_not_decay)
+    {
+        //prevents death by natural causes
+        if (has_proj && was_airborne && random_proj_timer != 0
+                     && random_proj_timer <= article_timer)
+        {
+            spawn_projectile();
+            has_proj = false;
+        }
+    }
+    else if (article_timer >= player_id.noz_fspecial_lifetime)
     {
         should_die = true;
     }
     else if (plat_collider != noone && article_timer >= player_id.noz_fspecial_airtime)
     {
         should_die = true;
-        has_proj = true;
     }
     
     //Sync collider article if you weren't spawned on top of something
@@ -58,28 +94,44 @@ else
         can_be_grounded = false;
         ignores_walls = true;
         through_platforms = true;
+        was_airborne = true;
     }
     
     //frosty debuffs
     var victim = instance_position(x, y-2, oPlayer)
-    if (victim != noone && victim != player_id && !victim.free
-        && get_player_team(player_id.player) != get_player_team(victim.player)
-        && victim.noz_snowimmune_timer < 1 && victim.noz_snowstack_timer < 5)
+    if (victim != noone && !victim.free && victim.noz_snowimmune_timer < 1)
     {
-        victim.noz_snowstack_timer = 5;
-        victim.noz_handler_id = player_id;
+        if (victim == player_id)
+        {
+            player_id.at_fspecial_on_ice_timer = 3;
+        }
+        else if (get_player_team(player_id.player) != get_player_team(victim.player)
+             && (victim.noz_snowimmune_timer < 1))
+        {
+            if (victim.noz_snowstack_timer < 5)
+            {
+                victim.noz_snowstack_timer = 5;
+                victim.noz_handler_id = player_id;
+            }
+    
+            // Frostbite debuff
+            if (player_id.noz_rune_flags.frostbite
+                && victim.noz_snow_frostbite_timer < 5)
+            { victim.noz_snow_frostbite_timer = 5; }
+        }
     }
     
     //sparkles randomly
     if (player_id.anim_do_draw_twinkle &&
         player_id.anim_rand_twinkle == random_twinkle)
     {
-        spawn_twinkle(player_id.vfx_snow_twinkle, x, y-8, 12)
+        spawn_twinkle(player_id.vfx_snow_twinkle, x, y-8, 12);
     }
 }
 article_timer++;
 anim_timer++;
 
+//======================================================================
 #define spawn_twinkle(vfx, pos_x, pos_y, radius)
 with (player_id)
 {
@@ -87,4 +139,9 @@ with (player_id)
     var ky = pos_y - (radius / 2) + anim_rand_y * radius;
     
     var k = spawn_hit_fx(kx, ky, vfx);
+}
+//======================================================================
+#define spawn_projectile()
+{
+    create_hitbox(AT_FSPECIAL, 3, x, y+5);
 }

@@ -5,7 +5,7 @@ var temp_y = y + 140;
 draw_set_halign(fa_left);
 draw_set_font(asset_get("fName"));
 
-var text = "v" + string(get_char_info(player, INFO_VER_MAJOR))
+var text = "B" + string(get_char_info(player, INFO_VER_MAJOR))
          + "." + string(get_char_info(player, INFO_VER_MINOR));
 
 draw_set_color(c_black);

@@ -48,7 +48,7 @@ hitstun_grav = .45;
 knockback_adj = 1.2; //the multiplier to KB dealt to you. 1 = default, >1 = lighter, <1 = heavier
 
 land_time = 8; //normal landing frames
-prat_land_time = 20;
+prat_land_time = 32;
 wave_land_time = 8;
 wave_land_adj = 1.35; //the multiplier to your initial hsp when wavelanding. Usually greater than 1
 wave_friction = .04; //grounded deceleration when wavelanding
@@ -101,6 +101,14 @@ bubble_x = 0;
 bubble_y = 4;
 
 //=================================================
+//Custom Frame Data indices
+HG_MUNO_OBJECT_LAUNCH_ANGLE = 77; //Thanks Muno
+// Special values:
+//  0: use normal angles
+// -1: Horizontal Away (simulates Angle 0 flipper 3)
+// -2: Radial Away (resembles flipper 8)
+
+//=================================================
 //Custom vfx & sprites
 
 anim_dspecial_shockwave_frame = 0;
@@ -127,6 +135,10 @@ idle_hover_spr = sprite_get("idle_hover");
 vfx_hair_hover_spr = sprite_get("vfx_hair_hover");
 vfx_hair_exhausted_spr = sprite_get("vfx_hair_exhausted");
 
+vfx_shine_spr = sprite_get("vfx_shine"); //no relation to Sunshine
+vfx_dspecial_flake_spr = sprite_get("vfx_dspecial_flake");
+vfx_dspecial_zone_spr = sprite_get("vfx_dspecial_zone");
+
 anim_hud_rollin = 0;
 anim_hud_fadeout = 0;
 anim_hud_timers_max = 16;
@@ -137,6 +149,7 @@ pratland_spr = sprite_get("pratland");
 
 article1_spr = sprite_get("article1");
 article1_spawn_spr = sprite_get("article1_spawn");
+article1_spike_spr = sprite_get("article1_spike");
 article1_col_spr = sprite_get("article1_col");
 
 anim_hairblink_timer = 0;
@@ -145,6 +158,39 @@ anim_hairblink_max = anim_hud_timers_max;
 anim_fakeparry_timer = 0;
 //anim_fakeparry_fg = asset_get("new_dodge_spr");
 anim_fakeparry_bg = asset_get("fx_parry_new");
+
+//=================================================
+//Rune flags
+noz_rune_flags = 
+{
+    nair_boost: has_rune("A"),
+    bair_strong: has_rune("B"),
+    dstrong_spread: has_rune("C"),
+    reflector: has_rune("D"),
+    air_control: has_rune("E"),
+    air_sleep: has_rune("L"),
+    frostbite: has_rune("G"),
+    jumpcancels: has_rune("J"),
+    
+    ice_boost: has_rune("F"),
+    ice_dripping: has_rune("K"),
+    ice_longer: has_rune("O"),
+    
+    cloud_kick: has_rune("H"),
+    cloud_longer: has_rune("I"),
+    cloud_explode: has_rune("M"),
+    
+    enhanced_hover: has_rune("N")
+}
+
+//Extra air speed
+if (noz_rune_flags.air_control)
+{
+    air_accel = 0.5;
+    jump_change = 5;
+    max_jump_hsp = 7;
+    air_max_speed = 7;
+}
 
 //=================================================
 //Balancing variables
@@ -163,12 +209,22 @@ noz_pratfall_max_vsp = 5.5;
 
 noz_dtilt_proj_cooldown_max = 24;
 
+//counter
+noz_dspecial_invince_time = 60;
+noz_dspecial_top_speed = 12;
+noz_dspecial_pre_homing_time = 8;
+noz_dspecial_homing_time = 40;
+noz_dspecial_homing_distance = 300;
+noz_dspecial_zone_time = 600;
+noz_dspecial_zone_radius = 120;
+noz_dspecial_remote_shine_cooldown = 60;
+//reflect
 noz_dspecial_damage_max = 40;
 noz_dspecial_damage_min = 10;
 noz_dspecial_recharge_rate = 0.05;
 noz_dspecial_dmg_mult = 1.5;
 
-noz_nspecial_mashing_bonus = 2;
+noz_nspecial_mashing_bonus = 1;
 noz_nspecial_sleep_base = floor(75 * noz_nspecial_mashing_bonus);
 noz_nspecial_sleep_early = floor(25 * noz_nspecial_mashing_bonus);
 noz_nspecial_sleep_mult = 0.2 * noz_nspecial_mashing_bonus;
@@ -181,7 +237,7 @@ noz_fspecial_lifetime = 600;
 noz_fspecial_cooldown = 160;
 noz_fspecial_ylock_max = 160; //lower value means higher position -- Y=0 is at the top of the screen
 
-noz_uspecial_hover_max = 480;
+noz_uspecial_hover_max = 480 * (1 + noz_rune_flags.enhanced_hover);
 noz_uspecial_short_cost = 60; // 1/8
 noz_uspecial_long_cost = 120; // 1/4
 noz_uspecial_hover_recharge = 2;
@@ -191,6 +247,18 @@ noz_uspecial_hover_exhaustion_base = 30;
 noz_uspecial_hover_hspeed = 1.5 + air_max_speed;
 noz_uspecial_hover_vstrength = 0.80;
 noz_uspecial_hover_hstrength = 1.5 * air_accel;
+
+//Cloudkick
+noz_cloudkick_mult = 0.33;
+noz_cloudkick_scale = 50;
+noz_cloudkick_friction = 0.33; //to lessen friction after a kick
+noz_cloudkick_speed = 8;
+//Extended clouds
+noz_long_cloud_big = 160;
+noz_long_cloud_small = 120;
+noz_long_cloud_big_kick = 36;
+noz_long_cloud_small_kick = 32;
+noz_cloud_hit_restore_time = 30;
 
 //=================================================
 // Move variables/flags initialized here
@@ -203,8 +271,14 @@ at_nair_hover_need_grid_adjust = false;
 at_dair_early_cancel = false;
 at_dair_need_landing_lag_hitbox = false;
 
-at_dspecial_done = false;
-at_dspecial_has_parried = false;
+at_dspecial_has_reflected = false;
+//local object to simulate a player position if no appropriate target can be found
+at_dspecial_target_object = { x:0, y:0, char_height:0 };
+at_dspecial_zone = noone;
+at_dspecial_zone_timer = 0;
+at_dspecial_zone_position = { x:0, y:0 };
+at_dspecial_counter_target = noone;
+at_dspecial_countered_damage = 0;
 at_dspecial_damage_block = noz_dspecial_damage_max;
 
 at_uspecial_long = false;
@@ -216,12 +290,17 @@ at_uspecial_hover_meter = noz_uspecial_hover_max;
 at_fspecial_cooldown_override = false;
 at_uspecial_cooldown_override = false;
 
+//frictionless ice rune
+at_fspecial_on_ice_timer = 0;
+prev_hsp = 0;
+
 //=================================================
 // Copy of other_init
 // Ensures Nozomi can apply debuffs to herself
 // Looking at you, Kirby >:]
 noz_handler_id = noone;
 noz_snowstack_timer = 0;
+noz_snow_frostbite_timer = 0;
 noz_snowimmune_timer = 0;
 noz_sleep_timer = 0;
 noz_sleep_anim_timer = 0;

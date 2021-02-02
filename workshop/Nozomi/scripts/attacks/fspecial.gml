@@ -43,7 +43,6 @@ set_window_value(AT_FSPECIAL, 4, AG_WINDOW_VSPEED_TYPE, 2);
 
 set_num_hitboxes(AT_FSPECIAL, 2);
 
-set_hitbox_value(AT_FSPECIAL, 1, HG_PARENT_HITBOX, 0);
 set_hitbox_value(AT_FSPECIAL, 1, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_FSPECIAL, 1, HG_WINDOW, 2);
 set_hitbox_value(AT_FSPECIAL, 1, HG_LIFETIME, 6);
@@ -61,7 +60,6 @@ set_hitbox_value(AT_FSPECIAL, 1, HG_VISUAL_EFFECT, 28);
 set_hitbox_value(AT_FSPECIAL, 1, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
 set_hitbox_value(AT_FSPECIAL, 1, HG_IGNORES_PROJECTILES, 1);
 
-set_hitbox_value(AT_FSPECIAL, 2, HG_PARENT_HITBOX, 0);
 set_hitbox_value(AT_FSPECIAL, 2, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_FSPECIAL, 2, HG_WINDOW, 2);
 set_hitbox_value(AT_FSPECIAL, 2, HG_WINDOW_CREATION_FRAME, 6);
@@ -80,3 +78,25 @@ set_hitbox_value(AT_FSPECIAL, 2, HG_BASE_HITPAUSE, 5);
 set_hitbox_value(AT_FSPECIAL, 2, HG_VISUAL_EFFECT, 28);
 set_hitbox_value(AT_FSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
 set_hitbox_value(AT_FSPECIAL, 2, HG_IGNORES_PROJECTILES, 1);
+
+set_hitbox_value(AT_FSPECIAL, 3, HG_HITBOX_TYPE, 2);
+set_hitbox_value(AT_FSPECIAL, 3, HG_LIFETIME, 200);
+set_hitbox_value(AT_FSPECIAL, 3, HG_WIDTH, 15);
+set_hitbox_value(AT_FSPECIAL, 3, HG_HEIGHT, 15);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PRIORITY, 4);
+set_hitbox_value(AT_FSPECIAL, 3, HG_DAMAGE, 1);
+set_hitbox_value(AT_FSPECIAL, 3, HG_ANGLE, 90);
+set_hitbox_value(AT_FSPECIAL, 3, HG_BASE_KNOCKBACK, 5);
+set_hitbox_value(AT_FSPECIAL, 3, HG_KNOCKBACK_SCALING, 0);
+set_hitbox_value(AT_FSPECIAL, 3, HG_BASE_HITPAUSE, 5);
+set_hitbox_value(AT_FSPECIAL, 3, HG_VISUAL_EFFECT, 28);
+set_hitbox_value(AT_FSPECIAL, 3, HG_HIT_SFX, asset_get("sfx_icehit_medium2"));
+set_hitbox_value(AT_FSPECIAL, 3, HG_IGNORES_PROJECTILES, 1);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_SPRITE, sprite_get("drip_proj"));
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_MASK, -1);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_GRAVITY, 0.6);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_WALL_BEHAVIOR, 0);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_GROUND_BEHAVIOR, 0);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_DESTROY_EFFECT, 27);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+set_hitbox_value(AT_FSPECIAL, 3, HG_PROJECTILE_DOES_NOT_REFLECT, 1);

@@ -122,13 +122,37 @@ case AT_FSTRONG:
 } break;
 //==============================================================
 case AT_DSTRONG:
+{
+    if (has_hit) { can_jump = true; }
+    
+    //dstrong spreads through ice
+    if (noz_rune_flags.dstrong_spread
+    && window ==  get_hitbox_value(AT_DSTRONG, 3, HG_WINDOW)
+    && window_timer == get_hitbox_value(AT_DSTRONG, 3, HG_WINDOW_CREATION_FRAME))
+    {
+    	var half_width = get_hitbox_value(AT_DSTRONG, 3, HG_WIDTH) / 2;
+    	//try finding ice
+    	var left_ice = collision_line(x - half_width, y+2, x - half_width, y-2, 
+    	                              obj_article1, false, true);
+    	if (left_ice != noone && left_ice.player_id == self)
+    	{
+    		left_ice.spike_timer = left_ice.spike_timer_max;
+    		left_ice.spike_dir = -1;
+    	}
+    	
+    	var right_ice = collision_line(x + half_width, y+2, x + half_width, y-2, 
+    		                           obj_article1, false, true);
+    	if (right_ice != noone && right_ice.player_id == self)
+    	{
+    		right_ice.spike_timer = right_ice.spike_timer_max;
+    		right_ice.spike_dir = +1;
+    	}
+    }
+} break;
 //==============================================================
 case AT_USTRONG:
 {
-    if (has_hit)
-    {
-        can_jump = true;
-    }
+    if (has_hit) { can_jump = true; }
 } break;
 //==============================================================
 case AT_NAIR: 
@@ -154,9 +178,15 @@ case AT_NAIR:
     }
     
     //Slightly slows fall
-    if (window == 2 && attack_down)
+    if (free && window == 2 && attack_down)
     { 
     	vsp *= (vsp > 2) ? 0.8 : 1; 
+    	
+    	if (noz_rune_flags.nair_boost
+    	    && !hitpause && vsp > -5)
+    	{
+    		vsp -= 1.5;
+    	}
     }
     else if (window == 4 && (has_hit || !free))
     {
@@ -210,80 +240,138 @@ case AT_DSPECIAL:
 {
     switch (window)
     {
-        case 1:
-        {
-        	if (window_timer == 1)
+    	case 1: //Startup
+    	{
+    		if (window_timer == get_window_value(AT_DSPECIAL, 1, AG_WINDOW_LENGTH))
         	{
-	            at_dspecial_done = false;
-	            at_dspecial_has_parried = false;
-	            anim_dspecial_shockwave_frame = 6;
+	            at_dspecial_has_reflected = false;
+                at_dspecial_counter_target = noone;
+                at_dspecial_countered_damage = 0;
 	            at_dspecial_damage_block = floor(at_dspecial_damage_block);
 	            
-	            if (at_dspecial_damage_block < noz_dspecial_damage_min)
+	            if (special_down && (at_dspecial_zone_timer < 1)
+	            && (at_dspecial_damage_block > noz_dspecial_damage_min))
 	            {
-                    set_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX, asset_get("sfx_absa_singlezap2"));
-                    set_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO, 3);
+	                window = 3;
+	                window_timer = 0;
 	            }
 	            else
 	            {
-                    reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_SFX);
-                    reset_window_value(AT_DSPECIAL, 1, AG_WINDOW_GOTO);
+	                anim_dspecial_shockwave_frame = 6;
 	            }
-	            
-                //Reflector script
-	            if (!was_parried)
-	            { user_event(1); }
         	}
-            
-            //Dampen momentum
-            hsp *= 0.8;
-            vsp *= (vsp > 0) ? 0.2 : 0.9;
-            
-        } break;
-        case 2:
-        {
+    	} break;
+    	case 2: //Shine
+    	{
+    		if (at_dspecial_zone.radius > 0) && (at_dspecial_zone.shine_cooldown == 0)
+    		&& window_timer == get_hitbox_value(AT_DSPECIAL, 5, HG_WINDOW_CREATION_FRAME)
+    		{
+    			//Remote shining
+    			var hb = create_hitbox(AT_DSPECIAL, 5, at_dspecial_zone.x, at_dspecial_zone.y);
+                hb.image_xscale = at_dspecial_zone.radius/100;
+                hb.image_yscale = hb.image_xscale;
+    			at_dspecial_zone.shine_cooldown = noz_dspecial_remote_shine_cooldown;
+    			with (at_dspecial_zone) 
+    			{ sound_play(asset_get("sfx_zetter_shine_charged"), false, noone, 0.9, 1.4); }
+    		}
+    		
+	        //Dampen momentum
+	        hsp *= 0.8;
+	        vsp *= (vsp > 0) ? 0.2 : 0.9;
+    	} break;
+    	case 3: //Counter
+    	{
+	        can_move = false;
+	        can_fast_fall = false;
+	        
+	        if (window_timer < 6)
+	        {
+		        //Dampen momentum
+		        hsp *= 0.8;
+		        vsp *= (vsp > 0) ? 0.2 : 0.9;
+	        }
+	        
+    		user_event(2);
+	        
+    		
+    		if (window_timer == get_window_value(AT_DSPECIAL, 3, AG_WINDOW_LENGTH))
+    		{
+    		   window = (special_down && noz_rune_flags.reflector) ? 6 : 9; // >:]
+    		   window_timer = 0;
+    		}
+    	} break;
+    	case 4: //Shine Endlag window
+    	{
+    		can_jump = !was_parried;
+            can_attack = !was_parried && 
+                         (at_dspecial_has_reflected || has_hit_player);
+    	} break;
+    	case 5: //Counter success
+    	{
+	        can_fast_fall = false;
+	        if (window_timer == get_hitbox_value(AT_DSPECIAL, 4, HG_WINDOW_CREATION_FRAME))
+	        {
+	        	//Helps visuals
+	            invincible = true;
+	            invince_time = noz_dspecial_invince_time;
+	            at_dspecial_zone_timer = noz_dspecial_zone_time;
+	            at_dspecial_zone_position.x = x;
+	            at_dspecial_zone_position.y = y - (char_height/2);
+	            
+	        	if (at_dspecial_countered_damage > 0)
+	        	{
+	                sound_play(asset_get("sfx_may_arc_hit"), false, noone, 2, 1.1);
+		        	//spawn ring of projectiles
+		        	for (var i = 0; i < 6; i++)
+		        	{
+		        		var angle = 30 + (i * 60);
+		        		var k = create_hitbox(AT_DSPECIAL, 4, x, y - 24);
+		        		k.hsp = lengthdir_x(noz_dspecial_top_speed, angle);
+		        		k.vsp = lengthdir_y(noz_dspecial_top_speed, angle);
+		        		k.x += k.hsp;
+		        		k.y += k.vsp;
+		        		k.damage = 1 + floor(at_dspecial_countered_damage/6);
+		        		k.depth = depth + 1;
+		        		k.spr_dir = 1;
+		        		
+		        		k.homing_target = at_dspecial_counter_target;
+		        	}
+		        	at_dspecial_countered_damage = 0;
+	            }
+	        }
+    	} break;
+    	case 6: //Reflector
+    	{
             can_move = false;
             can_fast_fall = false;
-            
-            //Reflector script
-            if (!was_parried)
-            { user_event(1); }
-        
-            if (!special_down && 
-            (at_dspecial_done || (at_dspecial_has_parried || has_hit_player)) )
+    		user_event(1);
+    		
+            if (!special_down)
             {
-                window = 3;
+                window = 4;
                 window_timer = 0; 
             }
-            else if (special_down && !was_parried && 
-            (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH)) )
+            else if (window_timer == get_window_value(AT_DSPECIAL, 2, AG_WINDOW_LENGTH))
             {
-                at_dspecial_done = true;
                 window_timer = 0; 
             }
-        } break;
-        case 3:
-        {
-        	//Prevents excessive jump-cancel multishines
-        	move_cooldown[AT_DSPECIAL] = 8;
-            can_jump = !was_parried;
-            can_attack = !was_parried && 
-                         (at_dspecial_has_parried || has_hit_player);
-        } break;
-        case 4:
-        {
+    	} break;
+    	case 7: //Instaparry window
+    	{
             window = 2;
             window_timer = 0;
-            at_dspecial_done = true;
             init_shader();
-        }break;
-        case 5:
-        {
+    	}
+    	case 8: //Vulnerable window
+    	{
             window = 2;
             window_timer = 0;
-        }break;
-        default: break;
+    	} break;
+    	case 9: //Counter Endlag window
+    	default:
+    	break;
     }
+    
 } break;
 //==============================================================
 case AT_NSPECIAL: 
@@ -298,7 +386,8 @@ case AT_NSPECIAL:
     	// use a collision test because singing somehow hurts RockWall's pillars
     	with (oPlayer)
     	{
-    	    if (self != other && (!free) && noz_sleepimmune_timer == 0 && 
+    	    if (self != other && (get_player_team(self.player) != get_player_team(other.player))
+    	        && (!free || other.noz_rune_flags.air_sleep) && noz_sleepimmune_timer == 0 && 
     	    	hurtboxID == collision_circle(other.x, other.y-25, 50, hurtboxID, true, false))
     	    {
 		        noz_handler_id = other;
@@ -329,12 +418,22 @@ case AT_FSPECIAL:
             if (free)
             {
                 at_fspecial_ylock = max(noz_fspecial_ylock_max, (y - (y % 16)));
-                set_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED, 6);
+                if (!noz_rune_flags.ice_longer)
+                { set_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED, 6); }
             }
             else
             {
                 at_fspecial_ylock = y;
                 reset_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED);
+            }
+            
+            //remove previous ice
+            if (noz_rune_flags.ice_longer)
+            {
+				with (obj_article1) if (player_id == other)
+				{
+				    should_die = true;
+				}
             }
         }
         else if (free)
@@ -382,7 +481,17 @@ case AT_FSPECIAL:
         }
         else
         {
-            instance_create(x + 8 - (x % 16), y, "obj_article1");
+            var k = instance_create(x + 8 - (x % 16), y, "obj_article1");
+            if (noz_rune_flags.ice_dripping)
+            {
+            	k.has_proj = true;
+            }
+            if (noz_rune_flags.ice_longer)
+            { 
+            	k.does_not_decay = true;
+            	k.random_proj_timer = noz_fspecial_airtime + 
+            	random_func(5, noz_fspecial_lifetime-noz_fspecial_airtime, true);
+            }
         }
         
         if (window == 3 && was_parried)
@@ -421,15 +530,22 @@ case AT_USPECIAL:
             at_uspecial_long = true;
             if (!special_down || at_uspecial_was_hovering)
             {
-                if (window_timer < 8 && !at_uspecial_was_hovering)
+                if (window_timer < 8) && 
+                (!at_uspecial_was_hovering || noz_rune_flags.enhanced_hover)
                 {
                     //Tap: Smaller attack, activates hover directly
                     window = 6;
                     window_timer = 0;
                     //Manually applying VSP from move data
                     vsp += get_window_value(AT_USPECIAL, window, AG_WINDOW_VSPEED);
+                    
+                    if (at_uspecial_was_hovering) 
+                    { 
+                    	at_uspecial_hover_meter -= noz_uspecial_short_cost; 
+                    	at_uspecial_exhausted = false;
+                    }
                 }
-                else 
+                else
                 {
                     window = 2;
                     window_timer = 0;
@@ -448,7 +564,8 @@ case AT_USPECIAL:
         {
             if (window_timer == 1)
             {
-                if (at_uspecial_was_hovering)
+                if (at_uspecial_was_hovering || at_uspecial_hover_meter <= 0)
+                && (!noz_rune_flags.enhanced_hover)
                 { 
                     at_uspecial_hover_meter = -1;
                     set_window_value(AT_USPECIAL, 5, AG_WINDOW_TYPE, 7);
@@ -503,6 +620,7 @@ case AT_USPECIAL:
 	            at_uspecial_was_hovering = true;
 	            at_uspecial_cooldown_override = true;
 	            at_nair_hover_need_grid_adjust = true;
+	            clear_button_buffer(PC_SPECIAL_PRESSED);
             }
             
         }break;
@@ -523,3 +641,21 @@ case AT_TAUNT:
 //==============================================================
 default: break;
 }
+
+//universal jumpcancelling
+var is_aerial = (attack == AT_NAIR || attack == AT_DAIR || attack == AT_UAIR
+              || attack == AT_FAIR || attack == AT_BAIR)
+if (noz_rune_flags.jumpcancels && is_aerial && has_hit_player)
+{
+	can_jump = true;
+	if (jump_pressed && djumps >= max_djumps)
+	{
+		//free simulated jump
+		set_state(PS_DOUBLE_JUMP);
+		move_cooldown[attack] = 5;
+		if (hitpause) old_vsp = -djump_speed;
+		else vsp = -djump_speed;
+	}
+}
+
+
