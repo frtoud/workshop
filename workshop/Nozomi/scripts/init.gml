@@ -205,7 +205,7 @@ noz_freeze_mult_vsp = 0.010;
 noz_freeze_max_hsp = 5;
 noz_freeze_anim_speed = 6; //degrees per frame
 
-noz_pratfall_max_vsp = 5.5;
+noz_pratfall_max_vsp = 7;
 
 noz_dtilt_proj_cooldown_max = 24;
 
@@ -242,7 +242,7 @@ noz_uspecial_hover_max = 480 * (1 + noz_rune_flags.enhanced_hover);
 noz_uspecial_short_cost = 60; // 1/8
 noz_uspecial_long_cost = 120; // 1/4
 noz_uspecial_hover_recharge = 2;
-noz_uspecial_hover_recharge_air = 1;
+noz_uspecial_hover_recharge_air = 0.5;
 noz_uspecial_hover_vspeed = 2 + air_max_speed;
 noz_uspecial_hover_exhaustion_base = 30;
 noz_uspecial_hover_hspeed = 1.5 + air_max_speed;
