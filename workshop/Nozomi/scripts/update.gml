@@ -9,6 +9,12 @@ if (at_dtilt_proj_cooldown > 0)
 	}
 }
 
+if (move_cooldown[AT_FSPECIAL] < 1 && 
+    at_fspecial_soft_cooldown_timer > 0)
+{
+    at_fspecial_soft_cooldown_timer -= (trueground() ? 2 : 1);
+}
+
 //For friction overrides
 //==============================================================================
 if (at_fspecial_on_ice_timer > 0)

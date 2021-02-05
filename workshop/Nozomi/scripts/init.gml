@@ -234,8 +234,9 @@ noz_nspecial_interruption_time = 16; //how long before sleeping if a move is in 
 
 noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
-noz_fspecial_cooldown = 160;
+noz_fspecial_cooldown = 180;
 noz_fspecial_ylock_max = 160; //lower value means higher position -- Y=0 is at the top of the screen
+noz_fspecial_soft_cooldown_max = 240; //platforms created during this cooldown have no colliders
 
 noz_uspecial_hover_max = 480 * (1 + noz_rune_flags.enhanced_hover);
 noz_uspecial_short_cost = 60; // 1/8
@@ -280,6 +281,9 @@ at_dspecial_zone_position = { x:0, y:0 };
 at_dspecial_counter_target = noone;
 at_dspecial_countered_damage = 0;
 at_dspecial_damage_block = noz_dspecial_damage_max;
+
+at_fspecial_on_soft_cooldown = 0;
+at_fspecial_soft_cooldown_timer = 0;
 
 at_uspecial_long = false;
 at_uspecial_hovering = false;

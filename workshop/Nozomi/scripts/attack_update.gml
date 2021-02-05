@@ -414,7 +414,6 @@ case AT_FSPECIAL:
     {
         if (window_timer == 1)
         {
-            move_cooldown[AT_FSPECIAL] = noz_fspecial_cooldown;
             if (free)
             {
                 at_fspecial_ylock = max(noz_fspecial_ylock_max, (y - (y % 16)));
@@ -426,7 +425,6 @@ case AT_FSPECIAL:
                 at_fspecial_ylock = y;
                 reset_window_value(AT_FSPECIAL, 2, AG_WINDOW_HSPEED);
             }
-            
             //remove previous ice
             if (noz_rune_flags.ice_longer)
             {
@@ -453,6 +451,13 @@ case AT_FSPECIAL:
     }
     else if (window == 2 || window == 3)
     {
+        if (window_timer == 1 && window == 2)
+        {
+            move_cooldown[AT_FSPECIAL] = noz_fspecial_cooldown;
+            at_fspecial_on_soft_cooldown = at_fspecial_soft_cooldown_timer > 0;
+            at_fspecial_soft_cooldown_timer = noz_fspecial_soft_cooldown_max;
+        }
+        
         if (free) 
         { y = at_fspecial_ylock; }
         else
@@ -475,22 +480,26 @@ case AT_FSPECIAL:
         
         //Create new ice as you go
         var plat = collision_line(x, y-1, x, y+1, obj_article1, false, true);
-        if (plat != noone && plat.player_id == id && !plat.should_die)
+        if (plat != noone && plat.player_id == self && !plat.should_die)
         {
             plat.article_timer = 0;
         }
-        else
+        else if (plat == noone || !at_fspecial_on_soft_cooldown)
         {
-            var k = instance_create(x + 8 - (x % 16), y, "obj_article1");
+            plat = instance_create(x + 8 - (x % 16), y, "obj_article1");
             if (noz_rune_flags.ice_dripping)
             {
-            	k.has_proj = true;
+            	plat.has_proj = true;
             }
             if (noz_rune_flags.ice_longer)
             { 
-            	k.does_not_decay = true;
-            	k.random_proj_timer = noz_fspecial_airtime + 
+            	plat.does_not_decay = true;
+            	plat.random_proj_timer = noz_fspecial_airtime + 
             	random_func(5, noz_fspecial_lifetime-noz_fspecial_airtime, true);
+            }
+            else if (at_fspecial_on_soft_cooldown)
+            {
+            	plat.should_die = free;
             }
         }
         
@@ -502,8 +511,8 @@ case AT_FSPECIAL:
     }
     else if (!was_parried) //window 4
     {
-    	if (hsp == 0 && window_timer == 5 && !joy_pad_idle
-    	    && (spr_dir * lengthdir_x(1, joy_dir)) > 0)
+    	if (window_timer == 5) && (free && hsp * spr_dir >= 0) ||
+    	   (hsp == 0 && !joy_pad_idle && (spr_dir * lengthdir_x(1, joy_dir)) > 0)
     	{
     		set_state(PS_IDLE_AIR); //set hurtbox
     	    state = PS_DOUBLE_JUMP;

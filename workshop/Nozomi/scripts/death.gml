@@ -3,6 +3,8 @@
 at_dspecial_damage_block = noz_dspecial_damage_max;
 at_dspecial_zone_timer = 0;
 
+at_fspecial_soft_cooldown_timer = 0;
+
 at_uspecial_hover_meter = noz_uspecial_hover_max;
 at_uspecial_was_hovering = false;
 at_uspecial_hovering = false;
