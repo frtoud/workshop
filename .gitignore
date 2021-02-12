@@ -1,10 +1,17 @@
-workshop/order.roa
-workshop/categories.roa
-dev_mode/*
-replays/*
-saves/*
-workshop/2128524233
-workshop/haruhi-suzumiya
-workshop/*/scripts/debug_draw.gml
-desyncs/*
-workshop_synced/steam_autocloud.vdf
+# Ignore everything by default
+/*
+# Un-ignore those two folders of interest
+!/workshop
+/workshop/*
+!/stages
+/stages/*
+# Whitelist: those specific directories and their contents are tracked
+# Characters
+!/workshop/Nozomi
+!/workshop/Hypercam
+!/workshop/Missingno
+# Buddies
+!/workshop/NiceBuddy
+!/workshop/CosmicClone
+# Stages
+# !/stages/MFLikeButton
