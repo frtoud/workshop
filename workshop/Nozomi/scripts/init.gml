@@ -155,6 +155,10 @@ article1_col_spr = sprite_get("article1_col");
 anim_hairblink_timer = 0;
 anim_hairblink_max = anim_hud_timers_max;
 
+anim_indicatorflash_timer = 0;
+anim_indicatorflash_max = anim_hud_timers_max;
+indicator_spr = sprite_get("indicator_triangle");
+
 anim_fakeparry_timer = 0;
 //anim_fakeparry_fg = asset_get("new_dodge_spr");
 anim_fakeparry_bg = asset_get("fx_parry_new");
@@ -236,7 +240,7 @@ noz_fspecial_airtime = 120;
 noz_fspecial_lifetime = 600;
 noz_fspecial_cooldown = 180;
 noz_fspecial_ylock_max = 160; //lower value means higher position -- Y=0 is at the top of the screen
-noz_fspecial_soft_cooldown_max = 240; //platforms created during this cooldown have no colliders
+noz_fspecial_soft_cooldown_max = 240 * (!noz_rune_flags.ice_longer); //platforms created during this cooldown have no colliders
 
 noz_uspecial_hover_max = 480 * (1 + noz_rune_flags.enhanced_hover);
 noz_uspecial_short_cost = 60; // 1/8

@@ -455,7 +455,10 @@ case AT_FSPECIAL:
         {
             move_cooldown[AT_FSPECIAL] = noz_fspecial_cooldown;
             at_fspecial_on_soft_cooldown = at_fspecial_soft_cooldown_timer > 0;
-            at_fspecial_soft_cooldown_timer = noz_fspecial_soft_cooldown_max;
+            if (!at_fspecial_on_soft_cooldown)
+            {
+                at_fspecial_soft_cooldown_timer = noz_fspecial_soft_cooldown_max;
+            }
         }
         
         if (free) 

@@ -23,6 +23,11 @@ if (at_uspecial_hover_meter >= noz_uspecial_hover_max
     anim_hud_fadeout = anim_hud_timers_max;
 }
 
+if (anim_indicatorflash_timer > 0)
+{
+    anim_indicatorflash_timer--;
+}
+
 //Hair hoverframe calculation
 //==============================================================================
 if (at_uspecial_hovering)

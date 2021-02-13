@@ -19,15 +19,32 @@ if (anim_dspecial_shockwave_frame > 0)
 
 //=============================================================================
 //force-show the parry frame instead of being greyed out
-else if (state == PS_PARRY && image_index == dodge_startup_frames)
+if (state == PS_PARRY && image_index == dodge_startup_frames)
 {
     draw_sprite_ext(sprite_index, image_index, x, y, spr_dir, 1, 0, c_white, 1);
+}
+
+//Skip drawing indicators if not needed
+if (!draw_indicator) exit;
+
+//=============================================================================
+//FSPECIAL cooldown on indicator
+var indicator_x = x + 1;
+var indicator_y = y - char_height - hud_offset - 20;
+if (at_fspecial_soft_cooldown_timer > 0)
+{
+    draw_sprite_ext(indicator_spr, 0, indicator_x, indicator_y, 2, 2, 0, c_black, 0.5);
+}
+else if (anim_indicatorflash_timer > 0)
+{
+    var indic_alpha = (1.0 * anim_indicatorflash_timer) / anim_indicatorflash_max;
+    draw_sprite_ext(indicator_spr, 0, indicator_x, indicator_y, 2, 2, 0, c_white, indic_alpha);
 }
 
 //=============================================================================
 //Hovermeter on indicator
 var meter_x = x;
-var meter_y = y - char_height - 22;
+var meter_y = indicator_y - 2;
 var meter_height = 6;
 var meter_width_max = 15;
     

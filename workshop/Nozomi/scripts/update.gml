@@ -9,10 +9,15 @@ if (at_dtilt_proj_cooldown > 0)
 	}
 }
 
+//FSPECIAL soft cooldown
+//==============================================================================
 if (move_cooldown[AT_FSPECIAL] < 1 && 
     at_fspecial_soft_cooldown_timer > 0)
 {
     at_fspecial_soft_cooldown_timer -= (trueground() ? 2 : 1);
+
+    if (at_fspecial_soft_cooldown_timer <= 0)
+    { anim_indicatorflash_timer = anim_indicatorflash_max; }
 }
 
 //For friction overrides
