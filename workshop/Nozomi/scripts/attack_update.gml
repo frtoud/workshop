@@ -455,6 +455,8 @@ case AT_FSPECIAL:
         {
             move_cooldown[AT_FSPECIAL] = noz_fspecial_cooldown;
             at_fspecial_on_soft_cooldown = at_fspecial_soft_cooldown_timer > 0;
+            at_fspecial_started_free = free;
+            
             if (!at_fspecial_on_soft_cooldown)
             {
                 at_fspecial_soft_cooldown_timer = noz_fspecial_soft_cooldown_max;
@@ -502,7 +504,7 @@ case AT_FSPECIAL:
             }
             else if (at_fspecial_on_soft_cooldown)
             {
-            	plat.should_die = free;
+            	plat.should_die = at_fspecial_started_free;
             }
         }
         

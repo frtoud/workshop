@@ -286,6 +286,7 @@ at_dspecial_counter_target = noone;
 at_dspecial_countered_damage = 0;
 at_dspecial_damage_block = noz_dspecial_damage_max;
 
+at_fspecial_started_free = false;
 at_fspecial_on_soft_cooldown = 0;
 at_fspecial_soft_cooldown_timer = 0;
 
