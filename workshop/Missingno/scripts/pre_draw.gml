@@ -24,9 +24,10 @@ gpu_push_state();
     gpu_set_blendmode_ext(bm_dest_alpha, bm_inv_dest_alpha);
     
     ///draw the masked "background"
-    //shader_start();
-    draw_sprite_tiled(glitch_bg_spr, 0, 0, 0);
-    //shader_end();
+    //cannot shade -- kills performance... 
+    //would be better to have preshaded backbrounds for this purpose
+    draw_sprite_tiled_ext(glitch_bg_spr, get_player_color(player), 0, 0, 
+                          1+small_sprites, 1+small_sprites, c_white, 1);
     
     //playtest zone fix (or unfix...?)
     ///Disable blend; write alpha only, don't alphatest
