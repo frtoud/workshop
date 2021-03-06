@@ -5,7 +5,7 @@
 #macro HITSTOP_AMOUNT 8
 
 //Detect hitboxes. (only those that could have damaged you)
-//var team_attack = get_match_setting(???);
+var team_attack = get_match_setting(SET_TEAMATTACK);
 
 var target_object = noone;
 var target_angle = noone;
@@ -16,7 +16,7 @@ with (pHitBox)
 	if ( (hit_priority > 0) && (player != other.player || can_hit_self)
 	  && (other.can_be_hit[player] == 0) && (can_hit[other.player])
 	  && (groundedness == 0 || (other.free ? 2 : 1) == groundedness)
-	  && (get_player_team(other.player) != get_player_team(player))
+	  && (get_player_team(other.player) != get_player_team(player) || team_attack)
 	  && place_meeting(x, y, other.hurtboxID) )
 	{
 		var angle = 0;

@@ -43,13 +43,13 @@ with (hurtboxID)
 }
 
 //Detect hitboxes. (only projectiles that could have damaged you)
-//var team_attack = get_match_setting(???);
+var team_attack = get_match_setting(SET_TEAMATTACK);
 with (pHitBox)
 {
 	if ( (type == 2) && (player != other.player || can_hit_self)
 	  && (other.can_be_hit[player] == 0) && (can_hit[other.player])
 	  && (groundedness == 0 || (other.free ? 2 : 1) == groundedness)
-	  && (get_player_team(other.player) != get_player_team(player))
+	  && (get_player_team(other.player) != get_player_team(player) || team_attack)
 	  && place_meeting(x, y, other.hurtboxID))
 	{
 		
