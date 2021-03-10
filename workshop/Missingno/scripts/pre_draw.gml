@@ -96,10 +96,10 @@ manual_draw(true);
                              pos_x, pos_y, spr_dir * scale, scale, c_white, 1.0);
         draw_sprite_part_ext(sprite_index, image_index, 
                              0, spr_cliptop, spr_w, spr_clipbot - spr_cliptop, 
-                             pos_x + vsync_offset, pos_y + spr_cliptop, spr_dir * scale, scale, c_white, 1.0);
+                             pos_x + vsync_offset, pos_y + spr_cliptop*scale, spr_dir * scale, scale, c_white, 1.0);
         draw_sprite_part_ext(sprite_index, image_index, 
                              0, spr_clipbot, spr_w, max(spr_h - spr_clipbot, 0), 
-                             pos_x, pos_y + spr_clipbot, spr_dir * scale, scale, c_white, 1.0);
+                             pos_x, pos_y + spr_clipbot*scale, spr_dir * scale, scale, c_white, 1.0);
         if (main_draw) shader_end();
         
         // to turn off normal rendering for this frame
