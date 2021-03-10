@@ -1,4 +1,5 @@
 //TODO: remove if it's still empty
+//MEANWHILE: this is unsafe_update.gml
 
 var line = 0;
 var offset = 15;
@@ -8,4 +9,4 @@ var offset = 15;
 //draw_debug_text(x-20, y+(offset*line++), get_state_name(state));
 //draw_debug_text(x-20, y+(offset*line++), "timer " + string(state_timer));
 //draw_debug_text(x-20, y+(offset*line++), "window_timer " + string(window_timer));
-draw_debug_text(x-20, y+(offset*line++), "prev_dir " + string(at_prev_dir_buffer));
+//draw_debug_text(x-20, y+(offset*line++), "prev_dir " + string(at_prev_dir_buffer));

@@ -98,10 +98,31 @@ air_dodge_sound = asset_get("sfx_quick_dodge");
 bubble_x = 0;
 bubble_y = 8;
 
-//testing stuffs!
+//=========================================================
+// Visual effects
 glitch_bg_spr = sprite_get("glitch_bg");
-//glitch = instance_create(x, y, "obj_article1");
+no_sprite = asset_get("empty_sprite");
 
+//=========================================================
+// NOTE: anything in here derives from inherently client-side data
+//       instant desync if used anywhere near gameplay stuff 
+msg_unsafe_random = 
+{
+    rng:current_time,
+    intensity:10, //scale of 0 to 16; higher value = bigger effects
+    frequency:2  //scale of 0 to 16; higher value = more effects
+}
+msg_unsafe_effects = 
+{
+    shudder:{ timer:0 },
+    vsync:{ timer:0, cliptop:0, clipbot:0, offset:0 }
+}
+msg_anim_backup = 
+{
+    small_sprites:0,
+    sprite_index:0, image_index:0,
+    spr_angle:0, draw_x:0, draw_y:0
+}
 //=========================================================
 gfx_glitch_death = false;
 
