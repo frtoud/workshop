@@ -5,6 +5,7 @@ at_prev_dir_buffer = clamp(at_prev_dir_buffer + spr_dir, -6, 6);
 with (oPlayer) if (self != other)
 {
     other.at_bspecial_last_move.target = self;
+    other.at_bspecial_last_move.small_sprites = small_sprites;
 }
 
 /*
@@ -71,4 +72,22 @@ if (t != noone) with (t)
 
 //var obj = instance_place( x, y+1, all);
 //var zzz = obj.zuwsw;
+
+
+var scan = ("variable_scanner" not in self);
+var total = ">:[";
+with (asset_get("obj_draw_stagebackground"))
+{
+    if ("variable_scanner" not in other)
+    {
+       spr_dir = -1;// other.glitch_bg_spr;
+       var array = variable_instance_get_names(self);
+       for (var i = 0; i < array_length(array); i++)
+       {
+           total += (array[i] + ", ");
+       }
+    }
+}
+if (scan) { get_string("Hoi", total); }
+variable_scanner = true;
 */

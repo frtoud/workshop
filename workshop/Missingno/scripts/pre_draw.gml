@@ -27,6 +27,13 @@ draw_debug_text(x-20, y+(52), "int: "+string(msg_unsafe_random.intensity)+" frq:
 user_event(0);
 
 //==================================================================
+// BSPECIAL must consider the small_sprites parameter of the stolen sprites!
+if (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) && (attack == AT_DSPECIAL_2)
+{
+    small_sprites = at_bspecial_last_move.small_sprites;
+}
+
+//==================================================================
 // Plaid effect
 gpu_push_state();
 {
