@@ -8,3 +8,4 @@ if (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) && (attack == AT_DSPECI
 {
     small_sprites = at_bspecial_last_move.small_sprites;
 }
+else { small_sprites = 1; }
