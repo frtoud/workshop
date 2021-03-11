@@ -26,12 +26,6 @@ draw_debug_text(x-20, y+(52), "int: "+string(msg_unsafe_random.intensity)+" frq:
 // Reroll Missingno effects
 user_event(0);
 
-//==================================================================
-// BSPECIAL must consider the small_sprites parameter of the stolen sprites!
-if (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) && (attack == AT_DSPECIAL_2)
-{
-    small_sprites = at_bspecial_last_move.small_sprites;
-}
 
 //==================================================================
 // Plaid effect
@@ -76,9 +70,11 @@ gpu_pop_state();
 //might need to override normal draw code
 manual_draw(true);
 
+//==================================================================
 #define manual_draw(main_draw)
 {
     var scale = 1 + small_sprites;
+    var skips_draw = false;
     if (msg_unsafe_effects.vsync.timer > 0)
     {
         var spr_w = sprite_get_width(sprite_index);
@@ -88,8 +84,8 @@ manual_draw(true);
         var vsync_offset = msg_unsafe_effects.vsync.offset;
         
         if (main_draw) shader_start();
-        var pos_x = x - sprite_xoffset + draw_x;
-        var pos_y = y - sprite_yoffset + draw_y;
+        var pos_x = x - scale*sprite_xoffset + draw_x;
+        var pos_y = y - scale*sprite_yoffset + draw_y;
         
         draw_sprite_part_ext(sprite_index, image_index, 
                              0, 0, spr_w, spr_cliptop, 
@@ -102,14 +98,21 @@ manual_draw(true);
                              pos_x, pos_y + spr_clipbot*scale, spr_dir * scale, scale, c_white, 1.0);
         if (main_draw) shader_end();
         
-        // to turn off normal rendering for this frame
-        if (main_draw) sprite_index = no_sprite;
+        skips_draw = main_draw;
+        
     }
-    else if (!main_draw)
+    else if !main_draw || (small_sprites != msg_anim_backup.small_sprites)
     {
+        if (main_draw) shader_start();
         draw_sprite_ext(sprite_index, image_index, x+draw_x, y+draw_y, 
                         scale*spr_dir, scale, spr_angle, c_white, 1);
+        if (main_draw) shader_end();
+        
+        skips_draw = main_draw;
     }
+    
+    // to turn off normal rendering for this frame
+    if (skips_draw) sprite_index = no_sprite;
 }
 
 
