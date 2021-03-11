@@ -35,19 +35,6 @@ if (target != noone) && !(target_is_missingno && target.attack == AT_DSPECIAL_2)
     at_bspecial_last_move.small_sprites = target.small_sprites;
 }
 
-/*
-
-if !("t" in self) t = 0;
-var array = variable_instance_get_names(id);
-t = (t + 1) % (array_length(array))
-str = array[t] + ":" + string(variable_instance_get(id, array[t]));
-print_debug(str);
-*/
-
-//print_debug(string(owner));
-//print_debug(string(temp_string));
-//print_debug(string(temp_comp_player));
-
 if (gfx_glitch_death)
 {
     gfx_glitch_death = false;
@@ -73,6 +60,8 @@ if (gfx_glitch_death)
 }
 
 /*
+//=============================================================================
+//Move-stage experimental code
 if !("t" in self) {
     t = noone;
 var count = 0;
@@ -92,29 +81,7 @@ print_debug(string(count));
 if (t != noone) with (t)
 {
     move_towards_point( 500, 300, distance_to_point(500, 300));
-    //instance_change(asset_get("par_jumpthrough"))
 }
+//instance_change(asset_get("par_jumpthrough"))
 //object_set_solid(t, false);
-    
-
-//var obj = instance_place( x, y+1, all);
-//var zzz = obj.zuwsw;
-
-
-var scan = ("variable_scanner" not in self);
-var total = ">:[";
-with (asset_get("obj_draw_stagebackground"))
-{
-    if ("variable_scanner" not in other)
-    {
-       spr_dir = -1;// other.glitch_bg_spr;
-       var array = variable_instance_get_names(self);
-       for (var i = 0; i < array_length(array); i++)
-       {
-           total += (array[i] + ", ");
-       }
-    }
-}
-if (scan) { get_string("Hoi", total); }
-variable_scanner = true;
 */
