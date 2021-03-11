@@ -109,8 +109,8 @@ no_sprite = asset_get("empty_sprite");
 msg_unsafe_random = 
 {
     rng:current_time,
-    intensity:10, //scale of 0 to 16; higher value = bigger effects
-    frequency:2  //scale of 0 to 16; higher value = more effects
+    intensity:1, //scale of 0 to 16; higher value = bigger effects
+    frequency:1  //scale of 0 to 16; higher value = more effects
 }
 msg_unsafe_effects = 
 {

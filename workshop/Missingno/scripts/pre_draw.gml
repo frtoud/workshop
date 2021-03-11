@@ -15,14 +15,8 @@ with (msg_unsafe_random)
     rng = (rng ^(rng << 5 )) % UINT_MAX;
 }
 
-var stringassembled = "";
-for (var i = 0; i < 32; i++)
-{ stringassembled += string(msg_unsafe_random.rng >> i & 1) }
-draw_debug_text(x-20, y+(20), "rng: "+ string(msg_unsafe_random.rng) );
-draw_debug_text(x-20, y+(36), stringassembled );
-draw_debug_text(x-20, y+(52), "int: "+string(msg_unsafe_random.intensity)+" frq: "+string(msg_unsafe_random.frequency) );
+draw_debug_text(x-20, y+20, "int: "+string(msg_unsafe_random.intensity)+" frq: "+string(msg_unsafe_random.frequency) );
 //=============================================
-
 // Reroll Missingno effects
 user_event(0);
 

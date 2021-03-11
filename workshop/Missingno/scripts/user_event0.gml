@@ -1,5 +1,5 @@
 //user_event0.gml
-//aka. unsafe_update.gml
+//aka. unsafe_animation.gml
 if ("msg_unsafe_random" not in self) exit;
 
 var RNG = msg_unsafe_random.rng;
@@ -11,6 +11,10 @@ var FRQ = msg_unsafe_random.frequency;
 // BITWISE RANDOM UINT32 MAP = 0x00000000 00000000 00000000 00000000
 // Effects:        Using bits: 
 //  - Shudder                                                 XXXXXX
+//  - VSync                                              XX XXXX
+//  - wrong image_index
+//'M- wrong sprite_index
+//  - trail
 //================================================================
 
 with (msg_unsafe_effects)
@@ -30,14 +34,15 @@ with (msg_unsafe_effects)
 //===========================================================
     if (vsync.timer > 0)
     {
+        vsync.timer--;
         var hmax = sprite_get_height(other.sprite_index);
         vsync.clipbot = GET_RNG(RNG, 8, 0xFF) * 1.0/(0xFF) * hmax;
         vsync.cliptop = vsync.clipbot + GET_RNG(RNG, 0, 0x0F);
         vsync.offset = INT/16 * (((RNG >> 0x0F) & 0x0F) - 0x08);
     }
-    else if (GET_RNG(RNG, 4, 0x0F) < FRQ)
+    else if (GET_RNG(RNG, 4, 0x3F) < FRQ)
     {
-        vsync.timer = 16;
+        vsync.timer = 2;
     }
 //===========================================================
 }
