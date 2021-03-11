@@ -4,16 +4,32 @@ if (attack == AT_FSPECIAL && (spr_dir*at_prev_dir_buffer < 0))
     attack = AT_DSPECIAL_2;
     spr_dir = sign(at_prev_dir_buffer); //dont flip
     clear_button_buffer(PC_SPECIAL_PRESSED);
-    steal_move_data(at_bspecial_last_move.target, at_bspecial_last_move.move);
 }
 
 
-if (attack != AT_DSPECIAL_2)
+if (attack == AT_DSPECIAL_2)
 {
-    at_bspecial_last_move.time = get_gameplay_time();
+    if (at_bspecial_last_move.target == self)
+    {
+        attack = at_bspecial_last_move.move;
+        //Allowed at any time because of this input
+        set_attack_value(attack, AG_CATEGORY, 2);
+    }
+    else
+    {
+        steal_move_data(at_bspecial_last_move.target, at_bspecial_last_move.move);
+    }
+}
+else
+{
+    reset_attack_value(attack, AG_CATEGORY);
+}
+/*else
+{
     at_bspecial_last_move.target = self;
     at_bspecial_last_move.move = attack;
-}
+    at_bspecial_last_move.small_sprites = small_sprites;
+}*/
 
 #define steal_move_data(target_id, target_move)
 {

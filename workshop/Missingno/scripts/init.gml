@@ -128,4 +128,4 @@ gfx_glitch_death = false;
 
 //BSPECIAL shenans
 at_prev_dir_buffer = 0;
-at_bspecial_last_move = { time:get_gameplay_time(), target:self, move:AT_TAUNT, small_sprites:0 };
+at_bspecial_last_move = { target:self, move:AT_TAUNT, small_sprites:0 };
