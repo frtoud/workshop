@@ -2,6 +2,7 @@
 
 //==================================================================
 // back up drawing-related parameters that can get fiddled with
+//todo: move to animation.gml?
 copy_params(self, msg_anim_backup, msg_anim_backup);
 
 //=============================================
@@ -15,11 +16,11 @@ with (msg_unsafe_random)
     rng = (rng ^(rng << 5 )) % UINT_MAX;
 }
 
-draw_debug_text(x-20, y+20, "int: "+string(msg_unsafe_random.intensity)+" frq: "+string(msg_unsafe_random.frequency) );
+draw_debug_text(floor(x-20), floor(y+20)," int: "+string(msg_unsafe_random.intensity)
+                                        +" frq: "+string(msg_unsafe_random.frequency) );
 //=============================================
 // Reroll Missingno effects
 user_event(0);
-
 
 //==================================================================
 // Plaid effect

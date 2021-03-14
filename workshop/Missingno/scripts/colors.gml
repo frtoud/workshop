@@ -16,12 +16,12 @@ set_color_profile_slot_range(2, 180, 100, 20);
 
 //255:255:230 -  60:  9:100
 set_color_profile_slot(0, 3, 255, 255, 230); // White
-set_color_profile_slot_range(3, 180, 30, 10);
+set_color_profile_slot_range(3, 180, 100, 10);
 
 //Technical
 //  0:255:  0 -  120:100:100
 set_color_profile_slot(0, 7,  0,  255,  0); // Patterned
-set_color_profile_slot_range(7, 180, 70, 10);
+set_color_profile_slot_range(7, 1, 1, 10);
 
 set_num_palettes(16);
 
