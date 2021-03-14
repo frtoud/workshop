@@ -54,6 +54,11 @@ else
         for (i = 0; i < 100; i++) 
         {
             with (target_id) { temp = get_window_value(target_move, k, i); }
+            //softlock prevention: no looping windows
+            if (i == AG_WINDOW_TYPE) 
+            { temp = temp == 9 ? 0 : (temp == 10 ? 8 : temp) }
+            else if (i == AG_WINDOW_LENGTH) 
+            { temp = clamp(temp, 0, 60) }
             set_window_value(AT_DSPECIAL_2, k, i, temp);
         }
     }
@@ -64,6 +69,8 @@ else
         for (i = 0; i < 100; i++) 
         {
             with (target_id) { temp = get_hitbox_value(target_move, k, i); }
+            if (i == HG_HITBOX_Y || i == HG_HITBOX_X) 
+            { temp = clamp(temp, -500, 500) }
             set_hitbox_value(AT_DSPECIAL_2, k, i, temp);
         }
     }
