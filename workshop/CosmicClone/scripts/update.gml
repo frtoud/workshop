@@ -4,9 +4,6 @@
 #macro CLONES_RUNNING 2
 #macro CLONES_WAITING 3
 
-#macro AT_CLONES     48
-#macro HB_CLONES      8
-
 sprite_index = null_sprite;
 image_index = 0;
 if !("clones_array" in self)
@@ -17,14 +14,6 @@ if !("clones_array" in self)
     }
     
     clone_state = CLONES_INIT;
-}
-
-if (!("has_initialized_cosmic_clones_flag" in owner))
-{
-    //Need to latch onto the owner to set the hitbox data
-    set_hitbox_data();
-    clone_state = CLONES_INIT;
-    owner.has_initialized_cosmic_clones_flag = true;
 }
 
 if ( (clone_state == CLONES_INIT) || ((clone_state != CLONES_READY) && 
@@ -84,8 +73,38 @@ else if (clone_state == CLONES_WAITING)
             var hbx;
             with (owner)
             {
-                hbx = create_hitbox(AT_CLONES, HB_CLONES, 0, 0);
+                hbx = create_hitbox(0, 0, 0, 0);
             }
+            
+            hbx.type = 2;
+            hbx.hbox_group = -1;
+            hbx.length = 5; // HG_LIFETIME
+            hbx.sprite_index = null_sprite;
+            hbx.mask_index = null_sprite;
+            hbx.image_xscale = 1;
+            hbx.image_yscale = 1;
+            
+            hbx.hit_priority = 2;
+            hbx.damage = 10;
+            hbx.kb_angle = 90;
+            hbx.kb_value = 6;
+            hbx.kb_scale = 0.5;
+            hbx.hitpause = 6;
+            hbx.proj_break = 1; // HG_IGNORES_PROJECTILES
+            hbx.throws_rock = 2; // ignored
+            
+            hbx.hit_effect = 67;
+            hbx.sound_effect = 67;
+            hbx.destroy_fx = 67;
+            
+            hbx.walls = 1;
+            hbx.grounds = 1;
+            hbx.enemies = 1;
+            hbx.unbashable = true;
+            hbx.plasma_safe = true;
+            hbx.transcendent = true;
+            hbx.does_not_reflect = true;
+            
             hbx.can_hit_self = true;
             for (var p = 0; p < array_length(hbx.can_hit); p++)
             {
@@ -146,6 +165,7 @@ else if (clone_state == CLONES_RUNNING)
         clone_hbx.sprite_index = null_sprite;
         clone_hbx.mask_index = buffer_data.mask;
         clone_hbx.image_index = buffer_data.index;
+        clone_hbx.true_image_index = buffer_data.index;
         clone_hbx.spr_dir = buffer_data.dir;
         clone_hbx.image_xscale = clone_hit_scaling * spr_dir;
         clone_hbx.image_yscale = clone_hit_scaling;
@@ -158,42 +178,5 @@ else if (clone_state == CLONES_RUNNING)
                 clone_hbx.can_hit[p] = false;
             }
         }
-    }
-    
-}
-
-#define set_hitbox_data()
-{
-    with (owner)
-    {
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_HITBOX_TYPE, 2);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_LIFETIME, 4);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_WIDTH, 40);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_HEIGHT, 40);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PRIORITY, 2);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_DAMAGE, 10);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_ANGLE, 90);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_BASE_KNOCKBACK, 6);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_KNOCKBACK_SCALING, .5);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_BASE_HITPAUSE, 6);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_IGNORES_PROJECTILES, 1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_VISUAL_EFFECT_X_OFFSET, 0);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_VISUAL_EFFECT_Y_OFFSET, 0);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_VISUAL_EFFECT, 6);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_THROWS_ROCK, 2);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_HIT_SFX, 67);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_VISUAL_EFFECT, 67);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_DESTROY_EFFECT, 67);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_SPRITE, other.null_sprite);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_MASK, other.null_sprite);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_ANIM_SPEED, 0);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_MASK, -1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_WALL_BEHAVIOR, 1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_GROUND_BEHAVIOR, 1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_ENEMY_BEHAVIOR, 1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_UNBASHABLE, 1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_DOES_NOT_REFLECT, 1);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_PARRY_STUN, 0);
-        set_hitbox_value(AT_CLONES, HB_CLONES, HG_PROJECTILE_IS_TRANSCENDENT, 1);
     }
 }
