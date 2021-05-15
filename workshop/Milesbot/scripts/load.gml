@@ -67,7 +67,7 @@ msb_pulse_timer_max = 60;
 
 //================================================================
 //special variables
-msb_adam_url = "-1" //replace this once its released
+msb_adam_url = "2475052776";
 
 msb_initialized = false;
 msb_data = noone;
