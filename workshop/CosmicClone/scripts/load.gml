@@ -1,9 +1,4 @@
-sprite_change_offset("idle", 0, 0);
-sprite_change_offset("run", 0, 0);
-sprite_change_offset("taunt", 72, 94);
-sprite_change_offset("wait", 72, 94);
-sprite_change_offset("ledge", 72, 94);
-sprite_change_offset("turn", 72, 94);
+sprite_change_offset("puff", 16, 16);
 null_sprite = asset_get("empty_sprite");
 
 //================================================================
