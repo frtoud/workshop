@@ -1,10 +1,12 @@
 
+#macro IMPOSSIBLY_LONG_TIME 999999999999999999999999999999999999999999999
+
 //========================================================================
 // initialization
 if (!msb_initialized)
 {
-    //find existing article...
-    with asset_get("obj_article3") if (num == "milestones_bot_buddy")
+    //find existing object...
+    with asset_get("hit_fx_obj") if ("milestones_bot_buddy" in self)
     {
         other.msb_data = self; break;
     }
@@ -12,8 +14,9 @@ if (!msb_initialized)
     //...else create one
     if (msb_data == noone)
     {
-        with (owner) other.msb_data = instance_create(0, 0, "obj_article3");
-        msb_data.num = "milestones_bot_buddy";
+        with (owner) other.msb_data = spawn_hit_fx(0, 0, 0);
+        msb_data.milestones_bot_buddy = true;
+        msb_data.player = 0;
         msb_data.persistent = true;
         msb_data.visible = false;
         
@@ -26,6 +29,12 @@ if (!msb_initialized)
     
     msb_initialized = true;
 }
+
+//making data last "forever"
+msb_data.pause = IMPOSSIBLY_LONG_TIME;
+msb_data.hit_length = IMPOSSIBLY_LONG_TIME;
+msb_data.pause_timer = 0;
+msb_data.step_timer = 0;
 
 //========================================================================
 // death tracking
