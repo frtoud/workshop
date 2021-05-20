@@ -46,7 +46,7 @@ with (oPlayer)
                 || state == PS_ABYSS_DROPLET || state == PS_ABYSS_MORPH)
     
     // if any Adam uses USTRONG, milestones bar retracts
-    if (url == other.msb_adam_url) &&
+    if ("url" in self && url == other.msb_adam_url) &&
        (state == PS_ATTACK_GROUND && attack == AT_USTRONG)
     {
         milestones_strong_override = true;
