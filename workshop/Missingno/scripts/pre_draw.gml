@@ -7,17 +7,18 @@ copy_params(self, msg_anim_backup, msg_anim_backup);
 
 //=============================================
 //xorshift algorithm
-
-var UINT_MAX = power(2,32) - 1;
-with (msg_unsafe_random)
+if (!msg_unsafe_paused)
 {
+    var UINT_MAX = power(2,32) - 1;
+    var rng = msg_unsafe_random;
+
     rng = (rng ^(rng << 13)) % UINT_MAX;
     rng = (rng ^(rng >> 17)) % UINT_MAX;
     rng = (rng ^(rng << 5 )) % UINT_MAX;
+
+    msg_unsafe_random = rng;
 }
 
-draw_debug_text(floor(x-20), floor(y+20)," int: "+string(msg_unsafe_random.intensity)
-                                        +" frq: "+string(msg_unsafe_random.frequency) );
 //=============================================
 // Reroll Missingno effects
 user_event(0);
@@ -70,13 +71,13 @@ manual_draw(true);
 {
     var scale = 1 + small_sprites;
     var skips_draw = false;
-    if (msg_unsafe_effects.vsync.timer > 0)
+    if (msg_unsafe_effects.bad_vsync.timer > 0)
     {
         var spr_w = sprite_get_width(sprite_index);
         var spr_h = sprite_get_height(sprite_index);
-        var spr_cliptop = spr_h - msg_unsafe_effects.vsync.cliptop;
-        var spr_clipbot = spr_h - msg_unsafe_effects.vsync.clipbot;
-        var vsync_offset = msg_unsafe_effects.vsync.offset;
+        var spr_cliptop = spr_h - msg_unsafe_effects.bad_vsync.cliptop;
+        var spr_clipbot = spr_h - msg_unsafe_effects.bad_vsync.clipbot;
+        var vsync_offset = msg_unsafe_effects.bad_vsync.horz;
         
         if (main_draw) shader_start();
         var pos_x = x - scale*sprite_xoffset + draw_x;

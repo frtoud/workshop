@@ -106,16 +106,51 @@ no_sprite = asset_get("empty_sprite");
 //=========================================================
 // NOTE: anything in here derives from inherently client-side data
 //       instant desync if used anywhere near gameplay stuff 
-msg_unsafe_random = 
-{
-    rng:current_time,
-    intensity:1, //scale of 0 to 16; higher value = bigger effects
-    frequency:1  //scale of 0 to 16; higher value = more effects
-}
+msg_unsafe_random = current_time;
+msg_unsafe_paused = false;
+
+//missingno's Random is constant & dependent on individual frequency
+//case 1: Missingno being unstable at higher damage
+// - floor frequency/intensity of certain effects raised
+//case 2: Missingno shaketrail while walking
+// - specific state that induces frequency of an effect
+//enemy randoms are temporary & decided by move interactions
+//case 1:postgrab debuff
+// - missingno starts effect timer & increases frequency of effect
+
+//holds the various effects to handle
 msg_unsafe_effects = 
 {
-    shudder:{ timer:0 },
-    vsync:{ timer:0, cliptop:0, clipbot:0, offset:0 }
+    shudder:         //type: PARAMETER
+    {
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0,     //time of effect duration
+        
+        horz_max:8,  //strengths of effect
+        vert_max:8,
+        horz:0,
+        vert:0
+    },
+    bad_vsync:       //type: REDRAW
+    {
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0,     //time of effect duration
+        
+        cliptop:0, 
+        clipbot:0, 
+        horz_max:8, //strength of middle segment's displacement
+        horz:0
+    },
+    bad_axis:        //type: REDRAW
+    {
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0      //time to stay in this same position
+    },
+    bad_crop:        //type: REDRAW
+    {
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0      //time to stay in this same position
+    }
 }
 msg_anim_backup = 
 {

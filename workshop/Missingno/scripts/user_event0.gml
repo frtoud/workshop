@@ -2,9 +2,9 @@
 //aka. unsafe_animation.gml
 if ("msg_unsafe_random" not in self) exit;
 
-var RNG = msg_unsafe_random.rng;
-var INT = msg_unsafe_random.intensity;
-var FRQ = msg_unsafe_random.frequency;
+var RNG = msg_unsafe_random;
+var INT = 0;
+var FRQ = 0;
 
 
 //================================================================
@@ -20,29 +20,25 @@ var FRQ = msg_unsafe_random.frequency;
 with (msg_unsafe_effects)
 {
 //===========================================================
-
-    if (shudder.timer > 0)
+// SHUDDER
+    if (shudder.freq > GET_RNG(RNG, 0, 0x3F))
     {
-        shudder.timer--;
-        other.draw_x += INT/16.0 *  ((RNG & 0x0F) - 0x08);
-        other.draw_y += INT/16.0 * (((RNG >> 0x0F) & 0x0F) - 0x08);
-    }
-    else if ((RNG & 0x3F) < FRQ)
-    {
-        shudder.timer = (((RNG >> 4) & 0x03) + 1);
+        other.draw_x += shudder.horz_max *  ((RNG & 0x0F) - 0x08);
+        other.draw_y += shudder.vert_max * (((RNG >> 0x0F) & 0x0F) - 0x08);
     }
 //===========================================================
-    if (vsync.timer > 0)
+// BAD VSYNC
+    if (bad_vsync.timer > 0)
     {
-        vsync.timer--;
-        var hmax = sprite_get_height(other.sprite_index);
-        vsync.clipbot = GET_RNG(RNG, 8, 0xFF) * 1.0/(0xFF) * hmax;
-        vsync.cliptop = vsync.clipbot + GET_RNG(RNG, 0, 0x0F);
-        vsync.offset = INT/16 * (((RNG >> 0x0F) & 0x0F) - 0x08);
+        bad_vsync.timer--;
+        var height_max = sprite_get_height(other.sprite_index);
+        bad_vsync.clipbot = GET_RNG(RNG, 8, 0xFF) * 1.0/(0xFF) * height_max;
+        bad_vsync.cliptop = bad_vsync.clipbot + GET_RNG(RNG, 0, 0x0F);
+        bad_vsync.horz = bad_vsync.horz_max * (((RNG >> 0x0F) & 0x0F) - 0x08);
     }
-    else if (GET_RNG(RNG, 4, 0x3F) < FRQ)
+    else if (bad_vsync.freq > GET_RNG(RNG, 4, 0x3F))
     {
-        vsync.timer = 2;
+        bad_vsync.timer = 2;
     }
 //===========================================================
 }
