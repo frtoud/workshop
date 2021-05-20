@@ -65,6 +65,9 @@ msb_pulse_kill = false;
 msb_pulse_timer = 0;
 msb_pulse_timer_max = 60;
 
+//depth fix
+depth = owner.depth;
+
 //================================================================
 //special variables
 msb_adam_url = "2475052776";
