@@ -17,6 +17,8 @@ if (!msg_unsafe_paused)
     rng = (rng ^(rng << 5 )) % UINT_MAX;
 
     msg_unsafe_random = rng;
+    with (oPlayer) if (msg_unsafe_handler_id == other)
+    { msg_unsafe_random = rng; }
 }
 
 //=============================================

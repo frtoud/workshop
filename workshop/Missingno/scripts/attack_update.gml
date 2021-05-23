@@ -3,21 +3,6 @@ if (attack == AT_NSPECIAL || attack == AT_FSPECIAL || attack == AT_DSPECIAL || a
     trigger_b_reverse();
 }
 
-//===============================
-//temp. RNG control
-if (window == 1 && window_timer == 1)
-{
-    if (attack == AT_JAB) 
-       msg_unsafe_effects.shudder.freq = (msg_unsafe_effects.shudder.freq+1) & 0xF
-    if (attack == AT_DTILT) 
-       msg_unsafe_effects.bad_vsync.freq = (msg_unsafe_effects.bad_vsync.freq+1) & 0xF
-}
-
-msg_unsafe_paused = (attack == AT_TAUNT);
-
-//===============================
-
-
 if (attack == AT_NSPECIAL){
     if (window == 3){
         if (special_pressed){
