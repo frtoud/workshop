@@ -7,7 +7,7 @@ copy_params(self, msg_anim_backup, msg_anim_backup);
 
 //=============================================
 //xorshift algorithm
-if (!msg_unsafe_paused)
+if (msg_unsafe_paused_timer <= 0)
 {
     var UINT_MAX = power(2,32) - 1;
     var rng = msg_unsafe_random;
@@ -20,6 +20,7 @@ if (!msg_unsafe_paused)
     with (oPlayer) if (msg_unsafe_handler_id == other)
     { msg_unsafe_random = rng; }
 }
+
 
 //=============================================
 // Reroll Missingno effects

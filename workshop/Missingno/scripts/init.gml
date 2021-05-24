@@ -112,7 +112,7 @@ gfx_glitch_death = false;
 //=========================================================
 // NOTE: anything in here derives from inherently client-side data
 //       instant desync if used anywhere near gameplay stuff 
-msg_unsafe_paused = false;
+msg_unsafe_paused_timer = 0;
 
 //missingno's Random is constant & dependent on individual frequency
 //case 1: Missingno being unstable at higher damage
@@ -128,7 +128,7 @@ with (oPlayer) if ("msg_unsafe_effects" not in self)
 {
     //random value calculated by handler missingno.
     msg_unsafe_random = current_time;
-    msg_unsafe_handler_id = (url == other.url) ? self : other; //missingnos handle themselves
+    msg_unsafe_handler_id = other;
 
     //holds the various effects to handle
     msg_unsafe_effects = 
