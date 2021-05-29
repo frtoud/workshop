@@ -25,6 +25,12 @@ if (!msb_initialized)
         {
             msb_data.player_milestones[p] = { kills:0, deaths:0 }
         }
+    
+    if (max(msb_data.player_milestones[player].kills, 
+            msb_data.player_milestones[player].deaths) > 99)
+    {
+        msb_reward_active = true;
+        msb_reward_playsound = false;
     }
     
     msb_initialized = true;
@@ -133,6 +139,7 @@ if (data[player].kills != msb_kills)
     msb_deaths = data[player].deaths;
 
     var highest_stat = max(msb_kills, msb_deaths, 1);
+    if (highest_stat > 99) { msb_reward_active = true; }
     //halfway to maximum at 9, maximum height at 99
     var highest_bar = msb_bar_max * 0.5 * min(log10(max(1, highest_stat + 1)), 2);
     var bar_ratio = (highest_bar/highest_stat);
@@ -163,3 +170,26 @@ if (death_target != msb_bar_deaths_height)
 
 //pulsing
 if (msb_pulse_timer > 0) msb_pulse_timer--;
+
+//bonus
+if (msb_reward_active)
+{
+    if (msb_reward_playsound)
+    {
+        msb_reward_playsound = false;
+        sound_play(asset_get("mfx_levelup"));
+    }
+    if (msb_twinkle.timer == 0)
+    {
+        msb_twinkle.posx = x + random_func(0, pet_w, true) - floor(pet_w/2);
+        msb_twinkle.posy = y - random_func(1, floor(pet_w/3), true);
+    }
+    msb_twinkle.timer = (msb_twinkle.timer + 1) % 9;
+    
+    idle_spr = gold_spr;
+    run_spr = gold_spr;
+    turn_spr = gold_spr;
+    ledge_spr = gold_spr;
+    wait_spr = gold_spr;
+    taunt_spr = gold_spr;
+}

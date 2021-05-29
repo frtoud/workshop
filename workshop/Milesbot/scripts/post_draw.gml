@@ -17,6 +17,12 @@ if (msb_pulse_timer > 0)
     draw_sprite_ext(spr, 0, x, y, 1, 1, 0, c_white, alpha);
 }
 
+//LINE
+if (!msb_reward_active)
+{
+    draw_sprite(bar_line_spr, 0, x, y - BAR_OFFSET - msb_bar_max);
+}
+
 //==============================================================================
 //KILLS
 var kills_x = -17;
@@ -33,6 +39,13 @@ draw_sprite_part(bar_red_spr, 0, 0, 0, BAR_WIDTH, msb_bar_deaths_height,
                  
 draw_vertical_number(text_red, text_blue, x + deaths_x + TEXT_OFFSET,
                      y - BAR_OFFSET - TEXT_HEIGHT, msb_deaths, msb_bar_deaths_height);
+
+//==============================================================================
+//TWINKLES
+if (msb_reward_active)
+{
+    draw_sprite(twinkle_spr, msb_twinkle.timer/3, msb_twinkle.posx, msb_twinkle.posy);
+}
 
 //TEXTS
 //==============================================================================

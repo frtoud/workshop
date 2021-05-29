@@ -1,7 +1,10 @@
 sprite_change_offset("idle", 23, 16);
+sprite_change_offset("gold", 23, 16);
 sprite_change_offset("pulse_red", 23, 16);
 sprite_change_offset("pulse_green", 23, 16);
 
+sprite_change_offset("vfx_gold_twinkle", 7, 7);
+sprite_change_offset("milestone_line", 18, -2);
 //================================================================
 //default variables
 type = 1; //flying
@@ -11,6 +14,8 @@ run_speed = 0;		// Default: 3
 max_run_dist = 160;	// Default: 200 (The buddy will follow the player once their distance exceeds this value)
 
 idle_spr = sprite_get("idle");
+gold_spr = sprite_get("gold");
+twinkle_spr = sprite_get("vfx_gold_twinkle");
 run_spr = idle_spr;
 turn_spr = idle_spr;
 ledge_spr = idle_spr;
@@ -43,6 +48,7 @@ msb_bar_update_speed = 0.2;
 
 bar_green_spr = sprite_get("milebar_g");
 bar_red_spr = sprite_get("milebar_r");
+bar_line_spr = sprite_get("milestone_line");
 
 text_red = sprite_get("text_red");
 text_blue = sprite_get("text_blue");
@@ -71,6 +77,10 @@ depth = owner.depth;
 //================================================================
 //special variables
 msb_adam_url = "2475052776";
+
+msb_reward_active = false;
+msb_reward_playsound = true;
+msb_twinkle = { timer: 0, posx: 0, posy: 0 };
 
 msb_initialized = false;
 msb_data = noone;
