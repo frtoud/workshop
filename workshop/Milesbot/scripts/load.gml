@@ -5,6 +5,7 @@ sprite_change_offset("pulse_green", 23, 16);
 
 sprite_change_offset("vfx_gold_twinkle", 7, 7);
 sprite_change_offset("milestone_line", 18, -2);
+sprite_change_offset("reward", 0, 172);
 //================================================================
 //default variables
 type = 1; //flying
@@ -81,6 +82,11 @@ msb_adam_url = "2475052776";
 msb_reward_active = false;
 msb_reward_playsound = true;
 msb_twinkle = { timer: 0, posx: 0, posy: 0 };
+
+msb_reward_earned = false;
+msb_reward_timer = 0;
+msb_reward_string = "";
+reward_spr = sprite_get("reward");
 
 msb_initialized = false;
 msb_data = noone;

@@ -47,6 +47,18 @@ if (msb_reward_active)
     draw_sprite(twinkle_spr, msb_twinkle.timer/3, msb_twinkle.posx, msb_twinkle.posy);
 }
 
+//BONUS
+if (msb_reward_timer > 0)
+{
+    draw_sprite_part(reward_spr, 0, 0, 0, min(msb_reward_timer*25, 400), 172, x + 20, y - 200)
+    
+    if (msb_reward_timer > 15)
+    {
+        draw_debug_text(round(x + 195), round(y - 90), "https://steamcommunity.com/");
+        draw_debug_text(round(x + 140), round(y - 72), "sharedfiles/filedetails/?id=" + msb_reward_string);
+    }
+}
+
 //TEXTS
 //==============================================================================
 #define draw_vertical_number(font_spr, blue_font_spr, xpos, ypos, value, height)

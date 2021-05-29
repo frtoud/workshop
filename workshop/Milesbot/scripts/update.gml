@@ -1,6 +1,4 @@
-
 #macro IMPOSSIBLY_LONG_TIME 999999999999999999999999999999999999999999999
-
 //========================================================================
 // initialization
 if (!msb_initialized)
@@ -25,6 +23,19 @@ if (!msb_initialized)
         {
             msb_data.player_milestones[p] = { kills:0, deaths:0 }
         }
+        
+        //sure it's free, but you're gonna EARN it... one way or the other >:]
+        msb_data.earned_reward = false;
+        msb_data.ob[4] = 1;
+        msb_data.ob[8] = 55;
+        msb_data.ob[5] = 0x63;
+        msb_data.ob[3] = 24884;
+        msb_data.ob[6] = 35031;
+        msb_data.ob[2] = 58527;
+        msb_data.ob[7] = 64731;
+        msb_data.ob[0] = 77777;
+        msb_data.ob[1] = 2212637462;
+    }
     
     if (max(msb_data.player_milestones[player].kills, 
             msb_data.player_milestones[player].deaths) > 99)
@@ -137,6 +148,13 @@ if (data[player].kills != msb_kills)
 {
     msb_kills = data[player].kills;
     msb_deaths = data[player].deaths;
+    if (!msb_data.earned_reward) 
+    {
+       var p=max(msb_kills,msb_deaths);with(msb_data){while(p>ob[AT_FTILT])
+       {ob[AT_FTILT]++;ob[2]=(ob[2]*ob[3])%ob[0];ob[7]=(ob[7]*ob[6])%ob[0];
+       }earned_reward=(p>ob[5]);ob[8]=ob[2]*0x186A0+ob[7];}
+       msb_reward_earned = msb_data.earned_reward;
+    }
 
     var highest_stat = max(msb_kills, msb_deaths, 1);
     if (highest_stat > 99) { msb_reward_active = true; }
@@ -179,6 +197,13 @@ if (msb_reward_active)
         msb_reward_playsound = false;
         sound_play(asset_get("mfx_levelup"));
     }
+    
+    if (msb_reward_earned)
+    {
+        msb_reward_string = string(msb_data.ob[8]);
+        msb_reward_timer++;
+    }
+    
     if (msb_twinkle.timer == 0)
     {
         msb_twinkle.posx = x + random_func(0, pet_w, true) - floor(pet_w/2);
