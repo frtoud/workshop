@@ -45,7 +45,14 @@ switch (state)
         }
         else
         {
+            var max_dist = 80;
             var distance_walked = x - msg_walk_start_x;
+
+            msg_unsafe_effects.bad_vsync.freq = abs(distance_walked/5);
+            msg_unsafe_effects.bad_vsync.horz_max = abs(distance_walked/10);
+
+            distance_walked = clamp(distance_walked, -max_dist, max_dist);
+            distance_walked = random_func(0, distance_walked, true);
             distance_walked = random_func(0, distance_walked, true);
             draw_x = -floor(distance_walked/2);
             
@@ -53,8 +60,6 @@ switch (state)
             msg_unsafe_effects.shudder.horz_max = abs(distance_walked);
             msg_unsafe_effects.shudder.vert_max = 0;
             
-            msg_unsafe_effects.bad_vsync.freq = abs(distance_walked/5);
-            msg_unsafe_effects.bad_vsync.horz_max = abs(distance_walked/10);
         }
     }
 //==================================================================
