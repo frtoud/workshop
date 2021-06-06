@@ -99,6 +99,21 @@ bubble_x = 0;
 bubble_y = 8;
 
 //=========================================================
+// Balance variables
+
+msg_fspecial_bubble_lockout = 8;
+msg_fspecial_bubble_random_hsp_boost = 5;
+
+
+//=========================================================
+// Attack variables
+at_prev_dir_buffer = 0;
+at_bspecial_last_move = { target:self, move:AT_TAUNT, small_sprites:0 };
+
+msg_fspecial_charge = 0;
+msg_fspecial_ghost_arrow_active = false;
+
+//=========================================================
 // Visual effects
 glitch_bg_spr = sprite_get("glitch_bg");
 no_sprite = asset_get("empty_sprite");
@@ -176,7 +191,3 @@ with (oPlayer) if ("msg_unsafe_effects" not in self)
     }
 }
 //=========================================================
-
-//BSPECIAL shenans
-at_prev_dir_buffer = 0;
-at_bspecial_last_move = { target:self, move:AT_TAUNT, small_sprites:0 };

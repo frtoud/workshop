@@ -1,6 +1,60 @@
 //B - Reversals
-if (attack == AT_NSPECIAL || attack == AT_FSPECIAL || attack == AT_DSPECIAL || attack == AT_USPECIAL){
+if (attack == AT_NSPECIAL || attack == AT_FSPECIAL || attack == AT_DSPECIAL || attack == AT_USPECIAL)
+{
     trigger_b_reverse();
+}
+
+switch (attack)
+{
+//=============================================================
+    case AT_FSPECIAL: // Charge & Water Gun
+    {
+        if (window == 2)
+        {
+            if (window_timer == get_window_value(AT_FSPECIAL, 2, AG_WINDOW_LENGTH) - 1)
+            && (msg_fspecial_charge < 2)
+            {
+                msg_fspecial_charge++;
+                sound_play(asset_get("sfx_may_arc_cointoss"));
+            }
+            else if (is_special_pressed(DIR_ANY))
+            {
+                if (msg_fspecial_charge == 0)
+                {
+                    window = 3;
+                    window_timer = 0;
+                }
+                else if (msg_fspecial_charge == 1)
+                {
+                    set_attack(AT_FSPECIAL_2);
+                }
+                else
+                {
+                    set_attack(AT_FSPECIAL_2); //AT_FSPECIAL_AIR
+                }
+                msg_fspecial_charge = 0;
+                state_timer = 0;
+            }
+        }
+    } break;
+//=============================================================
+    case AT_FSPECIAL_2: // Bubblebeam
+    {
+        if (window == 2)
+        {
+            var hitbox = create_hitbox(AT_FSPECIAL_2, 1, x+(spr_dir*20), y-30);
+            hitbox.hsp += spr_dir * msg_fspecial_bubble_random_hsp_boost 
+                                  * (0.5 - random_func(0, 100, true)/ 100.0);
+            hitbox.image_index = 2 * random_func(1, 6, true);
+        }
+    } break;
+//=============================================================
+    case AT_FSPECIAL_AIR: // Hydro Pump
+    {
+        
+    } break;
+//=============================================================
+    default: break;
 }
 
 if (attack == AT_NSPECIAL){
@@ -10,17 +64,6 @@ if (attack == AT_NSPECIAL){
             window_timer = 0;
         }
     }
-}
-
-if (attack == AT_FSPECIAL){
-    if (window == 2){
-        if (special_pressed){
-            window = 3;
-            window_timer = 0;
-            destroy_hitboxes();
-        }
-    }
-    can_fast_fall = false;
 }
 
 if (attack == AT_USPECIAL){
@@ -62,7 +105,7 @@ if (attack == AT_USPECIAL){
         window_timer = 0;
     }
 }
-
+/*
 if (attack == AT_DSPECIAL && window_timer == 12 && window == 2 && false) {
     //set_player_damage(player, -500);
     var target = noone;
@@ -81,3 +124,4 @@ if (attack == AT_DSPECIAL && window_timer == 12 && window == 2 && false) {
     
     
 }
+*/
