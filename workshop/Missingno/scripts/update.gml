@@ -34,6 +34,25 @@ if (target != noone) && !(target_is_missingno && target.attack == AT_DSPECIAL_2)
     at_bspecial_last_move.move = target.attack;
     at_bspecial_last_move.small_sprites = target.small_sprites;
 }
+//==============================================================
+// If this was true (from previous frame) and you were sent to hitstun, lose charge
+if (msg_fspecial_is_charging)
+{
+    if (state_cat == SC_HITSTUN)
+    { msg_fspecial_charge = 0; }
+    else if (state == PS_WALL_JUMP) 
+    {
+        msg_fspecial_ghost_arrow_active = true;
+        
+        msg_unsafe_effects.bad_vsync.timer += 30;
+        msg_unsafe_effects.bad_vsync.horz_max = 60;
+    }
+}
+msg_fspecial_is_charging = (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND)
+                            && ((attack == AT_FSPECIAL) && window < 3);
+
+
+//==============================================================
 
 if (gfx_glitch_death)
 {

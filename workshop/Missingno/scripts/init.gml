@@ -111,7 +111,10 @@ at_prev_dir_buffer = 0;
 at_bspecial_last_move = { target:self, move:AT_TAUNT, small_sprites:0 };
 
 msg_fspecial_charge = 0;
+msg_fspecial_is_charging = false;
 msg_fspecial_ghost_arrow_active = false;
+msg_fspecial_ghost_arrow_min_speed = 8;
+msg_fspecial_ghost_arrow_target_distance = 100;
 
 //=========================================================
 // Visual effects

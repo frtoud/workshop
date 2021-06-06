@@ -1,6 +1,6 @@
 set_attack_value(AT_FSPECIAL, AG_CATEGORY, 2);
 set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get("fspecial"));
-set_attack_value(AT_FSPECIAL, AG_NUM_WINDOWS, 5);
+set_attack_value(AT_FSPECIAL, AG_NUM_WINDOWS, 6);
 set_attack_value(AT_FSPECIAL, AG_HAS_LANDING_LAG, 4);
 set_attack_value(AT_FSPECIAL, AG_AIR_SPRITE, sprite_get("fspecial"));
 set_attack_value(AT_FSPECIAL, AG_HURTBOX_SPRITE, sprite_get("fspecial_hurt"));
@@ -28,12 +28,20 @@ set_window_value(AT_FSPECIAL, 4, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_FSPECIAL, 4, AG_WINDOW_ANIM_FRAME_START, 2);
 set_window_value(AT_FSPECIAL, 4, AG_WINDOW_HAS_SFX, 1);
 set_window_value(AT_FSPECIAL, 4, AG_WINDOW_SFX, asset_get("sfx_watergun_fire"));
+set_window_value(AT_FSPECIAL, 4, AG_WINDOW_GOTO, 6);
+
+//ghost arrow glitch window
+set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 1);
+set_window_value(AT_FSPECIAL, 5, AG_WINDOW_LENGTH, 5);
+set_window_value(AT_FSPECIAL, 5, AG_WINDOW_ANIM_FRAMES, 1);
+set_window_value(AT_FSPECIAL, 5, AG_WINDOW_ANIM_FRAME_START, 1);
+set_window_value(AT_FSPECIAL, 5, AG_WINDOW_GOTO, 6);
 
 //endlag
-set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 1);
-set_window_value(AT_FSPECIAL, 5, AG_WINDOW_LENGTH, 12);
-set_window_value(AT_FSPECIAL, 5, AG_WINDOW_ANIM_FRAMES, 2);
-set_window_value(AT_FSPECIAL, 5, AG_WINDOW_ANIM_FRAME_START, 3);
+set_window_value(AT_FSPECIAL, 6, AG_WINDOW_TYPE, 1);
+set_window_value(AT_FSPECIAL, 6, AG_WINDOW_LENGTH, 12);
+set_window_value(AT_FSPECIAL, 6, AG_WINDOW_ANIM_FRAMES, 2);
+set_window_value(AT_FSPECIAL, 6, AG_WINDOW_ANIM_FRAME_START, 3);
 
 set_num_hitboxes(AT_FSPECIAL, 1);
 

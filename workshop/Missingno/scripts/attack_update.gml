@@ -11,7 +11,15 @@ switch (attack)
     {
         if (window == 2)
         {
-            if (window_timer == get_window_value(AT_FSPECIAL, 2, AG_WINDOW_LENGTH) - 1)
+            can_wall_jump = true;
+            can_shield = true;
+            if (msg_fspecial_ghost_arrow_active)
+            {
+                window = 5;
+                window_timer = 0;
+                msg_fspecial_ghost_arrow_active = false;
+            }
+            else if (window_timer == get_window_value(AT_FSPECIAL, 2, AG_WINDOW_LENGTH) - 1)
             && (msg_fspecial_charge < 2)
             {
                 msg_fspecial_charge++;
@@ -34,6 +42,43 @@ switch (attack)
                 }
                 msg_fspecial_charge = 0;
                 state_timer = 0;
+            }
+        }
+        else if (window == 5 && window_timer == get_window_value(AT_FSPECIAL, 5, AG_WINDOW_LENGTH) - 1)
+        {
+            //try to find a projectile to steal
+            var closest_dist = -1;
+            var found_proj = noone;
+            
+            with (pHitBox) if (type == 2) && (hsp != 0 || vsp != 0)
+            && (closest_dist < 0 || closest_dist > distance_to_point(other.x, other.y))
+            {
+                found_proj = self;
+            }
+            
+            if (found_proj != noone)
+            {
+                //steal it: cannot hit me anymore
+                found_proj.can_hit_self = true;
+                found_proj.can_hit[found_proj.player_id.player] = true;
+                found_proj.can_hit[player] = false;
+                
+                // and throw it (sort of like water gun)
+                found_proj.x = x + spr_dir*get_hitbox_value(AT_FSPECIAL, 1, HG_HITBOX_X);
+                found_proj.y = y + get_hitbox_value(AT_FSPECIAL, 1, HG_HITBOX_Y);
+                
+                found_proj.hsp = spr_dir * max(msg_fspecial_ghost_arrow_min_speed, 
+                                 point_distance(0, 0, found_proj.hsp, found_proj.vsp));
+                found_proj.vsp = -found_proj.grav * 
+                                 (1.0 * msg_fspecial_ghost_arrow_target_distance/found_proj.hsp);
+                
+                sound_play(asset_get("sfx_watergun_fire"));
+
+                set_window_value(AT_FSPECIAL, 5, AG_WINDOW_GOTO, 6);
+            }
+            else //return to water gun
+            {
+                set_window_value(AT_FSPECIAL, 5, AG_WINDOW_GOTO, 4);
             }
         }
     } break;
