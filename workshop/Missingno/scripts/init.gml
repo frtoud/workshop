@@ -110,6 +110,9 @@ msg_fspecial_bubble_random_hsp_boost = 5;
 at_prev_dir_buffer = 0;
 at_bspecial_last_move = { target:self, move:AT_TAUNT, small_sprites:0 };
 
+msg_dair_earthquake_counter = 0;
+msg_dair_earthquake_max = 30;
+
 msg_fspecial_charge = 0;
 msg_fspecial_is_charging = false;
 msg_fspecial_ghost_arrow_active = false;

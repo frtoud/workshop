@@ -7,6 +7,44 @@ if (attack == AT_NSPECIAL || attack == AT_FSPECIAL || attack == AT_DSPECIAL || a
 switch (attack)
 {
 //=============================================================
+    case AT_DAIR:
+    {
+        can_move = window == 1;
+        if (window == 1)
+        {
+            msg_dair_earthquake_counter = 0;
+        }
+        else if (window == 3 && window_timer == 1)
+        {
+            sound_play(landing_lag_sound);
+            //spawn_dust_fx(x, y)
+            
+            //landed: try finding an edge
+            var depth_check = 5;
+            var length_check = 12;
+            //landed on leftmost side?
+            var left_test = (noone == collision_line(x-length_check, y, x-length_check, y+depth_check, 
+                                      asset_get("par_block"), true, true))
+                         && (noone == collision_line(x-length_check, y, x-length_check, y+depth_check, 
+                                      asset_get("par_jumpthrough"), true, true));
+                                          
+            //landed on rightmost side?
+            var right_test = (noone == collision_line(x+length_check, y, x+length_check, y+depth_check, 
+                                       asset_get("par_block"), true, true))
+                          && (noone == collision_line(x+length_check, y, x+length_check, y+depth_check, 
+                                       asset_get("par_jumpthrough"), true, true));
+                                       
+            if (msg_dair_earthquake_counter < msg_dair_earthquake_max)
+            && (left_test xor right_test)
+            {
+                window = 2;
+                window_timer = 0;
+                msg_dair_earthquake_counter++;
+                y -= 8;
+            }
+        }
+    } break;
+//=============================================================
     case AT_FSPECIAL: // Charge & Water Gun
     {
         if (window == 2)
