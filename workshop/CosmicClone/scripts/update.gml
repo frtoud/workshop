@@ -81,6 +81,7 @@ else if (clone_state == CLONES_WAITING)
             hbx.length = 5; // HG_LIFETIME
             hbx.sprite_index = null_sprite;
             hbx.mask_index = null_sprite;
+            hbx.visible = true; //< controls mask visibility. dan pls
             hbx.image_xscale = 1;
             hbx.image_yscale = 1;
             
