@@ -6,6 +6,12 @@ if (attack == AT_FSPECIAL && (spr_dir*at_prev_dir_buffer < 0))
     clear_button_buffer(PC_SPECIAL_PRESSED);
 }
 
+//temp. remap of inputs, attack kept separate
+if (attack == AT_NSPECIAL)
+{
+    attack = AT_NTHROW;
+}
+
 
 if (attack == AT_DSPECIAL_2)
 {

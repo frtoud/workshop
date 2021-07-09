@@ -137,17 +137,13 @@ switch (attack)
         
     } break;
 //=============================================================
+    case AT_NTHROW:
+    {
+        
+    }
     default: break;
 }
 
-if (attack == AT_NSPECIAL){
-    if (window == 3){
-        if (special_pressed){
-            window = 1;
-            window_timer = 0;
-        }
-    }
-}
 
 if (attack == AT_USPECIAL){
     if (window == 1 && window_timer == 1){

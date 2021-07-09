@@ -133,7 +133,12 @@ gfx_glitch_death = false;
 //=========================================================
 // NOTE: anything in here derives from inherently client-side data
 //       instant desync if used anywhere near gameplay stuff 
+
+//keep in sync with other_init, I need this block on everyone *including* myself!
 msg_unsafe_paused_timer = 0;
+//random value calculated by handler missingno.
+msg_unsafe_random = current_time;
+msg_unsafe_handler_id = self;
 
 //missingno's Random is constant & dependent on individual frequency
 //case 1: Missingno being unstable at higher damage
@@ -144,56 +149,53 @@ msg_unsafe_paused_timer = 0;
 //case 1:postgrab debuff
 // - missingno starts effect timer & increases frequency of effect
 
-//screw other_init, I need this block on everyone *including* myself!
-with (oPlayer) if ("msg_unsafe_effects" not in self)
+//holds the various effects to handle
+msg_unsafe_effects = 
 {
-    //random value calculated by handler missingno.
-    msg_unsafe_random = current_time;
-    msg_unsafe_handler_id = other;
+    master_effect_timer: 0, //resets all frequencies to zero
 
-    //holds the various effects to handle
-    msg_unsafe_effects = 
+//===========================================================
+    shudder:         //type: PARAMETER
     {
-        master_effect_timer: 0, //resets all frequencies to zero
+        freq:0,      //chance per frame of activating, from 0 to 16
+        
+        horz_max:8,  //strengths of effect
+        vert_max:8,
+        horz:0,
+        vert:0
+    },
 
-        shudder:         //type: PARAMETER
-        {
-            freq:0,      //chance per frame of activating, from 0 to 16
-            
-            horz_max:8,  //strengths of effect
-            vert_max:8,
-            horz:0,
-            vert:0
-        },
-
-        bad_vsync:       //type: REDRAW
-        {
-            freq:0,      //chance per frame of activating, from 0 to 16
-            timer:0,     //time of effect duration
-            
-            cliptop:0, 
-            clipbot:0, 
-            horz_max:8,  //strength of middle segment's displacement
-            horz:0
-        },
-        bad_axis:        //type: REDRAW
-        {
-            freq:0,      //chance per frame of activating, from 0 to 16
-            timer:0      //time of effect duration
-        },
-        bad_crop:        //type: REDRAW
-        {
-            freq:0,      //chance per frame of activating, from 0 to 16
-            timer:0      //time of effect duration
-        }
-    }
-
-    //ability to restore draw parameters
-    msg_anim_backup = 
+//===========================================================
+    bad_vsync:       //type: REDRAW
     {
-        small_sprites:0,
-        sprite_index:0, image_index:0,
-        spr_angle:0, draw_x:0, draw_y:0
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0,     //time of effect duration
+        
+        cliptop:0, 
+        clipbot:0, 
+        horz_max:8,  //strength of middle segment's displacement
+        horz:0
+    },
+//===========================================================
+    bad_axis:        //type: REDRAW
+    {
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0      //time of effect duration
+    },
+//===========================================================
+    bad_crop:        //type: REDRAW
+    {
+        freq:0,      //chance per frame of activating, from 0 to 16
+        timer:0      //time of effect duration
     }
+//===========================================================
+}
+
+//ability to restore draw parameters
+msg_anim_backup = 
+{
+    small_sprites:0,
+    sprite_index:0, image_index:0,
+    spr_angle:0, draw_x:0, draw_y:0
 }
 //=========================================================
