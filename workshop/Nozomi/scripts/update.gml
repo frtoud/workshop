@@ -33,8 +33,6 @@ if (at_fspecial_on_ice_timer > 0)
 }
 prev_hsp = hsp;
 
-hurt_img = sprite_get("idle");
-
 //Extra landing hitbox for DAIR
 //==============================================================================
 if (state == PS_LANDING_LAG)
