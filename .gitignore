@@ -7,9 +7,7 @@
 /stages/*
 # Whitelist: those specific directories and their contents are tracked
 # Characters
-!/workshop/Nozomi
-!/workshop/Hypercam
-!/workshop/Missingno
+# !/workshop/PlaceholderMan
 # Buddies
 !/workshop/NiceBuddy
 !/workshop/CosmicClone
