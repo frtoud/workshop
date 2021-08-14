@@ -119,6 +119,8 @@ else if (clone_state == CLONES_WAITING)
         
         //clones start appearing soon
         clone_state = CLONES_RUNNING;
+
+        sound_play(sound_get("clone_appear"));
     }
 }
 else if (clone_state == CLONES_RUNNING)
