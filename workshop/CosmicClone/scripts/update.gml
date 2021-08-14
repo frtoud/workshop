@@ -81,7 +81,8 @@ else if (clone_state == CLONES_WAITING)
             hbx.length = 5; // HG_LIFETIME
             hbx.sprite_index = null_sprite;
             hbx.mask_index = null_sprite;
-            hbx.visible = true; //< controls mask visibility. dan pls
+            //hbx.visible = true; //< controls mask visibility. dan pls
+            hbx.uses_sprite_collision = false; //< controls mask visibility. dan pls
             hbx.image_xscale = 1;
             hbx.image_yscale = 1;
             
@@ -170,7 +171,7 @@ else if (clone_state == CLONES_RUNNING)
         clone_hbx.image_index = buffer_data.index;
         clone_hbx.true_image_index = buffer_data.index;
         clone_hbx.spr_dir = buffer_data.dir;
-        clone_hbx.image_xscale = clone_hit_scaling * spr_dir;
+        clone_hbx.image_xscale = clone_hit_scaling * clone_hbx.spr_dir;
         clone_hbx.image_yscale = clone_hit_scaling;
         
         if (clone_hbx.lockout_timer == 0 && clone_hbx.has_hit)
