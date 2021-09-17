@@ -40,3 +40,17 @@ cloud_anim_visible = false;
 cloud_should_start = false;
 cloud_should_stop = false;
 
+//puffs
+puff_sprite = sprite_get("puff");
+puff_anim_rate = 4;
+puff_anim_frames = 6;
+puff_spawn_rate = 2;
+
+puff_anim_length = puff_anim_rate * puff_anim_frames;
+puff_buffer_size = ceil(puff_anim_rate * puff_anim_frames / puff_spawn_rate);
+
+for (var i = (puff_buffer_size -1); i >= 0; i--)
+{
+    puff_buffer[i] = { x:0, y:0, t:-1 }
+}
+puff_buffer_pointer = 0;

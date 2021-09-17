@@ -218,4 +218,12 @@ if (cloud_anim_visible)
         cloud_anim_visible = false;
         cloud_anim_timer = 0;
     }
+    else if (cloud_anim_timer % puff_spawn_rate == 0)
+    {
+        //add puffs
+        puff_buffer[puff_buffer_pointer].x = x + random_func(3, 40, true) - 20;
+        puff_buffer[puff_buffer_pointer].y = y - random_func(4, 80, true);
+        puff_buffer[puff_buffer_pointer].t = get_gameplay_time();
+        puff_buffer_pointer = (puff_buffer_pointer + 1) % puff_buffer_size;
+    }
 }

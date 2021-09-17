@@ -2,7 +2,7 @@
 
 if !("clones_array" in self) exit; // let clones initialize first
 
-
+//cloud
 if (cloud_anim_visible)
 {
     var cloud_subimg = 0;
@@ -57,3 +57,16 @@ for (var i = 0; i < array_length(clones_array); i++)
     }
 }
 gpu_pop_state();
+
+
+//puffs
+var time = get_gameplay_time();
+for (var i = 0; i < puff_buffer_size; i++)
+{
+    var puff = puff_buffer[i];
+    var pufftimer = (time - puff.t)
+    if (pufftimer < puff_anim_length)
+    {
+        draw_sprite(puff_sprite, pufftimer/puff_anim_rate, puff.x, puff.y);
+    }
+}
