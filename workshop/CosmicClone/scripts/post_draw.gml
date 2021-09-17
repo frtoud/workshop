@@ -2,6 +2,28 @@
 
 if !("clones_array" in self) exit; // let clones initialize first
 
+
+if (cloud_anim_visible)
+{
+    var cloud_subimg = 0;
+    if (cloud_anim_timer < cloud_anim_intro)
+    {
+        cloud_subimg = floor(cloud_anim_timer / cloud_anim_rate);
+    }
+    else if (cloud_anim_timer < cloud_anim_ending)
+    {
+        cloud_subimg = floor((cloud_anim_intro + (cloud_anim_timer - cloud_anim_intro) % cloud_anim_loop_length) / cloud_anim_rate);
+    }
+    else
+    {
+        cloud_subimg = floor((cloud_anim_intro + cloud_anim_timer - cloud_anim_ending + cloud_anim_loop_length) / cloud_anim_rate);
+    }
+
+    draw_sprite_ext(cloud_sprite, cloud_subimg, x, y, 2, 2, 0, c_white, 1);
+}
+
+
+
 gpu_push_state();
 
 for (var i = 0; i < array_length(clones_array); i++)

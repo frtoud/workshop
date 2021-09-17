@@ -40,6 +40,7 @@ if ( (clone_state == CLONES_INIT) || ((clone_state != CLONES_READY) &&
     //Get ready for next life's clones
     clone_state = CLONES_READY;
     buffer_pointer = buffer_size - 1;
+    cloud_should_stop = true;
 }
 else if (clone_state == CLONES_READY)
 {
@@ -122,6 +123,7 @@ else if (clone_state == CLONES_WAITING)
         clone_state = CLONES_RUNNING;
 
         sound_play(sound_get("clone_appear"));
+        cloud_should_start = true;
     }
 }
 else if (clone_state == CLONES_RUNNING)
@@ -182,5 +184,38 @@ else if (clone_state == CLONES_RUNNING)
                 clone_hbx.can_hit[p] = false;
             }
         }
+    }
+}
+
+//triggers for cloud animation
+if (cloud_should_start)
+{
+    cloud_should_start = false;
+
+    if (cloud_anim_timer > cloud_anim_ending)
+    { 
+        cloud_anim_timer = 0;
+    }
+    cloud_anim_visible = true;
+}
+
+if (cloud_should_stop)
+{
+    cloud_should_stop = false;
+
+    if (cloud_anim_visible)
+    { 
+        cloud_anim_timer = cloud_anim_ending;
+    }
+}
+
+//animation
+if (cloud_anim_visible)
+{
+    cloud_anim_timer++;
+    if (cloud_anim_timer >= cloud_anim_timer_max)
+    {
+        cloud_anim_visible = false;
+        cloud_anim_timer = 0;
     }
 }
