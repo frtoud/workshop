@@ -67,6 +67,6 @@ for (var i = 0; i < puff_buffer_size; i++)
     var pufftimer = (time - puff.t)
     if (pufftimer < puff_anim_length)
     {
-        draw_sprite(puff_sprite, pufftimer/puff_anim_rate, puff.x, puff.y);
+        draw_sprite_ext(puff_sprite, pufftimer/puff_anim_rate, puff.x, puff.y, 2, 2, 0, c_white, 1);
     }
 }

@@ -1,5 +1,5 @@
-sprite_change_offset("puff", 16, 16);
-sprite_change_offset("cloud", 12, 32);
+sprite_change_offset("puff", 8, 8);
+sprite_change_offset("cloud", 18, 48);
 null_sprite = asset_get("empty_sprite");
 
 //================================================================
