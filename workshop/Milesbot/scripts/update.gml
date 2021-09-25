@@ -27,12 +27,12 @@ if (!msb_initialized)
         //sure it's free, but you're gonna EARN it... one way or the other >:]
         msb_data.earned_reward = false;
         msb_data.ob[4] = 1;
-        msb_data.ob[8] = 55;
+        msb_data.ob[8] = 0x55;
         msb_data.ob[5] = 0x63;
         msb_data.ob[3] = 24884;
         msb_data.ob[6] = 35031;
-        msb_data.ob[2] = 58527;
-        msb_data.ob[7] = 64731;
+        msb_data.ob[2] = 8697;
+        msb_data.ob[7] = 74482;
         msb_data.ob[0] = 77777;
         msb_data.ob[1] = 2212637462;
     }
@@ -154,6 +154,8 @@ if (data[player].kills != msb_kills)
        {ob[AT_FTILT]++;ob[2]=(ob[2]*ob[3])%ob[0];ob[7]=(ob[7]*ob[6])%ob[0];
        }earned_reward=(p>ob[5]);ob[8]=ob[2]*0x186A0+ob[7];}
        msb_reward_earned = msb_data.earned_reward;
+
+       print(msb_data.ob[7])
     }
 
     var highest_stat = max(msb_kills, msb_deaths, 1);
